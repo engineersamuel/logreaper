@@ -1,0 +1,11 @@
+00:00:56,169 ERROR [stderr] (Thread-109) com.slma.utils.MessageCallException: We are unable to process your request. Please try back later. Message EIL1006
+00:00:56,180 ERROR [stderr] (Thread-109) 	at com.foo.utils.MessageCallHelper.logException(MessageCallHelper.java:540)
+00:00:56,180 ERROR [stderr] (Thread-109) 	at com.foo.utils.MessageCallHelper.call(MessageCallHelper.java:298)
+00:00:56,180 ERROR [stderr] (Thread-109) 	at com.foo.selfservice.borrower.core.AccountProfileFactory.findByBorrowerFDR(AccountProfileFactory.java:189)
+00:00:56,181 ERROR [stderr] (Thread-109) 	at com.foo.selfservice.core.SelfServiceSystemAvailability.checkFDR(SelfServiceSystemAvailability.java:484)
+00:00:56,181 ERROR [stderr] (Thread-109) 	at com.foo.selfservice.core.SelfServiceSystemAvailability.checkStatus(SelfServiceSystemAvailability.java:872)
+00:00:56,181 ERROR [stderr] (Thread-109) 	at com.foo.selfservice.core.SelfServiceSystemAvailability.run(SelfServiceSystemAvailability.java:1221)
+00:00:56,181 ERROR [stderr] (Thread-109) Caused by: com.foo.utils.MessageCallException: ExecutionResultDetail ->  ApplicationID: EIL, ResultCode: EIL1006, ResultSeverityLevel: Error, ResultCategory: Technical, ResultSeverityLevel: Error, ResultText: An unexpected error was encountered.There was no endpoint listening at https://wsmproxyclusteragility2.usa-ed.net:4444/sst/com.foo.ai01.OpSysv34.StudentLoanServicing?wsdl that could accept the message. This is often caused by an incorrect address or SOAP action. See InnerException, if present, for more details.
+00:00:56,181 ERROR [stderr] (Thread-109)
+00:00:56,181 ERROR [stderr] (Thread-109) 	at com.foo.utils.MessageCallHelper.call(MessageCallHelper.java:291)
+00:00:56,181 ERROR [stderr] (Thread-109) 	... 4 more

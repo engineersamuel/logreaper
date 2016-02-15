@@ -1,0 +1,64 @@
+fuse:
+  title: "Fuse root container log"
+  description: "The log for the root container (fuse.log) in JBoss-Fuse"
+  regex:
+      std:
+        #pattern: "^(?<timestamp>(.*?))\\s+\\|\\s+(?<severity>(.*?))\\s+\\|\\s+(?<thread>(.*?))\\s+\\|(?<category>(.*?))\\s+\\|\\s+(?<component>(.*?))\\s+\\|\\s+(?<message>([^\\|]*))[^\\n]*"
+        # 2014-07-04 08:59:35,136
+        pattern: "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+\\|\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\|\\s+(?<thread>(.*?))\\s+\\|(?<category>(.*?))\\s+\\|\\s+(?<component>(.*?))\\s+\\|\\s+(?<message>(?:(?!\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?).|\\r?\\n)*)"
+      std-time:
+        # 12:26:47,014
+        # pattern: "^(?<timestamp>(.*?))\\s+\\|\\s+(?<severity>(.*?))\\s+\\|\\s+(?<thread>(.*?))\\s+\\|(?<category>(.*?))\\s+\\|\\s+(?<component>(.*?))\\s+\\|\\s+(?<message>([^\\|]*))[^\\n]*"
+        pattern: "^(?<timestamp>\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+\\|\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\|\\s+(?<thread>(.*?))\\s+\\|(?<category>(.*?))\\s+\\|\\s+(?<component>(.*?))\\s+\\|\\s+(?<message>(?:(?!\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?).|\\r?\\n)*)"
+
+      std-day-abr-month:
+        # 18 Jun 2014 10:37:48,380
+        pattern: "^(?<timestamp>\\d{1,2}\\s\\w{3,4}\\s+\\d{4}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+\\|\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\|\\s+(?<thread>(.*?))\\s+\\|(?<category>(.*?))\\s+\\|\\s+(?<component>(.*?))\\s+\\|\\s+(?<message>(?:(?!\\d{1,2}\\s\\w{3,4}\\s+\\d{4}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?).|\\r?\\n)*)"
+
+      std-abr-month:
+        pattern: "^(?<timestamp>\\w{3,4}\\s+\\d{1,2},\\s+\\d{4}\\s+\\d{2}:\\d{2}:\\d{2}\\s(?:AM|PM)?)\\s+\\|\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\|\\s+(?<thread>(.*?))\\s+\\|(?<category>(.*?))\\s+\\|\\s+(?<component>(.*?))\\s+\\|\\s+(?<message>(?:(?!\\w{3,4}\\s+\\d{1,2},\\s+\\d{4}\\s+\\d{2}:\\d{2}:\\d{2}\\s(?:AM|PM)?).|\\r?\\n)*)"
+
+  value:
+      timestamp:
+          kind: 'date'
+          required: Yes
+          # 2014-07-04 08:59:35,136
+          std: "YYYY-MM-DD HH:mm:ss,SSS"
+          # 11:22:47,206
+          std-time: "HH:mm:ss,SSS"
+          # 18 Jun 2014 10:37:48,380
+          std-day-abr-month: "D MMM YYYY HH:mm:ss,SSS"
+          # Jul 1, 2014 11:22:46 AM
+          std-abr-month: "MMM D, YYYY HH:mm:ss A"
+      severity:
+          kind: "string"
+          default: ''
+          values:
+            - label: "TRACE"
+              values: [TRACE, Trace, trace, FINE, Fine, fine, FINER, Finer, finer, FINEST, Finest, finest]
+              ignore: Yes
+            - label: "DEBUG"
+              values: [DEBUG, Debug, debug]
+              ignore: Yes
+            - label: "INFO"
+              values: [INFO, Info, info]
+              ignore: Yes
+            - label: "WARN"
+              values: [WARN, Warn, WARNING, warn, warning]
+            - label: "ERROR"
+              values: [ERROR, Error, error]
+      thread:
+          kind: "string"
+          default: ''
+      category:
+          kind: "string"
+          default: ''
+      component:
+          kind: "string"
+          default: ''
+      message:
+          kind: "string"
+          replace: true
+  sample:
+    long:
+      xxx

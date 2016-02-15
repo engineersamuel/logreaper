@@ -1,0 +1,46 @@
+# Include your project-specific ignores in this file
+labs/logreaper/public/js/bower_components/
+labs/logreaper/public/js/bower_components
+labs/logreaper/public/js/bower_components/*
+labs/logreaper/public/js/bower_components/**/*
+
+# Ignore Jetbrains
+.idea/workspace.xml
+.idea
+/loganalyzer.iml
+/logs
+*.iml
+
+# Ignore node_modules which will be rebuilt in openshift
+node_modules/*
+npm-debug.log
+
+# Ignore the public/dist dir as it will contain combined/minified code
+labs/logreaper/public/dist/
+
+# Ignore all js and map files in the src dir since in prod the files are minified regardless
+app.js.map
+labs/logreaper/public/index.html
+labs/logreaper/public/js/lib/logreaper/**/*.map
+# Let's allow the js files so the workers can be loaded in prod
+#labs/logreaper/public/js/lib/logreaper/**/*.js
+labs/logreaper/public/js/lib/percentageloader/jquery.percentageloader-0.1.min.js
+labs/logreaper/public/less/logreaper.css
+labs/logreaper/public/templates/templates.js
+test/**/*.js
+test/**/*.map
+
+# OS generated files #
+# ######################
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Thumbnails
+._*
+
+# # Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+

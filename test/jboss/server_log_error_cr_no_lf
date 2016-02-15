@@ -1,0 +1,145 @@
+2013-11-19 12:58:06,302 INFO  [org.springframework.beans.factory.support.DefaultListableBeanFactory] (WorkerThread#0[127.0.0.1:54561]) Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@717048: defining beans [propertyPlaceholderConfigurer,servicioPersonas,clasePalabraPrecargadaServicio,subclasePalabraPrecargadaServicio,palabrasPrecargadasServicio,cesionServicio,consultaFastsServicio,representacionServicio,titularServicio,licenciaServicio,pagoAnualidadServicio,anualidadMinimaServicio,servicioPublicacionBopi,anotacionServicio,solicitanteServicio,presentacionServicio,estadoServicio,tramiteServicio,folletoServicio,documentacionServicio,festivosServicio,datosBibliograficosServicio,TipoDocumentoManageableService,ResumenExpManageableService,ReivindicaExpManageableService,ObservacionesExpManageableService,DescripcionExpManageableService,Documento2AnotacionManageableService,AnexoManageableService,AreaManageableService,ServicioManageableService,CargoManageableService,InstitucionBioManageableService,PersonaManageableService,EclaManageableService,IpcValManageableService,EclaIpcManageableService,PaisTipoManageableService,SectorAeticManageableService,ConfiguracionBOPIManageableService,TipoPalabraPrecargadaManageableService,TemporizadorManageableService,ParametroManageableService,PasoFechaVencimientoManageableService,EmailManageableService,ProcesoBatchManageableService,TipoCodigoInidManageableService,RolesSeguiAreaManageableService,RolToBuquedaLDAPManageableService,TipoCodigoInidAdmBopiManageableService,HistoricoTareasManageableService,MiConfiguracionManageableService,HistoricoAsignacionManageableService,HistoricoOperacionesManageableService,CesionManageableService,CedenteManageableService,CesionarioManageableService,CesionFastManageableService,CesionLicenciaManageableService,ClasificacionCipManageableService,TipoClasificacionExpManageableService,ClasificacionEclaManageableService,CipGrupoManageableService,ClasificacionAeticManageableService,ClasificacionCpcManageableService,EuropeaManageableService,InventorManageableService,FastManageableService,PrioridadManageableService,TitularManageableService,AsignaExamManageableService,ExhibicionManageableService,DepositoBioManageableService,RelExpManageableService,PublicacionManageableService,ListaSecManageableService,DesignacionManageableService,RepresentacionManageableService,TipoCodigoDocumentoST16ManageableService,DocumentoSimulacionManageableService,VistaAlMigHibernateManageableService,LicenciaManageableService,LicenciatarioManageableService,LicenciaExpManageableService,LicencianteManageableService,NotificacionManageableService,PeriodoHabilManageableService,PagoAnualidadManageableService,PagosDWManageableService,AnualidadMinimaManageableService,PctManageableService,OficinaManageableService,TasasPctManageableService,BusquedaIntAnteriorManageableService,TipoPubliBopiManageableService,PublicacionBopiManageableService,FechaBopiManageableService,VistaPublicacionesBOPIManageableService,TipoCausaManageableService,TramiteManageableService,TipoTramiteManageableService,CausaAnotacionManageableService,AnotacionManageableService,TipoAnotacionManageableService,TipoEstadoManageableService,EstadoManageableService,SolicitanteManageableService,PresentacionManageableService,SolicitudAsociadaManageableService,TipoTramite2ModalidadManageableService,TipoAnotacion2ModalidadManageableService,TipoEstado2ModalidadManageableService,IetManageableService,DocCitadoIetManageableService,EstrategiaBusquedaManageableService,ExamenPrevioManageableService,DatosDocumentoIETManageableService,OpinionEscritaManageableService,OpinionEscritaIbiManageableService,IbiManageableService,DocCitadoPctManageableService,DatosDocumentoPctManageableService,EstrategiaBusquedaIbiManageableService,ExamenSolicitudIsa206ManageableService,FolletoManageableService,DocumentoFolletoManageableService,Isa201ManageableService,CorreccionInidManageableService,CorreccBloqueAfectadoManageableService,CcpManageableService,AgenteManageableService,AutonomiaManageableService,ProvinciaManageableService,PaisManageableService,FestivoManageableService,LugarPresentacionManageableService,HistoricoLicenciasManageableService,HistoricoTipoAnotacionManageableService,HistoricoAnotacionesManageableService,HistoricoPagoPctManageableService,HistoricoPagoEuropeaManageableService,HistoricoPagoManageableService,HistoricoBonoManageableService,TipoTramiteSitadinManageableService,ClasificacionCipAntiguaManageableService,TemporalCorreoManageableService,TareaMigradaManageableService,TemporizadorMigradoManageableService,CpcManageableService,TipoSenalControlManageableService,SenalControlManageableService]; root of factory hierarchy
+
+2013-11-19 12:58:06,307 ERROR [org.jboss.ejb.plugins.LogInterceptor] (WorkerThread#0[127.0.0.1:54561]) EJBException in method: public abstract void foo.bar.fizz.buzz.fast.crud.FastManageableServiceRemote.delete(java.lang.Long) throws java.lang.Exception,java.rmi.RemoteException, causedBy:
+
+java.sql.SQLException: You cannot commit during a managed transaction!
+
+	at org.jboss.resource.adapter.jdbc.BaseWrapperManagedConnection.jdbcCommit(BaseWrapperManagedConnection.java:661)
+
+	at org.jboss.resource.adapter.jdbc.WrappedConnection.commit(WrappedConnection.java:496)
+
+	at org.hibernate.engine.transaction.Isolater$JdbcDelegate.delegateWork(Isolater.java:214)
+
+	at org.hibernate.engine.transaction.Isolater.doIsolatedWork(Isolater.java:67)
+
+	at org.hibernate.hql.ast.exec.AbstractStatementExecutor.createTemporaryTableIfNecessary(AbstractStatementExecutor.java:167)
+
+	at org.hibernate.hql.ast.exec.MultiTableDeleteExecutor.execute(MultiTableDeleteExecutor.java:101)
+
+	at org.hibernate.hql.ast.QueryTranslatorImpl.executeUpdate(QueryTranslatorImpl.java:421)
+
+	at org.hibernate.engine.query.HQLQueryPlan.performExecuteUpdate(HQLQueryPlan.java:283)
+
+	at org.hibernate.impl.SessionImpl.executeUpdate(SessionImpl.java:1170)
+
+	at org.hibernate.impl.QueryImpl.executeUpdate(QueryImpl.java:117)
+
+	at foo.bar.fizz.buzz.fast.crud.FastManageableDaoBase.delete(FastManageableDaoBase.java:3250)
+
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+
+	at java.lang.reflect.Method.invoke(Unknown Source)
+
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:307)
+
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:182)
+
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:149)
+
+	at org.springframework.orm.hibernate3.HibernateInterceptor.invoke(HibernateInterceptor.java:111)
+
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+
+	at $Proxy2045.delete(Unknown Source)
+
+	at foo.bar.fizz.buzz.fast.crud.FastManageableServiceBase.delete(FastManageableServiceBase.java:224)
+
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+
+	at java.lang.reflect.Method.invoke(Unknown Source)
+
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:307)
+
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:182)
+
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:149)
+
+	at org.springframework.orm.hibernate3.HibernateInterceptor.invoke(HibernateInterceptor.java:111)
+
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+
+	at $Proxy1825.delete(Unknown Source)
+
+	at foo.bar.fizz.buzz.fast.crud.FastManageableServiceSessionBean.delete(FastManageableServiceSessionBean.java:476)
+
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+
+	at java.lang.reflect.Method.invoke(Unknown Source)
+
+	at org.jboss.invocation.Invocation.performCall(Invocation.java:386)
+
+	at org.jboss.ejb.StatelessSessionContainer$ContainerInterceptor.invoke(StatelessSessionContainer.java:233)
+
+	at org.jboss.resource.connectionmanager.CachedConnectionInterceptor.invoke(CachedConnectionInterceptor.java:156)
+
+	at org.jboss.ejb.plugins.StatelessSessionInstanceInterceptor.invoke(StatelessSessionInstanceInterceptor.java:173)
+
+	at org.jboss.ejb.plugins.CallValidationInterceptor.invoke(CallValidationInterceptor.java:63)
+
+	at org.jboss.ejb.plugins.AbstractTxInterceptor.invokeNext(AbstractTxInterceptor.java:121)
+
+	at org.jboss.ejb.plugins.TxInterceptorCMT.runWithTransactions(TxInterceptorCMT.java:350)
+
+	at org.jboss.ejb.plugins.TxInterceptorCMT.invoke(TxInterceptorCMT.java:181)
+
+	at org.jboss.ejb.plugins.SecurityInterceptor.process(SecurityInterceptor.java:228)
+
+	at org.jboss.ejb.plugins.SecurityInterceptor.invoke(SecurityInterceptor.java:211)
+
+	at org.jboss.ejb.plugins.security.PreSecurityInterceptor.process(PreSecurityInterceptor.java:97)
+
+	at org.jboss.ejb.plugins.security.PreSecurityInterceptor.invoke(PreSecurityInterceptor.java:81)
+
+	at org.jboss.ejb.plugins.LogInterceptor.invoke(LogInterceptor.java:205)
+
+	at org.jboss.ejb.plugins.ProxyFactoryFinderInterceptor.invoke(ProxyFactoryFinderInterceptor.java:138)
+
+	at org.jboss.ejb.SessionContainer.internalInvoke(SessionContainer.java:650)
+
+	at org.jboss.ejb.Container.invoke(Container.java:1092)
+
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+
+	at java.lang.reflect.Method.invoke(Unknown Source)
+
+	at org.jboss.mx.interceptor.ReflectedDispatcher.invoke(ReflectedDispatcher.java:157)
+
+	at org.jboss.mx.server.Invocation.dispatch(Invocation.java:96)
+
+	at org.jboss.mx.server.Invocation.invoke(Invocation.java:88)
+
+	at org.jboss.mx.server.AbstractMBeanInvoker.invoke(AbstractMBeanInvoker.java:264)
+
+	at org.jboss.mx.server.MBeanServerImpl.invoke(MBeanServerImpl.java:668)
+
+	at org.jboss.invocation.unified.server.UnifiedInvoker.invoke(UnifiedInvoker.java:232)
+
+	at org.jboss.remoting.ServerInvoker.invoke(ServerInvoker.java:930)
+
+	at org.jboss.remoting.transport.socket.ServerThread.completeInvocation(ServerThread.java:791)
+
+	at org.jboss.remoting.transport.socket.ServerThread.processInvocation(ServerThread.java:744)
+
+	at org.jboss.remoting.transport.socket.ServerThread.dorun(ServerThread.java:548)
+
+	at org.jboss.remoting.transport.socket.ServerThread.run(ServerThread.java:234)

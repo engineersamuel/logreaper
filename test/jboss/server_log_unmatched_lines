@@ -1,0 +1,6 @@
+2014-03-07 11:36:26,786 WARN  [org.jgroups.protocols.pbcast.NAKACK] (OOB-13,192.0.227.91:45928) (requester=192.0.123.179:41666, local_addr=192.0.227.91:45928) message 192.0.123.180:59094::3 not found in retransmission table of 192.0.123.180:59094:
+[0 : 3 (3)]
+2014-03-07 11:36:26,786 WARN  [org.jgroups.protocols.pbcast.NAKACK] (OOB-13,192.0.227.91:45928) (requester=192.0.123.179:41666, local_addr=192.0.227.91:45928) message 192.0.123.180:59094::4 not found in retransmission table of 192.0.123.180:59094:
+[0 : 3 (3)]
+2014-03-07 11:36:26,786 WARN  [org.jgroups.protocols.pbcast.NAKACK] (OOB-13,192.0.227.91:45928) (requester=192.0.123.179:41666, local_addr=192.0.227.91:45928) message 192.0.123.180:59094::5 not found in retransmission table of 192.0.123.180:59094:
+[0 : 3 (3)]

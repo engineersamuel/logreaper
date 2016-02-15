@@ -1,0 +1,75 @@
+2014-02-09T03:33:14.691901-05:00 somebody rsyslogd: [origin software="rsyslogd" swVersion="5.8.10" x-pid="24417" x-info="http://www.rsyslog.com"] rsyslogd was HUPed
+2014-02-09T03:33:15.686731-05:00 somebody rhsmd: This system is registered to RHN Classic.
+2014-02-09T03:54:51.313148-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T04:14:51.413378-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T04:34:51.513655-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T04:54:51.613945-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T05:14:51.714296-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T05:34:51.814674-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T05:54:51.915043-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T06:14:52.015425-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T06:34:52.115825-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T06:54:52.216154-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T07:14:52.316316-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T07:34:52.416484-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T07:54:52.516586-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T08:14:52.616755-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T08:34:52.716934-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T08:54:52.817169-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T09:14:52.917358-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T09:34:53.017641-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T09:54:53.117830-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T10:14:53.218122-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T10:34:53.318436-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T10:54:53.418700-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T11:09:15.092817-05:00 somebody _tk4aunxf_: INFO  [00000004] :sassrv_pam - SAH041001I Server SAS Workspace Server, State, starting
+2014-02-09T11:09:15.645869-05:00 somebody _tk4aunxf_: INFO  [00000004] :sassrv_pam - SAH041999I Server SAS Workspace Server, State, running
+2014-02-09T11:19:17.022026-05:00 somebody _tk4aunxf_: INFO  [00000004] :sassrv_pam - SAH049999I Server SAS Workspace Server, State, stopped
+2014-02-09T11:34:53.619308-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T11:54:53.719642-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T12:14:53.819814-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T12:21:07.513266-05:00 somebody DSM: Date = 2014-02-09, Time = 12:21:07.000, MsgId = 1000, Event Source = DSM, Application = caf, Level = Error, Category = CAF, Node = somebody, User = root, Computer = somebody: Caf encountered an error: Failed to register with scalability server usmlvv1cms1srv.ww005.siemens.net. The remote machine was not contactable. The peer messaging service may not be running or network errors were encountered.
+2014-02-09T12:34:53.920207-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T12:54:54.020574-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T13:14:54.121007-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T13:34:54.221406-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T13:54:54.321565-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T14:14:54.410496-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T14:34:54.510686-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T14:54:54.610902-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T15:14:54.711114-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T15:34:54.811333-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T15:54:54.911579-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T16:14:55.011748-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T16:34:55.111946-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T16:54:55.212148-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T17:14:55.228606-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T17:34:55.328833-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T17:54:55.429143-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T18:14:55.529435-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T18:34:55.629784-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T18:54:55.730138-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T19:14:55.830521-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T19:34:55.930903-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T19:54:56.031091-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T20:14:56.131521-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T20:34:56.204007-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T20:54:56.304194-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T21:14:56.404339-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T21:34:56.504553-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T21:54:56.604750-05:00 somebody rsyslogd: -- MARK --
+2014-02-09T22:00:03.206208-05:00 somebody xinetd[9790]: Exiting...
+2014-02-09T22:00:16.895222-05:00 somebody sudo:     root : TTY=unknown ; PWD=/opt/netapp/scAgent4.0p1 ; USER=lsfadmin ; COMMAND=/usr/backup_scripts/SAS_jobs_stop.sh
+2014-02-09T22:05:57.341716-05:00 somebody sudo:     root : TTY=unknown ; PWD=/opt/netapp/scAgent4.0p1 ; USER=sasuser ; COMMAND=/sas/share/sasconfig/COMPUTE/Lev1/sas.servers2 stop
+2014-02-09T22:05:57.800514-05:00 somebody _tk4aunxf_: INFO  [00000004] :sasuser - SAH029999I Server SAS Object Spawner Daemon III (8582), State, stopped
+2014-02-09T22:05:58.578743-05:00 somebody _tk4aunxf_: INFO  [00000004] :sasuser - SAH059001I SAS OLAP Server (5453), State, stopping
+2014-02-09T22:05:58.580778-05:00 somebody _tk4aunxf_: INFO  [00000004] :sasuser - SAH059001I SAS OLAP Server (5454), State, stopping
+2014-02-09T22:05:58.584178-05:00 somebody _tk4aunxf_: INFO  [00000004] :sasuser - SAH059999I SAS OLAP Server (5453), State, stopped
+2014-02-09T22:05:58.584729-05:00 somebody _tk4aunxf_: INFO  [00000004] :sasuser - SAH059001I SAS OLAP Server (5452), State, stopping
+2014-02-09T22:05:58.585148-05:00 somebody _tk4aunxf_: INFO  [00000004] :sasuser - SAH059999I SAS OLAP Server (5454), State, stopped
+2014-02-09T22:05:58.587900-05:00 somebody _tk4aunxf_: INFO  [00000004] :sasuser - SAH059001I SAS OLAP Server (5455), State, stopping
+2014-02-09T22:05:58.588750-05:00 somebody _tk4aunxf_: INFO  [00000004] :sasuser - SAH059999I SAS OLAP Server (5452), State, stopped
+2014-02-09T22:05:58.594295-05:00 somebody _tk4aunxf_: INFO  [00000004] :sasuser - SAH059999I SAS OLAP Server (5455), State, stopped
+2014-02-09T22:05:58.598360-05:00 somebody _tk4aunxf_: INFO  [00000004] :sasuser - SAH059001I SAS OLAP Server (5456), State, stopping
+2014-02-09T22:05:58.601215-05:00 somebody _tk4aunxf_: INFO  [00000004] :sasuser - SAH059999I SAS OLAP Server (5456), State, stopped
+2014-02-09T22:05:58.634073-05:00 somebody _tk4aunxf_: INFO  [00000004] :sasuser - SAH059001I SAS OLAP Server (5451), State, stopping

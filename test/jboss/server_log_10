@@ -1,0 +1,10 @@
+2014-02-21 22:32:16,242 INFO  [org.jboss.web.WebService] (main) Using RMI server codebase: http://foobar:8283/
+2014-02-21 22:32:20,407 INFO  [org.jboss.logbridge.LogNotificationListener] (main) Adding notification listener for logging mbean "jboss.system:service=Logging,type=Log4jService" to server org.jboss.mx.server.MBeanServerImpl@19852a81[ defaultDomain='jboss' ]
+2014-02-21 22:32:30,719 ERROR [STDERR] (main) SLF4J: Class path contains multiple SLF4J bindings.
+2014-02-21 22:32:30,719 ERROR [STDERR] (main) SLF4J: Found binding in [vfszip:/C:/fooADV/fooPROD/jboss_home/server/foo-cluster/common/lib/slf4j-jboss-logging.jar/org/slf4j/impl/StaticLoggerBinder.class]
+2014-02-21 22:32:30,719 ERROR [STDERR] (main) SLF4J: Found binding in [vfszip:/C:/fooADV/fooPROD/jboss_home/server/foo-cluster/deploy/kubera.ear/slf4j-log4j12-1.6.1.jar/org/slf4j/impl/StaticLoggerBinder.class]
+2014-02-21 22:32:30,719 ERROR [STDERR] (main) SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+2014-02-21 22:32:30,735 WARN  [jacorb.config] (main) jacorb.home unset! Will use '.'
+2014-02-21 22:32:30,735 WARN  [jacorb.config] (main) File .\jacorb.properties for configuration jacorb not found
+2014-02-21 22:32:30,813 WARN  [jacorb.codeset] (main) Warning - unknown codeset (Cp1252) - defaulting to ISO-8859-1
+2014-02-21 22:32:30,828 WARN  [jacorb.config] (main) jacorb.home unset! Will use '.'

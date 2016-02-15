@@ -1,0 +1,57 @@
+<!doctype html>
+<html class="chrometwo legacyfalse">
+    <head>
+        <title>Access Labs Log Reaper</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet",type="text/css",media="all",href="/chrome_themes/umbra/s/chrometwo.css" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href="<%- STYLE_URL %>" rel="stylesheet"/>
+        <script>
+            // Bounce early if we don't find a cookie
+            if (!document.cookie.match(/rh_user=./)) {
+                window.location = 'https://idp.redhat.com/idp/';
+            }
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            window.quest = {}
+            window.quest['mainJsHash'] = "<%- mainJsHash %>";
+            window.quest['version'] = "<%- version %>";
+            window.quest['browserPath'] = "<%- BROWSER_PATH %>";
+        </script>
+
+        <div id="content">
+            <%- body %>
+        </div>
+
+        <!-- This is the marty state for rehydration to the stores once the browser js kicks in -->
+        <%- state %>
+
+
+        <!-- If using the commons in webpack. Not currently hence the dev testing-->
+        <% if (ENV == 'development' && COMMONS_URL) { %>
+        <script type="text/javascript" src="<%- COMMONS_URL %>"></script>
+        <% } %>
+
+        <script type="text/javascript">
+            breadcrumbs = [['Labs', '/labs/'], ['Log Reaper', '/labs/logreaper/']];
+
+            chrometwo_require(['jquery'], function (jq) {
+                require.s.contexts._.config.urlArgs = "bust=#{uid}";
+
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = '<%- SCRIPT_URL%>' + '?bust=' + "<%- mainJsHash%>"
+                document.body.appendChild(script);
+
+            });
+        </script>
+
+    </body>
+</html>

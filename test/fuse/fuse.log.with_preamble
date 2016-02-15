@@ -1,0 +1,5 @@
+Jul 1, 2014 11:22:46 AM org.apache.karaf.main.SimpleFileLock lock
+INFO: locking
+11:22:47,206 | INFO  | t-60024-thread-1 | fileinstall                      | 7 - org.apache.felix.fileinstall - 3.3.11.redhat-60024 | Installed /NotBackedUp/foo/lib/jboss-fuse-6.0.0.redhat-024/etc/org.apache.karaf.jaas.cfg
+11:22:47,212 | INFO  | t-60024-thread-1 | fileinstall                      | 7 - org.apache.felix.fileinstall - 3.3.11.redhat-60024 | Installed /NotBackedUp/foo/lib/jboss-fuse-6.0.0.redhat-024/etc/org.apache.karaf.features.repos.cfg
+11:22:47,215 | INFO  | t-60024-thread-1 | fileinstall                      | 7 - org.apache.felix.fileinstall - 3.3.11.redhat-60024 | Installed /NotBackedUp/foo/lib/jboss-fuse-6.0.0.redhat-024/etc/org.fusesource.fabric.maven.cfg

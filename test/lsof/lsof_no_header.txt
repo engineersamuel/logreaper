@@ -1,0 +1,8 @@
+java    7634 somebody  cwd    DIR              253,5     4096   65537 /home/somebody
+java    7634 somebody  rtd    DIR              253,0     4096       2 /
+java    7634 somebody  txt    REG              253,6    43968  560195 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/bin/java
+java    7634 somebody  mem    REG              253,0   144776  425991 /lib64/ld-2.5.so
+java    7634 somebody  mem    REG              253,0  1726472  425995 /lib64/libc-2.5.so
+java    7634 somebody  mem    REG              253,0    23360  425996 /lib64/libdl-2.5.so
+java    7634 somebody  mem    REG              253,0   149968  425999 /lib64/libpthread-2.5.so
+java    7634 somebody  mem    REG              253,6    18640  559549 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/jli/libjli.so

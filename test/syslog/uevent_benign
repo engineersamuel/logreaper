@@ -1,0 +1,28 @@
+Apr 27 03:14:15 foo rsyslogd: [origin software="rsyslogd" swVersion="5.8.10" x-pid="4671" x-info="http://www.rsyslog.com"] rsyslogd was HUPed
+Apr 27 03:15:08 foo rhsmd: In order for Subscription Manager to provide your system with updates, your system must be registered with RHN. Please enter your Red Hat login to ensure your system is up-to-date.
+Apr 27 03:15:11 foo kernel: sda: sda1 sda2 sda3
+Apr 27 03:15:11 foo kernel: sdb: sdb1
+Apr 27 03:15:11 foo kernel: sda:
+Apr 27 03:15:11 foo kernel: sdc: sda1 sda2 sda3
+Apr 27 03:15:11 foo kernel: sdc1
+Apr 27 03:15:11 foo kernel: sdb: sdb1
+Apr 27 03:15:11 foo kernel: sdd: sdd1
+Apr 27 03:15:11 foo kernel: sdb: sdb1
+Apr 27 03:15:11 foo kernel: sdc:
+Apr 27 03:15:11 foo kernel: sde: sdc1
+Apr 27 03:15:11 foo kernel: sde1
+Apr 27 03:15:11 foo kernel: sdc: sdc1
+Apr 27 03:15:11 foo kernel: sdd: sdd1
+Apr 27 03:15:11 foo kernel: sde:
+Apr 27 03:15:11 foo kernel: sdf: sde1
+Apr 27 03:15:11 foo kernel: sdf1
+Apr 27 03:15:11 foo kernel: sdf: sdf1
+Apr 27 03:15:11 foo kernel: sde: sde1
+Apr 27 03:15:11 foo kernel: sdf: sdf1
+Apr 27 03:15:12 foo rsyslogd-2177: imuxsock lost 535 messages from pid 3697 due to rate-limiting
+Apr 27 03:15:12 foo multipathd: dm-113: remove map (uevent)
+Apr 27 03:15:12 foo multipathd: dm-113: devmap not registered, can't remove
+Apr 27 03:15:12 foo multipathd: dm-97: remove map (uevent)
+Apr 27 03:15:12 foo multipathd: dm-97: devmap not registered, can't remove
+Apr 27 03:15:12 foo multipathd: dm-93: remove map (uevent)
+Apr 27 03:15:12 foo multipathd: dm-93: devmap not registered, can't remove

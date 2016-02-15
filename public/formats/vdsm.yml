@@ -1,0 +1,58 @@
+vdsm:
+  title: "Virtualization Desktop and Server Manager"
+  description: "The log for the vdsm service in RHEV hosts"
+  regex:
+      std:
+          pattern: "^(?<threadId>[A-Z][^:]*)::(?<severity>[A-Z][^:]*)::(?<timestamp>[\\S][^\\s]*\\s\\d{2}:\\d{2}:\\d{2},\\d{3})::(?<component>[A-Za-z][^:]*)::(?<line>\\d[^:]*)::(?<module>[A-Za-z][^:]*)::\\((?<functionName>.[^\\s]*)\\)\\s(?<command>.[^\\n]*)"
+      simple:
+          pattern: "^REMOVE ME^(?<name>[A-Za-z][^:]*Error):\\s(?<severity>.[^:]*):\\s(?<message>.[^\\r]*)"
+  value:
+      threadId:
+          kind: "string"
+          default: ''
+      severity:
+          kind: "string"
+          default: 'INFO'
+          values:
+            - label: "TRACE"
+              values: [TRACE, Trace, trace, FINE, Fine, fine]
+              ignore: Yes
+            - label: "DEBUG"
+              values: [DEBUG, Debug, debug]
+              ignore: Yes
+            - label: "INFO"
+              values: [INFO, Info, info]
+              ignore: Yes
+            - label: "WARN"
+              values: [WARN, Warn, WARNING, warn, warning]
+            - label: "ERROR"
+              values: [ERROR, Error, error]
+      timestamp:
+          kind: 'date'
+          required: Yes
+          std: "YYYY-MM-DD HH:mm:ss,SSS"
+          std-time: "HH:mm:ss,SSS"
+          std-no-thread: "YYYY-MM-DD HH:mm:ss,SSS"
+          example: '2014-02-21 22:35:00,557'
+          example-time: '22:35:00,557'
+      component:
+          kind: "string"
+          default: ''
+      line:
+          kind: "integer"
+          default: ''
+      module:
+          kind: "string"
+          default: ''
+      functionName:
+          kind: "string"
+          default: ''
+      command:
+          kind: "string"
+          default: ''
+  sample:
+    long:
+        - "Thread-2251::DEBUG::2014-03-16 04:01:05,177::task::1168::TaskManager.Task::(prepare) Task=`7faeb4fb-a6fb-44b7-bbe5-096fdcd016ef`::finished: {'truesize': '113816633344', 'apparentsize': '113816633344'}"
+    simple:
+        - "libvirtError: Requested operation is not valid: domain is not running"
+        - "MountError: (1, ';umount: /rhev/data-center/mnt/bake.unx.sas.com:_export_rdcrhev3__iso: not found\n')"

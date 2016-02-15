@@ -1,0 +1,46 @@
+lsof:
+  title: "lsof"
+  description: "The default output of lsof"
+  #url: "http://en.wikipedia.org/wiki/Common_Log_Format"
+  regex:
+      std:
+          header: "^COMMAND.*?PID.*?USER.*?FD.*?TYPE.*?DEVICE.*?SIZE.*?NODE.*?NAME$"
+          pattern: "^(?<process>[\\w]+)\\s+(?<pid>\\d+)\\s+(?<user>[a-zA-Z0-9._-]+)\\s+(?<fd>.*?)\\s+(?<type>.*?)\\s+(?<device>[\\w,]+)\\s*(?<size>\\w+)\\s*(?<node>\\w*?)\\s+(?<name>.*)"
+  value:
+      process:
+          kind: "string"
+          default: ''
+      pid:
+          kind: "integer"
+          required: Yes
+      user:
+          kind: "string"
+          default: ''
+      fd:
+          kind: "string"
+          default: ''
+      type:
+          kind: "string"
+          default: ''
+      device:
+          kind: "string"
+          default: ''
+      size:
+          kind: "integer"
+          default: 0
+      node:
+          kind: "string"
+          default: ''
+      name:
+          kind: "string"
+          default: ''
+  sample:
+    std:
+      - kjournald   519      root  rtd       DIR              253,0       4096          2 /
+      - kjournald   519      root  txt   unknown                                          /proc/519/exe
+      - kauditd     544      root  cwd       DIR              253,0       4096          2 /
+      - kauditd     544      root  rtd       DIR              253,0       4096          2 /
+      - kauditd     544      root  txt   unknown                                          /proc/544/exe
+      - sendmail    550     smmsp  cwd       DIR              253,4       4096    2779848 /var/spool/clientmqueue
+      - sendmail    550     smmsp  rtd       DIR              253,0       4096          2 /
+      - sendmail    550     smmsp  txt       REG              253,1     775064     915884 /usr/sbin/sendmail.sendmail

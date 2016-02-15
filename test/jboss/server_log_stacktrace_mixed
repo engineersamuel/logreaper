@@ -1,0 +1,34 @@
+2014-02-21 22:33:32,776 ERROR [org.jboss.messaging.util.ExceptionUtil] (main) org.jboss.jms.server.connectionfactory.ConnectionFactory@73cf9232 startService
+java.lang.IllegalStateException: org.jboss.messaging.core.impl.postoffice.GroupMember@562f2ab0 response not received from 10.1.2.46:55200 - there may be others
+	at org.jboss.messaging.core.impl.postoffice.GroupMember.multicastControl(GroupMember.java:316)
+	at org.jboss.messaging.core.impl.postoffice.MessagingPostOffice.put(MessagingPostOffice.java:2313)
+	at org.jboss.jms.server.connectionfactory.ConnectionFactoryJNDIMapper.registerConnectionFactory(ConnectionFactoryJNDIMapper.java:256)
+2014-02-21 22:33:32,823 ERROR [org.jboss.kernel.plugins.dependency.AbstractKernelController] (main) Error installing to Start: name=jboss.messaging.connectionfactory:service=ClusterPullConnectionFactory state=Create mode=Manual requiredState=Installed
+java.lang.IllegalStateException: org.jboss.messaging.core.impl.postoffice.GroupMember@562f2ab0 response not received from 10.1.2.46:55200 - there may be others
+	at org.jboss.messaging.core.impl.postoffice.GroupMember.multicastControl(GroupMember.java:316)
+	at org.jboss.messaging.core.impl.postoffice.MessagingPostOffice.put(MessagingPostOffice.java:2313)
+	at org.jboss.jms.server.connectionfactory.ConnectionFactoryJNDIMapper.registerConnectionFactory(ConnectionFactoryJNDIMapper.java:256)
+2014-02-21 22:33:33,634 INFO  [org.apache.catalina.core.AprLifecycleListener] (main) Loaded Apache Tomcat Native library 1.1.20.
+==This line should not match==
+2014-02-21 22:34:11,807 INFO  [com.foo.meta.model.PricingDictionary] (main) Creating Pricing Dictionary...
+2014-02-21 22:34:12,119 INFO  [com.foo.meta.model.PricingDictionary] (main)
+****************************************
+This line and further lines until next match should not be included
+
+Warnings:
+
+No keys are specified for the entity 'com.foo.policymanager.WarehouseCost'
+   C:\fooADV\fooPROD\meta\bar\omin\policymanager\WarehouseCost.omi:11
+2014-02-21 22:34:11,807 INFO  [test] (main) Some random content
+2014-02-21 22:33:32,823 ERROR [org.jboss.kernel.plugins.dependency.AbstractKernelController] (main) Error installing to Start: name=jboss.messaging.connectionfactory:service=ClusterPullConnectionFactory state=Create mode=Manual requiredState=Installed
+java.lang.IllegalStateException: org.jboss.messaging.core.impl.postoffice.GroupMember@562f2ab0 response not received from 10.1.2.46:55200 - there may be others
+	at org.jboss.messaging.core.impl.postoffice.GroupMember.multicastControl(GroupMember.java:316)
+
+2014-02-20 00:00:02,190 INFO  [com.foo.web.portal.scheduler.workers.ZoneLoadWorker] (pool-20-thread-1) Executing Some Client Service
+2014-02-20 00:00:02,461 INFO  [com.foo.web.servicelibrary.util.EntitlementDroolsEngine] (pool-20-thread-1) Compiled Drools Rule from EntitlementDroolsEngine :- import com.foo.web.servicelibrary.foo.model.Message rule 'CUSTOMER TYPE S'
+2014-02-20 00:00:02,615 INFO  [com.foo.web.servicelibrary.util.EntitlementDroolsEngine] (pool-20-thread-1) Compiled Drools Rule from EntitlementDroolsEngine :- import com.foo.web.servicelibrary.foo.model.Message rule 'CUSTOMER TYPE C'
+2014-02-20 00:00:02,615 INFO  [com.foo.web.servicelibrary.util.EntitlementDroolsEngine] (pool-20-thread-1) Compiled Drools Rule from EntitlementDroolsEngine :- import com.foo.web.servicelibrary.foo.model.Message rule 'CUSTOMER TYPE S'
+2014-02-20 00:00:02,767 INFO  [com.foo.web.servicelibrary.util.EntitlementDroolsEngine] (pool-20-thread-1) Compiled Drools Rule from EntitlementDroolsEngine :- import com.foo.web.servicelibrary.foo.model.Message rule 'CUSTOMER TYPE C'
+2014-02-20 00:00:02,767 INFO  [com.foo.web.servicelibrary.util.EntitlementDroolsEngine] (pool-20-thread-1) Compiled Drools Rule from EntitlementDroolsEngine :- import com.foo.web.servicelibrary.foo.model.Message rule 'CUSTOMER TYPE S'
+2014-02-20 00:00:02,767 INFO  [com.foo.web.servicelibrary.foo.service.FooClientServiceImpl] (pool-20-thread-1) Loaded the DroolsMap successfully : Check Size() 5
+2014-02-20 00:00:02,768 INFO  [com.foo.web.servicelibrary.util.JNDIServiceLocator] (pool-20-thread-1) Map Size() loadJnsi() 2

@@ -1,0 +1,436 @@
+//@import '../js/bower_components/datatables/media/css/jquery.dataTables.css';
+//@import '../js/bower_components/datatables-scroller/css/dataTables.scroller.css';
+//@import '../js/bower_components/tooltipster/css/tooltipster.css';
+//@import '../js/lib/litetabs/litetabs.css';
+//@import url(https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.css);
+
+.content-area {
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+}
+
+// If this is not done then the nv.d3.css takes precedence and sets the svg to 100% which fubars chrome (browser)
+.dc-chart svg {
+  height: auto !important;
+}
+
+.filter-selected {
+  background: #cce4e7 !important;
+  border-color: #99cacf !important;
+  color: #007a87 !important;
+  padding: 3px;
+}
+
+// Override bootstrap
+//@popover-max-width: 750px;
+@popover-max-height: 600px;
+.chrometwo .popover {
+  width: 90% !important;
+  height: 400px !important;
+  max-width: none !important;
+  position: fixed !important;
+  top: 40px !important;
+  left: 5% !important;
+  display: none;
+  text-align: left; // Reset given new insertion method
+  //  z-index: @zindex-popover;
+  //  background-color: @popover-bg;
+  //  background-clip: padding-box;
+  //  border: 1px solid @popover-fallback-border-color;
+  //  border: 1px solid @popover-border-color;
+  //  border-radius: @border-radius-large;
+  //  .box-shadow(0 5px 10px rgba(0,0,0,.2));
+
+  // Overrides for proper insertion
+  white-space: normal;
+
+  // Added for logreaper
+  max-height: @popover-max-height;
+  overflow: scroll;
+
+  background: #4c4c4c;
+
+  .popover-content {
+    background: #4c4c4c;
+  }
+
+  textarea {
+    width: 95%;
+    height: 80% !important;
+    margin: 10px 2.5%;
+    outline:0px !important;
+    border: 0px !important;
+    -webkit-appearance:none;
+    background: #4c4c4c;
+    color: #fff;
+  }
+}
+
+// Syslog colors
+@emerg-color: darkred;
+@alert-color: #770000;
+@crit-color: #630000;
+@error-color: #4f0000;
+@warn-color: #f69900;
+@notice-color: lightblue;
+@info-color: lightblue;
+@debug-color: #4f544c;
+@trace-color: darkblue;
+
+// Logcompute custom styling
+@info-color: lightblue;
+@error-color: darkred;
+@warn-color: #f69900;
+@trace-color: darkblue;
+@debug-color: #4f544c;
+
+@published-color: #00BD00;
+@unpublished-color: #d84b2a;
+@active-color: #00BD00;
+@retired-color: #BFBFBF;
+@private-color: #F00202;
+@verified-color: #00BD00;
+@unverified-color: #ffa500;
+@wip-color: #d84b2a;
+
+.spacer {
+  margin-bottom: 15px;
+}
+
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.example {
+  padding: 10px;
+}
+#drop-zone {
+  border: 2px dashed #bbb;
+  -webkit-border-radius: 5px;
+  padding: 25px;
+  text-align: center;
+}
+
+.drag-over {
+  background-color: #bfb;
+}
+
+.d3-quick-chart svg { }
+.svg-quick-chart {
+  width: 100%;
+}
+.chart-med {
+  height: 240px !important;
+}
+.chart-large {
+  height: 350px !important;
+}
+
+// The default nvd3 css has height as 100% which fubar's the custom override
+//.nvd3-svg {
+//  height: inherit !important;
+//}
+
+.logreaper-dygraph {
+  height: 200px !important;
+  width: 100% !important;
+  //display: block !important;
+  //position: absolute;
+  //left: 20px;
+  //right: 20px;
+  //top: 140px;
+  //bottom: 140px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.slider-value {
+  font-weight: bold;
+  border:0;
+}
+
+// By default the fa-ul adds a left margin, not what we want
+.no-left-margin {
+  margin-left: 0 !important;
+}
+
+html.next #main label {
+  span, input {
+    font-size: 14px;
+  }
+
+  input {
+    margin-top: 0;
+  }
+}
+
+.severity-ERROR {
+  font-weight: bold;
+  color: @error-color !important;
+}
+.severity-EMERG { .severity-ERROR; }
+.severity-ALERT { .severity-ERROR; }
+.severity-CRIT { .severity-ERROR; }
+
+.severity-WARN {
+  font-weight: bold;
+  color: @warn-color !important;
+}
+.severity-INFO {
+  color: @info-color !important;
+  font-weight: bold;
+}
+.severity-NOTICE { .severity-INFO; }
+
+.severity-TRACE {
+  color: @trace-color !important;
+  font-weight: bold;
+}
+.severity-DEBUG {
+  color: @debug-color !important;
+  font-weight: bold;
+}
+
+.status-200 {
+  font-weight: bold;
+  color: green;
+}
+.status-201 { .status-200; }
+.status-202 { .status-200; }
+.status-203 { .status-200; }
+.status-204 { .status-200; }
+.status-205 { .status-200; }
+.status-206 { .status-200; }
+.status-207 { .status-200; }
+.status-208 { .status-200; }
+.status-226 { .status-200; }
+
+.status-300 {
+  font-weight: bold;
+  color: orange
+}
+.status-301 { .status-300; }
+.status-302 { .status-300; }
+.status-303 { .status-300; }
+.status-304 { .status-300; }
+.status-305 { .status-300; }
+.status-306 { .status-300; }
+.status-307 { .status-300; }
+.status-308 { .status-300; }
+
+.status-500 {
+  font-weight: bold;
+  color: darkred
+}
+.status-501 { .status-500; }
+.status-502 { .status-500; }
+.status-503 { .status-500; }
+.status-504 { .status-500; }
+.status-505 { .status-500; }
+.status-506 { .status-500; }
+.status-507 { .status-500; }
+.status-508 { .status-500; }
+.status-509 { .status-500; }
+.status-510 { .status-500; }
+.status-511 { .status-500; }
+
+//.published {color: @published-color;}
+//.unpublished {color: @unpublished-color;}
+//.active {color: @active-color;}
+//.retired {color: @retired-color;}
+//.private {color: @private-color;}
+//.verified {color: @verified-color;}
+//.unverified {color: @unverified-color;}
+//.wip {color: @wip-color;}
+
+#jboss-server-log-counts g.y {
+  display: none;
+}
+
+.stacktrace-theme {
+  border-radius: 5px;
+  //  border: 2px solid #000;
+  background: #4c4c4c;
+  //  background: #F5F5F5;
+
+  //  color: #fff;
+}
+.stacktrace-theme .tooltipster-content {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  padding: 8px 10px;
+
+  max-height: 800px;
+  max-width: 1200px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+
+  & pre {
+    background: #4c4c4c;
+    color: #fff;
+  }
+}
+
+
+
+/* Use this next selector to style things like font-size and line-height: */
+
+
+@stacktrace-bg-color: rgb(220, 220, 220);
+.tooltipster-content-mixin {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 14px;
+  padding: 8px 10px;
+
+  max-height: 600px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+.tooltipster-content-textarea-mixin {
+  display: table-row;
+  border: none;  /* if you keep border then textarea will go out of the parent element */
+  padding: 0px;  /* removing padding for chrome */
+  width: 640px;
+  color: black;
+
+}
+.textarea-small {
+  .tooltipster-content-mixin;
+  .tooltipster-content-textarea-mixin;
+  height: 75px;
+
+  &:hover {
+    outline:0px !important;
+    -webkit-appearance:none;
+  }
+}
+
+.textarea-large {
+  .tooltipster-content-mixin;
+  .tooltipster-content-textarea-mixin;
+  height: 600px;
+
+  &:hover {
+    outline:0px !important;
+    -webkit-appearance:none;
+  }
+}
+
+//http://jsfiddle.net/greypants/zgCb7/298/
+
+.has-tooltip {
+  background: #ececec;
+  color: #555;
+  cursor: help;
+  font-family: "Gill Sans", Impact, sans-serif;
+  font-size: 20px;
+  margin: 100px 75px 10px 75px;
+  padding: 15px 20px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  width: 200px;
+  -webkit-transform: translateZ(0); /* webkit flicker fix */
+  -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+}
+
+.has-tooltip .tooltip {
+  background: #1496bb;
+  bottom: 100%;
+  color: #fff;
+  display: block;
+  left: -25px;
+  margin-bottom: 15px;
+  opacity: 0;
+  padding: 20px;
+  position: absolute;
+  visibility: hidden;
+  width: 100%;
+  -webkit-transform: translateY(10px);
+  -moz-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  -o-transform: translateY(10px);
+  transform: translateY(10px);
+  -webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -ms-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+  transition: all .25s ease-out;
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+}
+
+/* This bridges the gap so you can mouse into the tooltip without it disappearing */
+.has-tooltip .tooltip:before {
+  bottom: -20px;
+  content: " ";
+  display: block;
+  height: 20px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+/* CSS Triangles - see Trevor's post */
+.has-tooltip .tooltip:after {
+  border-left: solid transparent 10px;
+  border-right: solid transparent 10px;
+  border-top: solid #1496bb 10px;
+  bottom: -10px;
+  content: " ";
+  height: 0;
+  left: 50%;
+  margin-left: -13px;
+  position: absolute;
+  width: 0;
+}
+
+.has-tooltip:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+  transform: translateY(0px);
+}
+
+/**********************************************************************************************************************/
+/* Icon colors */
+/**********************************************************************************************************************/
+.green {
+  color: green;
+}
+.black {
+  color: black;
+}
+
+/**********************************************************************************************************************/
+/* React animations */
+/**********************************************************************************************************************/
+.top-counts-enter {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}
+
+.top-counts-enter.top-counts-enter-active {
+  opacity: 1;
+}
+
+.top-counts-leave {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.top-counts-leave.top-counts-leave-active {
+  opacity: 0.01;
+}

@@ -1,0 +1,222 @@
+12:26:47,014 | WARN  | FelixStartLevel  | container                        | 257 - org.apache.aries.jpa.container - 1.0.1.redhat-610379 | Error while creating entity manager factories. The error will be ignored.
+<openjpa-2.3.0-r422266:1540826 fatal user error> org.apache.openjpa.persistence.ArgumentException: Could not invoke the static newInstance method on the named factory class "org.apache.openjpa.jdbc.kernel.JDBCBrokerFactory".
+	at org.apache.openjpa.kernel.Bootstrap.newBrokerFactory(Bootstrap.java:76)[263:org.apache.openjpa:2.3.0]
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.getBrokerFactory(PersistenceProviderImpl.java:148)[263:org.apache.openjpa:2.3.0]
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.createContainerEntityManagerFactory(PersistenceProviderImpl.java:186)[263:org.apache.openjpa:2.3.0]
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.createContainerEntityManagerFactory(PersistenceProviderImpl.java:62)[263:org.apache.openjpa:2.3.0]
+	at org.apache.aries.jpa.container.impl.EntityManagerFactoryManager.createEntityManagerFactories(EntityManagerFactoryManager.java:360)[257:org.apache.aries.jpa.container:1.0.1.redhat-610379]
+	at org.apache.aries.jpa.container.impl.EntityManagerFactoryManager.bundleStateChange(EntityManagerFactoryManager.java:199)[257:org.apache.aries.jpa.container:1.0.1.redhat-610379]
+	at org.apache.aries.jpa.container.impl.PersistenceBundleManager.modifiedBundle(PersistenceBundleManager.java:296)[257:org.apache.aries.jpa.container:1.0.1.redhat-610379]
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.customizerModified(BundleHookBundleTracker.java:500)[11:org.apache.aries.util:1.0.1.redhat-610379]
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.customizerModified(BundleHookBundleTracker.java:433)[11:org.apache.aries.util:1.0.1.redhat-610379]
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$AbstractTracked.track(BundleHookBundleTracker.java:725)[11:org.apache.aries.util:1.0.1.redhat-610379]
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.bundleChanged(BundleHookBundleTracker.java:463)[11:org.apache.aries.util:1.0.1.redhat-610379]
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$BundleEventHook.event(BundleHookBundleTracker.java:422)[11:org.apache.aries.util:1.0.1.redhat-610379]
+	at org.apache.felix.framework.util.SecureAction.invokeBundleEventHook(SecureAction.java:1103)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.util.EventDispatcher.createWhitelistFromHooks(EventDispatcher.java:696)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.util.EventDispatcher.fireBundleEvent(EventDispatcher.java:484)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.Felix.fireBundleEvent(Felix.java:4650)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.StatefulResolver.fireResolvedEvents(StatefulResolver.java:1073)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.StatefulResolver.resolve(StatefulResolver.java:437)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.Felix.resolveBundleRevision(Felix.java:4218)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.Felix.startBundle(Felix.java:2063)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.Felix.setActiveStartLevel(Felix.java:1317)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.FrameworkStartLevelImpl.run(FrameworkStartLevelImpl.java:304)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at java.lang.Thread.run(Thread.java:744)[:1.7.0_45]
+Caused by: <openjpa-2.3.0-r422266:1540826 nonfatal general error> org.apache.openjpa.persistence.PersistenceException: There were errors initializing your configuration: <openjpa-2.3.0-r422266:1540826 fatal user error> org.apache.openjpa.util.UserException: A connection could not be obtained for driver class "null" and URL "null".  You may have specified an invalid URL.
+	at org.apache.openjpa.jdbc.schema.DataSourceFactory.newConnectException(DataSourceFactory.java:255)
+	at org.apache.openjpa.jdbc.schema.DataSourceFactory.installDBDictionary(DataSourceFactory.java:241)
+	at org.apache.openjpa.jdbc.conf.JDBCConfigurationImpl.getConnectionFactory(JDBCConfigurationImpl.java:733)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.openjpa.lib.conf.ConfigurationImpl.instantiateAll(ConfigurationImpl.java:310)
+	at org.apache.openjpa.conf.OpenJPAConfigurationImpl.instantiateAll(OpenJPAConfigurationImpl.java:1670)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.makeReadOnly(AbstractBrokerFactory.java:651)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.newBroker(AbstractBrokerFactory.java:203)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.newBroker(AbstractBrokerFactory.java:185)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.postCreationCallback(AbstractBrokerFactory.java:873)
+	at org.apache.openjpa.jdbc.kernel.JDBCBrokerFactory.postCreationCallback(JDBCBrokerFactory.java:105)
+	at org.apache.openjpa.kernel.Bootstrap.newBrokerFactory(Bootstrap.java:67)
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.getBrokerFactory(PersistenceProviderImpl.java:148)
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.createContainerEntityManagerFactory(PersistenceProviderImpl.java:186)
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.createContainerEntityManagerFactory(PersistenceProviderImpl.java:62)
+	at org.apache.aries.jpa.container.impl.EntityManagerFactoryManager.createEntityManagerFactories(EntityManagerFactoryManager.java:360)
+	at org.apache.aries.jpa.container.impl.EntityManagerFactoryManager.bundleStateChange(EntityManagerFactoryManager.java:199)
+	at org.apache.aries.jpa.container.impl.PersistenceBundleManager.modifiedBundle(PersistenceBundleManager.java:296)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.customizerModified(BundleHookBundleTracker.java:500)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.customizerModified(BundleHookBundleTracker.java:433)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$AbstractTracked.track(BundleHookBundleTracker.java:725)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.bundleChanged(BundleHookBundleTracker.java:463)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$BundleEventHook.event(BundleHookBundleTracker.java:422)
+	at org.apache.felix.framework.util.SecureAction.invokeBundleEventHook(SecureAction.java:1103)
+	at org.apache.felix.framework.util.EventDispatcher.createWhitelistFromHooks(EventDispatcher.java:696)
+	at org.apache.felix.framework.util.EventDispatcher.fireBundleEvent(EventDispatcher.java:484)
+	at org.apache.felix.framework.Felix.fireBundleEvent(Felix.java:4650)
+	at org.apache.felix.framework.StatefulResolver.fireResolvedEvents(StatefulResolver.java:1073)
+	at org.apache.felix.framework.StatefulResolver.resolve(StatefulResolver.java:437)
+	at org.apache.felix.framework.Felix.resolveBundleRevision(Felix.java:4218)
+	at org.apache.felix.framework.Felix.startBundle(Felix.java:2063)
+	at org.apache.felix.framework.Felix.setActiveStartLevel(Felix.java:1317)
+	at org.apache.felix.framework.FrameworkStartLevelImpl.run(FrameworkStartLevelImpl.java:304)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: java.lang.IllegalStateException: The bundle productconfig-persistence/1.0.0.SNAPSHOT is not started.
+	at org.apache.aries.jpa.container.unit.impl.JndiDataSource.getDs(JndiDataSource.java:61)
+	at org.apache.aries.jpa.container.unit.impl.DelayedLookupDataSource.getConnection(DelayedLookupDataSource.java:38)
+	at org.apache.openjpa.lib.jdbc.DelegatingDataSource.getConnection(DelegatingDataSource.java:116)
+	at org.apache.openjpa.lib.jdbc.DecoratingDataSource.getConnection(DecoratingDataSource.java:93)
+	at org.apache.openjpa.jdbc.schema.DataSourceFactory.installDBDictionary(DataSourceFactory.java:233)
+	... 35 more
+
+<openjpa-2.3.0-r422266:1540826 fatal user error> org.apache.openjpa.util.UserException: A connection could not be obtained for driver class "null" and URL "null".  You may have specified an invalid URL.
+	at org.apache.openjpa.jdbc.schema.DataSourceFactory.newConnectException(DataSourceFactory.java:255)
+	at org.apache.openjpa.jdbc.schema.DataSourceFactory.installDBDictionary(DataSourceFactory.java:241)
+	at org.apache.openjpa.jdbc.conf.JDBCConfigurationImpl.getConnectionFactory2(JDBCConfigurationImpl.java:807)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.openjpa.lib.conf.ConfigurationImpl.instantiateAll(ConfigurationImpl.java:310)
+	at org.apache.openjpa.conf.OpenJPAConfigurationImpl.instantiateAll(OpenJPAConfigurationImpl.java:1670)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.makeReadOnly(AbstractBrokerFactory.java:651)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.newBroker(AbstractBrokerFactory.java:203)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.newBroker(AbstractBrokerFactory.java:185)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.postCreationCallback(AbstractBrokerFactory.java:873)
+	at org.apache.openjpa.jdbc.kernel.JDBCBrokerFactory.postCreationCallback(JDBCBrokerFactory.java:105)
+	at org.apache.openjpa.kernel.Bootstrap.newBrokerFactory(Bootstrap.java:67)
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.getBrokerFactory(PersistenceProviderImpl.java:148)
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.createContainerEntityManagerFactory(PersistenceProviderImpl.java:186)
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.createContainerEntityManagerFactory(PersistenceProviderImpl.java:62)
+	at org.apache.aries.jpa.container.impl.EntityManagerFactoryManager.createEntityManagerFactories(EntityManagerFactoryManager.java:360)
+	at org.apache.aries.jpa.container.impl.EntityManagerFactoryManager.bundleStateChange(EntityManagerFactoryManager.java:199)
+	at org.apache.aries.jpa.container.impl.PersistenceBundleManager.modifiedBundle(PersistenceBundleManager.java:296)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.customizerModified(BundleHookBundleTracker.java:500)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.customizerModified(BundleHookBundleTracker.java:433)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$AbstractTracked.track(BundleHookBundleTracker.java:725)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.bundleChanged(BundleHookBundleTracker.java:463)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$BundleEventHook.event(BundleHookBundleTracker.java:422)
+	at org.apache.felix.framework.util.SecureAction.invokeBundleEventHook(SecureAction.java:1103)
+	at org.apache.felix.framework.util.EventDispatcher.createWhitelistFromHooks(EventDispatcher.java:696)
+	at org.apache.felix.framework.util.EventDispatcher.fireBundleEvent(EventDispatcher.java:484)
+	at org.apache.felix.framework.Felix.fireBundleEvent(Felix.java:4650)
+	at org.apache.felix.framework.StatefulResolver.fireResolvedEvents(StatefulResolver.java:1073)
+	at org.apache.felix.framework.StatefulResolver.resolve(StatefulResolver.java:437)
+	at org.apache.felix.framework.Felix.resolveBundleRevision(Felix.java:4218)
+	at org.apache.felix.framework.Felix.startBundle(Felix.java:2063)
+	at org.apache.felix.framework.Felix.setActiveStartLevel(Felix.java:1317)
+	at org.apache.felix.framework.FrameworkStartLevelImpl.run(FrameworkStartLevelImpl.java:304)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: java.lang.IllegalStateException: The bundle productconfig-persistence/1.0.0.SNAPSHOT is not started.
+	at org.apache.aries.jpa.container.unit.impl.JndiDataSource.getDs(JndiDataSource.java:61)
+	at org.apache.aries.jpa.container.unit.impl.DelayedLookupDataSource.getConnection(DelayedLookupDataSource.java:38)
+	at org.apache.openjpa.lib.jdbc.DelegatingDataSource.getConnection(DelegatingDataSource.java:116)
+	at org.apache.openjpa.lib.jdbc.DecoratingDataSource.getConnection(DecoratingDataSource.java:93)
+	at org.apache.openjpa.jdbc.schema.DataSourceFactory.installDBDictionary(DataSourceFactory.java:236)
+	... 35 more
+
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.newBroker(AbstractBrokerFactory.java:218)[263:org.apache.openjpa:2.3.0]
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.newBroker(AbstractBrokerFactory.java:185)[263:org.apache.openjpa:2.3.0]
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.postCreationCallback(AbstractBrokerFactory.java:873)[263:org.apache.openjpa:2.3.0]
+	at org.apache.openjpa.jdbc.kernel.JDBCBrokerFactory.postCreationCallback(JDBCBrokerFactory.java:105)[263:org.apache.openjpa:2.3.0]
+	at org.apache.openjpa.kernel.Bootstrap.newBrokerFactory(Bootstrap.java:67)[263:org.apache.openjpa:2.3.0]
+	... 22 more
+Caused by: java.lang.RuntimeException: There were errors initializing your configuration: <openjpa-2.3.0-r422266:1540826 fatal user error> org.apache.openjpa.util.UserException: A connection could not be obtained for driver class "null" and URL "null".  You may have specified an invalid URL.
+	at org.apache.openjpa.jdbc.schema.DataSourceFactory.newConnectException(DataSourceFactory.java:255)
+	at org.apache.openjpa.jdbc.schema.DataSourceFactory.installDBDictionary(DataSourceFactory.java:241)
+	at org.apache.openjpa.jdbc.conf.JDBCConfigurationImpl.getConnectionFactory(JDBCConfigurationImpl.java:733)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.openjpa.lib.conf.ConfigurationImpl.instantiateAll(ConfigurationImpl.java:310)
+	at org.apache.openjpa.conf.OpenJPAConfigurationImpl.instantiateAll(OpenJPAConfigurationImpl.java:1670)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.makeReadOnly(AbstractBrokerFactory.java:651)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.newBroker(AbstractBrokerFactory.java:203)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.newBroker(AbstractBrokerFactory.java:185)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.postCreationCallback(AbstractBrokerFactory.java:873)
+	at org.apache.openjpa.jdbc.kernel.JDBCBrokerFactory.postCreationCallback(JDBCBrokerFactory.java:105)
+	at org.apache.openjpa.kernel.Bootstrap.newBrokerFactory(Bootstrap.java:67)
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.getBrokerFactory(PersistenceProviderImpl.java:148)
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.createContainerEntityManagerFactory(PersistenceProviderImpl.java:186)
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.createContainerEntityManagerFactory(PersistenceProviderImpl.java:62)
+	at org.apache.aries.jpa.container.impl.EntityManagerFactoryManager.createEntityManagerFactories(EntityManagerFactoryManager.java:360)
+	at org.apache.aries.jpa.container.impl.EntityManagerFactoryManager.bundleStateChange(EntityManagerFactoryManager.java:199)
+	at org.apache.aries.jpa.container.impl.PersistenceBundleManager.modifiedBundle(PersistenceBundleManager.java:296)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.customizerModified(BundleHookBundleTracker.java:500)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.customizerModified(BundleHookBundleTracker.java:433)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$AbstractTracked.track(BundleHookBundleTracker.java:725)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.bundleChanged(BundleHookBundleTracker.java:463)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$BundleEventHook.event(BundleHookBundleTracker.java:422)
+	at org.apache.felix.framework.util.SecureAction.invokeBundleEventHook(SecureAction.java:1103)
+	at org.apache.felix.framework.util.EventDispatcher.createWhitelistFromHooks(EventDispatcher.java:696)
+	at org.apache.felix.framework.util.EventDispatcher.fireBundleEvent(EventDispatcher.java:484)
+	at org.apache.felix.framework.Felix.fireBundleEvent(Felix.java:4650)
+	at org.apache.felix.framework.StatefulResolver.fireResolvedEvents(StatefulResolver.java:1073)
+	at org.apache.felix.framework.StatefulResolver.resolve(StatefulResolver.java:437)
+	at org.apache.felix.framework.Felix.resolveBundleRevision(Felix.java:4218)
+	at org.apache.felix.framework.Felix.startBundle(Felix.java:2063)
+	at org.apache.felix.framework.Felix.setActiveStartLevel(Felix.java:1317)
+	at org.apache.felix.framework.FrameworkStartLevelImpl.run(FrameworkStartLevelImpl.java:304)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: java.lang.IllegalStateException: The bundle productconfig-persistence/1.0.0.SNAPSHOT is not started.
+	at org.apache.aries.jpa.container.unit.impl.JndiDataSource.getDs(JndiDataSource.java:61)
+	at org.apache.aries.jpa.container.unit.impl.DelayedLookupDataSource.getConnection(DelayedLookupDataSource.java:38)
+	at org.apache.openjpa.lib.jdbc.DelegatingDataSource.getConnection(DelegatingDataSource.java:116)
+	at org.apache.openjpa.lib.jdbc.DecoratingDataSource.getConnection(DecoratingDataSource.java:93)
+	at org.apache.openjpa.jdbc.schema.DataSourceFactory.installDBDictionary(DataSourceFactory.java:233)
+	... 35 more
+
+<openjpa-2.3.0-r422266:1540826 fatal user error> org.apache.openjpa.util.UserException: A connection could not be obtained for driver class "null" and URL "null".  You may have specified an invalid URL.
+	at org.apache.openjpa.jdbc.schema.DataSourceFactory.newConnectException(DataSourceFactory.java:255)
+	at org.apache.openjpa.jdbc.schema.DataSourceFactory.installDBDictionary(DataSourceFactory.java:241)
+	at org.apache.openjpa.jdbc.conf.JDBCConfigurationImpl.getConnectionFactory2(JDBCConfigurationImpl.java:807)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.openjpa.lib.conf.ConfigurationImpl.instantiateAll(ConfigurationImpl.java:310)
+	at org.apache.openjpa.conf.OpenJPAConfigurationImpl.instantiateAll(OpenJPAConfigurationImpl.java:1670)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.makeReadOnly(AbstractBrokerFactory.java:651)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.newBroker(AbstractBrokerFactory.java:203)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.newBroker(AbstractBrokerFactory.java:185)
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.postCreationCallback(AbstractBrokerFactory.java:873)
+	at org.apache.openjpa.jdbc.kernel.JDBCBrokerFactory.postCreationCallback(JDBCBrokerFactory.java:105)
+	at org.apache.openjpa.kernel.Bootstrap.newBrokerFactory(Bootstrap.java:67)
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.getBrokerFactory(PersistenceProviderImpl.java:148)
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.createContainerEntityManagerFactory(PersistenceProviderImpl.java:186)
+	at org.apache.openjpa.persistence.PersistenceProviderImpl.createContainerEntityManagerFactory(PersistenceProviderImpl.java:62)
+	at org.apache.aries.jpa.container.impl.EntityManagerFactoryManager.createEntityManagerFactories(EntityManagerFactoryManager.java:360)
+	at org.apache.aries.jpa.container.impl.EntityManagerFactoryManager.bundleStateChange(EntityManagerFactoryManager.java:199)
+	at org.apache.aries.jpa.container.impl.PersistenceBundleManager.modifiedBundle(PersistenceBundleManager.java:296)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.customizerModified(BundleHookBundleTracker.java:500)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.customizerModified(BundleHookBundleTracker.java:433)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$AbstractTracked.track(BundleHookBundleTracker.java:725)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.bundleChanged(BundleHookBundleTracker.java:463)
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$BundleEventHook.event(BundleHookBundleTracker.java:422)
+	at org.apache.felix.framework.util.SecureAction.invokeBundleEventHook(SecureAction.java:1103)
+	at org.apache.felix.framework.util.EventDispatcher.createWhitelistFromHooks(EventDispatcher.java:696)
+	at org.apache.felix.framework.util.EventDispatcher.fireBundleEvent(EventDispatcher.java:484)
+	at org.apache.felix.framework.Felix.fireBundleEvent(Felix.java:4650)
+	at org.apache.felix.framework.StatefulResolver.fireResolvedEvents(StatefulResolver.java:1073)
+	at org.apache.felix.framework.StatefulResolver.resolve(StatefulResolver.java:437)
+	at org.apache.felix.framework.Felix.resolveBundleRevision(Felix.java:4218)
+	at org.apache.felix.framework.Felix.startBundle(Felix.java:2063)
+	at org.apache.felix.framework.Felix.setActiveStartLevel(Felix.java:1317)
+	at org.apache.felix.framework.FrameworkStartLevelImpl.run(FrameworkStartLevelImpl.java:304)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: java.lang.IllegalStateException: The bundle productconfig-persistence/1.0.0.SNAPSHOT is not started.
+	at org.apache.aries.jpa.container.unit.impl.JndiDataSource.getDs(JndiDataSource.java:61)
+	at org.apache.aries.jpa.container.unit.impl.DelayedLookupDataSource.getConnection(DelayedLookupDataSource.java:38)
+	at org.apache.openjpa.lib.jdbc.DelegatingDataSource.getConnection(DelegatingDataSource.java:116)
+	at org.apache.openjpa.lib.jdbc.DecoratingDataSource.getConnection(DecoratingDataSource.java:93)
+	at org.apache.openjpa.jdbc.schema.DataSourceFactory.installDBDictionary(DataSourceFactory.java:236)
+	... 35 more
+
+	at org.apache.openjpa.lib.conf.ConfigurationImpl.instantiateAll(ConfigurationImpl.java:324)[263:org.apache.openjpa:2.3.0]
+	at org.apache.openjpa.conf.OpenJPAConfigurationImpl.instantiateAll(OpenJPAConfigurationImpl.java:1670)[263:org.apache.openjpa:2.3.0]
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.makeReadOnly(AbstractBrokerFactory.java:651)[263:org.apache.openjpa:2.3.0]
+	at org.apache.openjpa.kernel.AbstractBrokerFactory.newBroker(AbstractBrokerFactory.java:203)[263:org.apache.openjpa:2.3.0]
+	... 26 more
+12:26:49,616 | INFO  | de startup timer | MavenIndexerFacade               | 252 - io.hawt.hawtio-maven-indexer - 1.2.0.redhat-379 | Storing maven index files in local directory: C:\Apps\jboss-fuse-6.1.0.redhat-379\data\mavenIndexer
+

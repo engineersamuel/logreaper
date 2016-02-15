@@ -1,0 +1,44 @@
+.dropzone {
+    padding: 20px 12px;
+    padding: 1.25rem 0.75rem;
+    min-height: 0;
+    font-size: 20px;
+    font-size: 1.25rem;
+    line-height: 28px;
+    line-height: 1.75rem;
+    font-weight: 700;
+    color: #3a3a3c;
+    border-color: #e4e4e4;
+    border-width: 6px;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    -ms-border-radius: 18px;
+    -o-border-radius: 18px;
+    border-radius: 18px;
+    border-style: dashed;
+}
+
+.drag-over {
+    background-color: #bfb;
+}
+
+.logreaper-dropzone {
+    /*margin-left: 10px;*/
+    /*margin-right: 10px;*/
+    /*width: 250px !important;*/
+    width: 100% !important;
+    height: 75px !important;
+    /*border: 1px dashed;*/
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+.logreaper-dropzone div {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.green {
+    color: green;
+}
+

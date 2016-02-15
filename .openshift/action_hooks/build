@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Change home directory (bower puts a lot of cache and tmp directories here)
+HOME=$OPENSHIFT_REPO_DIR
+BABEL_DISABLE_CACHE=1
+cd $OPENSHIFT_REPO_DIR
+
+mkdir -p "$OPENSHIFT_DATA_DIR"node_modules
+mkdir -p "$OPENSHIFT_DATA_DIR"bower_components
+
+ln -s "$OPENSHIFT_DATA_DIR"node_modules node_modules
+ln -s "$OPENSHIFT_DATA_DIR"bower_components labs/logreaper/public/js/bower_components
+
+npm install --loglevel error
+
+# Prune some unecessary files from node_modules
+find node_modules/* -type f -iname "*.md" -o -type d -name "test*" -o -type d -name "example*" | xargs rm -rf
+
+grunt prod
+
+

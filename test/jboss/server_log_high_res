@@ -1,0 +1,11 @@
+2014-05-16 17:54:10,888 7553  INFO  [org.jboss.web.WebService] (main:) Using RMI server codebase: http://hostname.somecompany.com:8083/
+2014-05-16 17:54:10,924 7589  DEBUG [org.jnp.server.NamingBeanImpl] (main:) Using NamingServer: org.jnp.server.NamingServer@2faa6ecd
+2014-05-16 17:54:12,964 9629  INFO  [org.jboss.soa.esb.listeners.deployers.mc.EsbConfigParser] (main:) Created
+2014-05-16 17:54:13,167 9832  FINE  [javax.xml.bind] (main:) Trying to locate org/jboss/resource/metadata/mcf/jaxb.properties
+2014-05-16 17:54:10,888 7553  INFO  [org.jboss.web.WebService] (main:) Using RMI server codebase: http://hostname.somecompany.com:8083/
+2014-05-16 17:54:10,924 7589  DEBUG [org.jnp.server.NamingBeanImpl] (main:) Using NamingServer: org.jnp.server.NamingServer@2faa6ecd
+2014-05-18 13:58:11,534 33723 ERROR [STDERR] (main:) SLF4J: Class path contains multiple SLF4J bindings.
+2014-05-18 13:58:11,535 33724 ERROR [STDERR] (main:) SLF4J: Found binding in [vfszip:/opt/jboss-soa-p-5/jbossas/common/lib/slf4j-jboss-logging.jar/org/slf4j/impl/StaticLoggerBinder.class]
+2014-05-18 13:58:11,535 33724 ERROR [STDERR] (main:) SLF4J: Found binding in [vfszip:/opt/jboss-soa-p-5/jbossas/server/Node1/lib/slf4j-jboss-logging.jar/org/slf4j/impl/StaticLoggerBinder.class]
+2014-05-18 13:58:11,536 33725 ERROR [STDERR] (main:) SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+2014-05-18 13:58:11,543 33732 WARN  [jacorb.config] (main:) jacorb.home unset! Will use '.'

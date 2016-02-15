@@ -1,0 +1,9 @@
+Mar  4 09:45:39 somebody dhclient: bound to 169.254.95.120 -- renewal in 254 seconds.
+Mar  4 09:49:13 somebody AgentFramework[32422]: VCS ERROR V-16-2-13067 Thread(4152925072) Agent is calling clean for resource(JBoss_App_Server) because the resource became OFFLINE unexpectedly, on its own.
+Mar  4 09:49:13 somebody Had[32345]: VCS ERROR V-16-2-13067 (somebody) Agent is calling clean for resource(JBoss_App_Server) because the resource became OFFLINE unexpectedly, on its own.
+Mar  4 09:49:13 somebody brs6_clean_jboss.sh: JBoss App Server shutdown
+Mar  4 09:49:13 somebody brs6_clean_jboss.sh: *** JBoss Server is already stopped
+Mar  4 09:49:13 somebody brs6_clean_jboss.sh: JBoss App Server shutdown complete. Results in /tmp/brs6_clean_jboss.sh.log
+Mar  4 09:49:24 somebody AgentFramework[32422]: VCS ERROR V-16-2-13068 Thread(4152925072) Resource(JBoss_App_Server) - clean completed successfully.
+Mar  4 09:49:24 somebody brs6_stop_bmgr.sh: BagManager Interface shutdown
+Mar  4 09:49:24 somebody brs6_stop_bmgr.sh: *** BagManager Interface is already stopped

@@ -1,0 +1,74 @@
+12:52:13,832 | ERROR | FelixStartLevel  | BlueprintCamelContext            | 150 - org.apache.camel.camel-blueprint - 2.12.0.redhat-610379 | Error occurred during starting Camel: CamelContext(UCI-OIRFILE-DISPATCHER3) due Failed to create route UCI-OirFileDistributor-r3: Route(UCI-OirFileDistributor-r3)[[From[jms-consumer:queue:{{... because of Failed to resolve endpoint: jms-consumer:queue:{{OIR.SFTP_TO_MQ}} due to: org.jasypt.exceptions.EncryptionOperationNotPossibleException
+org.apache.camel.FailedToCreateRouteException: Failed to create route UCI-OirFileDistributor-r3: Route(UCI-OirFileDistributor-r3)[[From[jms-consumer:queue:{{... because of Failed to resolve endpoint: jms-consumer:queue:{{OIR.SFTP_TO_MQ}} due to: org.jasypt.exceptions.EncryptionOperationNotPossibleException
+	at org.apache.camel.model.RouteDefinition.addRoutes(RouteDefinition.java:182)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.impl.DefaultCamelContext.startRoute(DefaultCamelContext.java:778)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.impl.DefaultCamelContext.startRouteDefinitions(DefaultCamelContext.java:1955)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.impl.DefaultCamelContext.doStartCamel(DefaultCamelContext.java:1705)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.impl.DefaultCamelContext.doStart(DefaultCamelContext.java:1579)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.support.ServiceSupport.start(ServiceSupport.java:61)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.impl.DefaultCamelContext.start(DefaultCamelContext.java:1547)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.blueprint.BlueprintCamelContext.start(BlueprintCamelContext.java:177)[150:org.apache.camel.camel-blueprint:2.12.0.redhat-610379]
+	at org.apache.camel.blueprint.BlueprintCamelContext.maybeStart(BlueprintCamelContext.java:209)[150:org.apache.camel.camel-blueprint:2.12.0.redhat-610379]
+	at org.apache.camel.blueprint.BlueprintCamelContext.serviceChanged(BlueprintCamelContext.java:147)[150:org.apache.camel.camel-blueprint:2.12.0.redhat-610379]
+	at org.apache.felix.framework.util.EventDispatcher.invokeServiceListenerCallback(EventDispatcher.java:934)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.util.EventDispatcher.fireEventImmediately(EventDispatcher.java:795)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.util.EventDispatcher.fireServiceEvent(EventDispatcher.java:544)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.Felix.fireServiceEvent(Felix.java:4666)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.Felix.registerService(Felix.java:3674)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.BundleContextImpl.registerService(BundleContextImpl.java:347)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.aries.blueprint.container.BlueprintContainerImpl.registerService(BlueprintContainerImpl.java:448)[9:org.apache.aries.blueprint.core:1.0.1.redhat-610379]
+	at org.apache.aries.blueprint.container.BlueprintContainerImpl.doRun(BlueprintContainerImpl.java:383)[9:org.apache.aries.blueprint.core:1.0.1.redhat-610379]
+	at org.apache.aries.blueprint.container.BlueprintContainerImpl.run(BlueprintContainerImpl.java:261)[9:org.apache.aries.blueprint.core:1.0.1.redhat-610379]
+	at org.apache.aries.blueprint.container.BlueprintExtender.createContainer(BlueprintExtender.java:270)[9:org.apache.aries.blueprint.core:1.0.1.redhat-610379]
+	at org.apache.aries.blueprint.container.BlueprintExtender.modifiedBundle(BlueprintExtender.java:233)[9:org.apache.aries.blueprint.core:1.0.1.redhat-610379]
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.customizerModified(BundleHookBundleTracker.java:500)[11:org.apache.aries.util:1.0.1.redhat-610379]
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.customizerModified(BundleHookBundleTracker.java:433)[11:org.apache.aries.util:1.0.1.redhat-610379]
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$AbstractTracked.track(BundleHookBundleTracker.java:725)[11:org.apache.aries.util:1.0.1.redhat-610379]
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$Tracked.bundleChanged(BundleHookBundleTracker.java:463)[11:org.apache.aries.util:1.0.1.redhat-610379]
+	at org.apache.aries.util.tracker.hook.BundleHookBundleTracker$BundleEventHook.event(BundleHookBundleTracker.java:422)[11:org.apache.aries.util:1.0.1.redhat-610379]
+	at org.apache.felix.framework.util.SecureAction.invokeBundleEventHook(SecureAction.java:1103)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.util.EventDispatcher.createWhitelistFromHooks(EventDispatcher.java:696)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.util.EventDispatcher.fireBundleEvent(EventDispatcher.java:484)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.Felix.fireBundleEvent(Felix.java:4650)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.Felix$4.run(Felix.java:2123)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.Felix.runInContext(Felix.java:2147)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.Felix.startBundle(Felix.java:2121)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.Felix.setActiveStartLevel(Felix.java:1317)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at org.apache.felix.framework.FrameworkStartLevelImpl.run(FrameworkStartLevelImpl.java:304)[org.apache.felix.framework-4.0.3.redhat-610379.jar:]
+	at java.lang.Thread.run(Thread.java:745)[:1.7.0_55]
+Caused by: org.apache.camel.ResolveEndpointFailedException: Failed to resolve endpoint: jms-consumer:queue:{{OIR.SFTP_TO_MQ}} due to: org.jasypt.exceptions.EncryptionOperationNotPossibleException
+	at org.apache.camel.impl.DefaultCamelContext.getEndpoint(DefaultCamelContext.java:480)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.util.CamelContextHelper.getMandatoryEndpoint(CamelContextHelper.java:71)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.model.RouteDefinition.resolveEndpoint(RouteDefinition.java:192)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.impl.DefaultRouteContext.resolveEndpoint(DefaultRouteContext.java:106)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.impl.DefaultRouteContext.resolveEndpoint(DefaultRouteContext.java:112)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.model.FromDefinition.resolveEndpoint(FromDefinition.java:72)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.impl.DefaultRouteContext.getEndpoint(DefaultRouteContext.java:88)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.model.RouteDefinition.addRoutes(RouteDefinition.java:890)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.model.RouteDefinition.addRoutes(RouteDefinition.java:177)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	... 35 more
+Caused by: org.apache.camel.RuntimeCamelException: org.jasypt.exceptions.EncryptionOperationNotPossibleException
+	at org.apache.camel.util.ObjectHelper.wrapRuntimeCamelException(ObjectHelper.java:1363)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.util.ObjectHelper.invokeMethod(ObjectHelper.java:1005)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.blueprint.BlueprintPropertiesParser.parseProperty(BlueprintPropertiesParser.java:137)[150:org.apache.camel.camel-blueprint:2.12.0.redhat-610379]
+	at org.apache.camel.component.properties.DefaultPropertiesParser.createPlaceholderPart(DefaultPropertiesParser.java:201)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.component.properties.DefaultPropertiesParser.doParseUri(DefaultPropertiesParser.java:105)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.component.properties.DefaultPropertiesParser.parseUri(DefaultPropertiesParser.java:51)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.component.properties.PropertiesComponent.parseUri(PropertiesComponent.java:160)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.component.properties.PropertiesComponent.parseUri(PropertiesComponent.java:119)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.impl.DefaultCamelContext.resolvePropertyPlaceholders(DefaultCamelContext.java:1155)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	at org.apache.camel.impl.DefaultCamelContext.getEndpoint(DefaultCamelContext.java:478)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	... 43 more
+Caused by: org.jasypt.exceptions.EncryptionOperationNotPossibleException
+	at org.jasypt.encryption.pbe.StandardPBEByteEncryptor.decrypt(StandardPBEByteEncryptor.java:981)
+	at org.jasypt.encryption.pbe.StandardPBEStringEncryptor.decrypt(StandardPBEStringEncryptor.java:725)
+	at org.apache.karaf.jaas.jasypt.handler.EncryptablePropertyPlaceholder.getProperty(EncryptablePropertyPlaceholder.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)[:1.7.0_55]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)[:1.7.0_55]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)[:1.7.0_55]
+	at java.lang.reflect.Method.invoke(Method.java:606)[:1.7.0_55]
+	at org.apache.camel.util.ObjectHelper.invokeMethod(ObjectHelper.java:1001)[142:org.apache.camel.camel-core:2.12.0.redhat-610379]
+	... 51 more
+12:52:14,398 | INFO  | pool-15-thread-1 | MessageDatabase                  | 131 - org.apache.activemq.activemq-osgi - 5.9.0.redhat-610379 | Recovery replayed 61290 operations from the journal in 1.297 seconds.
+12:52:14,527 | INFO  | pool-15-thread-1 | BrokerService                    | 131 - org.apache.activemq.activemq-osgi - 5.9.0.redhat-610379 | Apache ActiveMQ 5.9.0.redhat-610379 (amq, ID:OIT-DEV-D-037-58327-1399924334412-0:1) is starting
+

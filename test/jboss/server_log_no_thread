@@ -1,0 +1,6 @@
+2014-03-17 22:19:48,758 DEBUG [com.foo.gss.bar.integration.content.ContentProxy] Requested locale was null, assuming to en
+2014-03-17 22:19:48,765 DEBUG [com.foo.gss.bar.integration.content.ContentProxy] Fetching content nav.html in language en
+2014-03-17 22:19:48,765 DEBUG [com.foo.gss.bar.integration.content.FileContentSource] Reading file content at path /var/www/www.foo.com/bar/bar-docs/core/nav.html
+2014-03-17 22:19:52,574 INFO  [org.apache.cxf.service.factory.ReflectionServiceFactoryBean] Creating Service {http://sso.services.foo.com/}LoginServiceBeanService from WSDL: http://devgssci-servicejava.dist.dvlp.ext.phx1.foo.com/svcsoap/LoginService/v2?wsdl
+2014-03-17 22:19:52,584 WARNING [org.apache.cxf.service.factory.ReflectionServiceFactoryBean] No method was found for the WSDL operation {http://sso.services.foo.com/}getLogin.
+2014-03-17 22:19:52,584 WARNING [org.apache.cxf.service.factory.ReflectionServiceFactoryBean] No method was found for the WSDL operation {http://sso.services.foo.com/}getRoles.

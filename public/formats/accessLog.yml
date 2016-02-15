@@ -1,0 +1,70 @@
+accessLog:
+  title: "Common Access Log"
+  description: "The default web access log format for servers like Apache."
+  url: "http://en.wikipedia.org/wiki/Common_Log_Format"
+  severityField: "status"
+  regex:
+      ts-first-noquotes:
+          pattern: "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{3})?) (?<c_ip>[^ ]+) (?<cs_username>[^ ]+) (?<cs_method>[A-Z]+) (?<uriStem>[^ \\?]+)(?:\\?(?<uriQuery>[^ ]*))? (?:-1|\\d+) (?<sc_status>\\d+) \\d+"
+      ts-first:
+          pattern: "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{3})?) (?<c_ip>[^ ]+) (?<cs_username>[^ ]+) (?<cs_method>[A-Z]+) \"(?<uriStem>[^ \\?]+)(?:\\?(?<uriQuery>[^ ]*))?\" (?:-1|\\d+) (?<sc_status>\\d+) \\d+"
+      std:
+          pattern: "^(?<ip>[\\w\\.:\\-]+) [\\w\\.\\-]+ (?<user>\\S+) \\[(?<timestamp>[^\\]]+)\\] \"(?:\\-|(?<method>\\w+) (?<uriStem>[^ \\?]+)(?:\\?(?<uriQuery>[^ ]*))? (?<version>[\\w/\\.]+))\" (?<status>\\d+) (?<bytes>\\d+|-)(?: \"(?<referer>[^\"]+)\" \"(?<userAgent>[^\"]+)\")?.*"
+  level-field: "sc_status"
+  level:
+      error: "^[^123]"
+  value:
+      ip:
+          kind: "string"
+          default: "?.?.?.?"
+      user:
+          kind: "string"
+          default: ''
+      timestamp:
+          kind: 'date'
+          std: "DD/MMM/YYYY:HH:mm:ss Z"
+          required: Yes
+      method:
+          kind: "string"
+          default: ''
+      uriStem:
+          kind: "string"
+          default: ''
+      uriQuery:
+          kind: "string"
+          default: ''
+      version:
+          kind: "string"
+          default: ''
+      status:
+          kind: "integer"
+          default: 0
+          values:
+            - label: "20x"
+              values: [200, 201, 202, 203, 204, 205, 206, 207, 208, 226]
+              ignore: Yes
+            - label: "30x"
+              values: [300, 301, 302, 303, 304, 305, 306, 307, 308]
+              ignore: Yes
+            - label: "4xx"
+              values: [400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 421, 422, 423, 424, 426, 428, 429, 431, 451]
+            - label: "5xx"
+              values: [500, 501, 502, 503, 504, 505, 506, 507, 508, 510, 511]
+      bytes:
+          kind: "integer"
+          default: 0
+      referer:
+          kind: "string"
+          default: ''
+      userAgent:
+          kind: "string"
+          default: ''
+  sample:
+    std:
+      - 127.0.0.1 - - [01/Nov/2013:15:40:54 -0400] "GET /webapp/app/request-viewer?title=REQUEST%20VIEWER&app=INVOICES&module=MASTER-INQUIRY&option=REQUESTVIEWER&op=-1&module_start_page=true HTTP/1.1" 302 - "https://foo.bar.com/webapp/app/main?app=INVOICES&module=MASTER-INQUIRY&module_start_page=true" "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; .NET CLR 1.0.3705; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30; .NET CLR 3.0.04506.648; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; MS-RTC LM 8; InfoPath.3)"
+      - 127.0.0.2 - - [01/Nov/2013:15:40:55 -0400] "STATUS / HTTP/1.0" 200 86 "-" "ClusterListener/1.0"
+      - 127.0.0.3 - - [01/Nov/2013:15:40:55 -0400] "STATUS / HTTP/1.0" 200 86 "-" "ClusterListener/1.0"
+      - 127.0.0.4 - - [01/Nov/2013:15:40:55 -0400] "STATUS / HTTP/1.0" 200 86 "-" "ClusterListener/1.0"
+      - 127.0.0.5 - - [01/Nov/2013:15:40:55 -0400] "STATUS / HTTP/1.0" 200 86 "-" "ClusterListener/1.0"
+
+

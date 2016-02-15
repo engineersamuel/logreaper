@@ -1,0 +1,2 @@
+15:45:35,968 | WARN  | edhat-379/deploy | fileinstall                      | 7 - org.apache.felix.fileinstall - 3.3.11.redhat-610379 | Error while starting bundle: file:/home/foo/lib/jboss-fuse-6.1.0.redhat-379/deploy/productconfig-persistence.jar
+15:45:43,976 | WARN  | edhat-379/deploy | fileinstall                      | 7 - org.apache.felix.fileinstall - 3.3.11.redhat-610379 | Error while starting bundle: file:/home/foo/lib/jboss-fuse-6.1.0.redhat-379/deploy/productconfig-persistence.jar

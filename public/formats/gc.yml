@@ -1,0 +1,18 @@
+gc:
+  title: "Garbage Collection Logs"
+  description: "JVM Garbage Collection logs"
+  precedence: 99
+  regex:
+      sun16:
+          pattern: ".*?(\\(young\\)|G1Ergonomics|\\[Times:|CMS-initial-mark|PSYoungGen|:\\ \\[|\\[GC|\\[Full\\ GC|\\[Inc\\ GC|<GC:\\ managing allocation failure:\\ need\\ )"
+  value:
+      timestamp:
+          kind: "integer"
+      used:
+          kind: "integer"
+      total:
+          kind: "integer"
+      pause:
+          kind: "integer"
+      gcType:
+          kind: "string"

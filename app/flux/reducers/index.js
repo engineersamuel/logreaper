@@ -1,0 +1,1 @@
+export { default as files } from './rootReducer';

@@ -1,0 +1,73 @@
+log4j:
+  title: "Log4j log"
+  description: "Handles log4j formats"
+  regex:
+      std:
+          # (?<thread>[\\w-\\.\\ ]+)
+          # pattern: "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?<category>.*?)\\]\\s+\\((?<thread>.*?)\\)\\s+(?<message>.*)"
+          # This new pattern is based on multi line matching, remember you must do \r?\n since readFileSync uses \r\n
+          # regex101: \x{0020} for whitespace
+          #pattern: "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?<category>.*?)\\]\\s+\\((?<thread>.*?)\\)\\s+(?<message>(?:(?!\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?).|\\r?\\n)*)"
+          pattern: "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?<category>.*?)\\]\\s+\\((?<thread>.*?)\\)\\s+(?<message>(?:(?!\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?\\s+(?:WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?:.*?)\\]\\s+\\((?:.*?)\\)\\ {1}(?!\\t{1})).|\\r*\\n)*)"
+          #boundary: "^(?<message>.*?)(?<timestamp>\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)"
+          #stack:
+          #  - "^(?=java|Caused\\ by|\\t|\\s+)(?<message>.*?)$"
+          #  - "^(?:\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?)(?:\\s\\d+)?\\s+(?:WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?:.*?)\\]\\s+\\((?:.*?)\\) (?=java|Caused\\ by|\\t|\\s+)(?<message>.*?)$"
+      std-ts-bracket:
+          pattern: "^\\[(?<timestamp>\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\]\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?<category>.*?)\\]\\s+\\((?<thread>.*?)\\)\\s+(?<message>(?:(?!\\[\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?\\]\\s+(?:WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?:.*?)\\]\\s+\\((?:.*?)\\)\\ {1}(?!\\t{1})).|\\r*\\n)*)"
+
+      #http://regex101.com/r/hL3kV9
+      std-time:
+          #pattern: "^(?<timestamp>\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?<category>.*?)\\]\\s+\\((?<thread>.*?)\\)\\s+(?<message>.*)"
+          pattern: "^(?<timestamp>\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?<category>.*?)\\]\\s+\\((?<thread>.*?)\\)\\s+(?<message>(?:(?!\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?\\s+(?:WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?:.*?)\\]\\s+\\((?:.*?)\\)\\ {1}(?!\\t{1})).|\\r*\\n)*)"
+          #stack:
+          #  - "^(?=java|Caused\\ by|\\t|\\s+)(?<message>.*?)$"
+          #  - "^(?:\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+(?:WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?:.*?)\\]\\s+\\((?:.*?)\\) (?=java|Caused\\ by|\\t|\\s+)(?<message>.*?)$"
+      std-no-thread:
+          pattern: "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?<category>.*?)\\]\\s+(?<message>(?:(?!\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?\\s+(?:WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?:.*?)\\]\\ {1}(?!\\t{1})).|\\r*\\n)*)"
+          #pattern: "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?<category>.*?)\\]\\s+(?<message>.*)"
+          #stack:
+          #  - "^(?=java|Caused\\ by|\\t|\\s+)(?<message>.*?)$"
+          #  - "^(?:\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+(?:WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?:.*?)\\]\\s+(?=java|Caused\\ by|\\t|\\s+)(?<message>.*?)$"
+          sample: "2014-03-17 22:19:48,758 DEBUG [com.foo.Bar] Requested locale was null, assuming to en"
+      std-ts-thread:
+          pattern: "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?)\\s+\\[(?<thread>.*?)\\]\\s+(?<severity>WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?<category>.*?)\\]\\s+(?<message>(?:(?!\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}(?:,\\d{3})?(?:\\s\\d+)?\\s+\\[(?:.*?)\\]\\s+(?:WARN|WARNING|ERROR|INFO|TRACE|DEBUG|FINE)\\s+\\[(?:.*?)\\]\\ {1}(?!\\t{1})).|\\r*\\n)*)"
+          sample: "2014-07-14 15:56:53,702 [httpexecutor-threads - 39] DEBUG [com.company.test.interceptors.ValidationInterceptor] Processed Path: /articles/12345"
+  value:
+      timestamp:
+          kind: 'date'
+          required: Yes
+          std: "YYYY-MM-DD HH:mm:ss,SSS"
+          std-ts-bracket: "YYYY-MM-DD HH:mm:ss,SSS"
+          std-time: "HH:mm:ss,SSS"
+          std-no-thread: "YYYY-MM-DD HH:mm:ss,SSS"
+          std-ts-thread: "YYYY-MM-DD HH:mm:ss,SSS"
+      severity:
+          kind: "string"
+          default: 'INFO'
+          values:
+            - label: "FINE"
+              values: [FINE, fine]
+              ignore: Yes
+            - label: "TRACE"
+              values: [TRACE, trace]
+              ignore: Yes
+            - label: "DEBUG"
+              values: [DEBUG, debug]
+              ignore: Yes
+            - label: "INFO"
+              values: [INFO, info]
+              ignore: Yes
+            - label: "WARN"
+              values: [WARN, WARNING, warn, warning]
+            - label: "ERROR"
+              values: [ERROR, error]
+      category:
+          kind: "string"
+          default: ''
+      thread:
+          kind: "string"
+          default: ''
+      message:
+          kind: "string"
+          replace: true

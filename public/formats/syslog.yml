@@ -1,0 +1,63 @@
+syslog:
+  title: "syslog"
+  description: "Syslog: /var/log/messages"
+  regex:
+      std:
+        pattern: "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{6}-\\d{2}:\\d{2})\\s+(?<hostname>[0-9A-Za-z-\\.%-_]+)\\s+(?<facility>[\\w\\._\\/%-]+)(?:\\[(?<procid>\\d+)\\])?:\\s+(?<message>(.*?\\b(?<severity>[A|a]lert|ALERT|[T|t]race|TRACE|[D|d]ebug|DEBUG|[N|n]otice|NOTICE|[I|i]nfo|INFO|[W|w]arn(?:ing)?|WARN(?:ING)?|[E|e]rr(?:or)?|ERR(?:OR)?|[C|c]rit(?:ical)?|CRIT(?:ICAL)?|[F|f]atal|FATAL|[S|s]evere|SEVERE|EMERG(?:ENCY)?|[Ee]merg(?:ency)?).*?)|(?:.*?))$"
+      std-abr-month:
+        pattern: "^(?<timestamp>\\w{3,4}\\s+\\d+\\s+\\d{2}:\\d{2}:\\d{2})\\s+(?<hostname>[0-9A-Za-z-\\.%-_]+)\\s+(?<facility>[\\w\\._\\/%-]+)(?:\\[(?<procid>\\d+)\\])?:\\s+(?<message>(.*?\\b(?<severity>[A|a]lert|ALERT|[T|t]race|TRACE|[D|d]ebug|DEBUG|[N|n]otice|NOTICE|[I|i]nfo|INFO|[W|w]arn(?:ing)?|WARN(?:ING)?|[E|e]rr(?:or)?|ERR(?:OR)?|[C|c]rit(?:ical)?|CRIT(?:ICAL)?|[F|f]atal|FATAL|[S|s]evere|SEVERE|EMERG(?:ENCY)?|[Ee]merg(?:ency)?).*?)|(?:.*?))$"
+  value:
+      timestamp:
+          kind: 'date'
+          required: Yes
+          std: "YYYY-MM-DDTHH:mm:ss"
+          std-abr-month: "MMM D HH:mm:ss"
+          std-abr-monht-sample: "Mar  4 09:45:39"
+      hostname:
+          kind: "string"
+          default: ''
+      facility:
+          kind: "string"
+          default: ''
+      procid:
+          kind: "integer"
+          required: No
+          default: -1
+      severity:
+          kind: "string"
+          default: 'NOTICE'
+          values:
+            - label: "TRACE"
+              values: [Trace, TRACE, trace]
+              ignore: Yes
+            - label: "DEBUG"
+              values: [Debug, DEBUG, debug]
+              ignore: Yes
+            - label: "INFO"
+              values: [Info, info, INFO]
+              ignore: Yes
+            - label: "NOTICE"
+              values: [Notice, notice, NOTICE]
+              ignore: Yes
+            - label: "WARN"
+              values: [Warn, warn, WARN, Warning, warning, WARNING]
+            - label: "ERROR"
+              values: [Error, error, ERROR, Err, err, ERR]
+            - label: "CRIT"
+              values: [Crit, crit, CRIT, Critical, critical, CRITICAL]
+            - label: "ALERT"
+              values: [Alert, alert, ALERT]
+            - label: "EMERG"
+              values: [EMERG, EMERGENCY, Emerg, emerg, Emergency, emergency]
+
+      message:
+          kind: "string"
+          default: ''
+  sample:
+    std:
+      - "2014-02-10T22:08:14.554813-05:00 host01 xinetd[25189]: xinetd Version 2.3.14 started with libwrap loadavg labeled-networking options compiled in."
+      - "2014-02-10T22:08:14.554821-05:00 host01 xinetd[25189]: Started working: 1 available service"
+      - "2014-02-10T22:09:29.171035-05:00 host01 _tk4aunxf_: INFO  [00000004] :sassrv_pam - SAH041001I Server SAS Workspace Server, State, starting"
+    std-abr-month:
+      - "Mar  4 09:49:13 host-s1 AgentFramework[32422]: VCS ERROR V-16-2-13067 Thread(4152925072) Agent is calling clean for resource(JBoss_App_Server) because the resource became OFFLINE unexpectedly, on its own."
+      - "Mar  4 09:45:39 host-s1 dhclient: bound to 192.168.0.1 -- renewal in 254 seconds."

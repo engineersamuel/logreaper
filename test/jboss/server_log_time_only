@@ -1,0 +1,4 @@
+00:00:56,169 ERROR [stderr] (Thread-109) com.foo.utils.MessageCallException: We are unable to process your request. Please try back later. Message EIL1006
+00:00:56,180 ERROR [stderr] (Thread-109) 	at com.foo.utils.MessageCallHelper.logException(MessageCallHelper.java:540)
+00:00:56,180 ERROR [stderr] (Thread-109) 	at com.foo.utils.MessageCallHelper.call(MessageCallHelper.java:298)
+00:00:56,180 ERROR [stderr] (Thread-109) 	at com.foo.selfservice.borrower.core.AccountProfileFactory.findByBorrowerFDR(AccountProfileFactory.java:189)
