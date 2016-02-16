@@ -19,7 +19,7 @@ class FileList extends Component {
     renderIdentification(f) {
         if (f.identification == null) return <Spinner />;
         if (f.identification.matched == false) {
-            return <Alert bsStyle="warn">Failed to identify</Alert>
+            return <span className="no-identification">Failed to identify</span>
         } else {
 
             return <span>{f.identification.identifiedName}:{f.identification.identifiedRegexName}</span>

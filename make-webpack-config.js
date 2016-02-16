@@ -7,7 +7,7 @@ var loadersByExtension = require("./config/loadersByExtension");
 
 module.exports = function(options) {
     var entry = {
-        main: "./labs/logreaper/app/index.js"
+        main: "./app/index.js"
         // second: "./app/someOtherPage
     };
     var loaders = {
@@ -15,7 +15,7 @@ module.exports = function(options) {
         //"jsx": options.hotComponents ? ["react-hot-loader", "babel-loader?stage=0"] : "babel-loader?stage=0",
         "jsx": {
             loader: "babel-loader",
-            include: path.join(__dirname, "labs/logreaper/app"),
+            include: path.join(__dirname, "app"),
             query: {
                 //cacheDirectory: options.devServer,
                 //plugins: ['transform-runtime', 'transform-decorators-legacy'],
@@ -28,7 +28,7 @@ module.exports = function(options) {
             //include: path.join(__dirname, "labs/logreaper/app")
 
             loader: "babel-loader",
-            include: path.join(__dirname, "labs/logreaper/app"),
+            include: path.join(__dirname, "app"),
             query: {
                 //cacheDirectory: options.devServer,
                 plugins: ['transform-runtime'],

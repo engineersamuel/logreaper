@@ -1,18 +1,12 @@
-//@import '../js/bower_components/datatables/media/css/jquery.dataTables.css';
-//@import '../js/bower_components/datatables-scroller/css/dataTables.scroller.css';
-//@import '../js/bower_components/tooltipster/css/tooltipster.css';
-//@import '../js/lib/litetabs/litetabs.css';
-//@import url(https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.css);
-
 .content-area {
   margin-left: 20px !important;
   margin-right: 20px !important;
 }
 
 // If this is not done then the nv.d3.css takes precedence and sets the svg to 100% which fubars chrome (browser)
-.dc-chart svg {
-  height: auto !important;
-}
+//.dc-chart svg {
+//  height: auto !important;
+//}
 
 .filter-selected {
   background: #cce4e7 !important;
@@ -128,29 +122,8 @@
   height: 350px !important;
 }
 
-// The default nvd3 css has height as 100% which fubar's the custom override
-//.nvd3-svg {
-//  height: inherit !important;
-//}
-
-.logreaper-dygraph {
-  height: 200px !important;
-  width: 100% !important;
-  //display: block !important;
-  //position: absolute;
-  //left: 20px;
-  //right: 20px;
-  //top: 140px;
-  //bottom: 140px;
-}
-
 .pointer {
   cursor: pointer;
-}
-
-.slider-value {
-  font-weight: bold;
-  border:0;
 }
 
 // By default the fa-ul adds a left margin, not what we want
@@ -433,4 +406,12 @@ html.next #main label {
 
 .top-counts-leave.top-counts-leave-active {
   opacity: 0.01;
+}
+
+/**********************************************************************************************************************/
+/* Error/Warning colors */
+/**********************************************************************************************************************/
+.no-identification {
+  font-weight: bold;
+  color: darkred;
 }
