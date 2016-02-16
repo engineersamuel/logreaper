@@ -43,7 +43,7 @@ module.exports = function(options) {
     } catch(e){}
 
     // Set this in the settings to that it can be sent with each request.  Then it can be compared to the
-    // window.quest.mainJsHash, if there is a difference, then the user should refresh the browser.
+    // window.logreaper.mainJsHash, if there is a difference, then the user should refresh the browser.
     settings.mainJsHash = mainJsHash;
     logger.info("main.js hash: " + mainJsHash);
 
@@ -110,7 +110,7 @@ module.exports = function(options) {
     app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
     app.use(cookieParser());
 
-    // Default is /_assets but need the /quest prefix
+    // Default is /_assets but need the /labs/logreaper prefix
     app.use(`${options.browserPath}/_assets`, express.static(path.join(__dirname, "..", "..", "build", "public"), {
         //etag: false,
         //maxAge: "0"
