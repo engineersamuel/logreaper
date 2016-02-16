@@ -1,5 +1,6 @@
 var yaml    = require('js-yaml');
 var _       = require("lodash");
+var fs      = require("fs");
 var logger  = require("../utils/logger");
 
 // Get document, or throw exception on error

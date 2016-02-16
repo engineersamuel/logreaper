@@ -1,5 +1,5 @@
 var winston         = require('winston');
-var Mail            = require("winston-mail").Mail;
+//var Mail            = require("winston-mail").Mail;
 winston.emitErrs    = true;
 
 var logger = new winston.Logger({
@@ -34,13 +34,6 @@ var logger = new winston.Logger({
             handleExceptions: true,
             json: false,
             colorize: true
-        }),
-        new winston.transports.Mail({
-            level: 'error',
-            host: 'smtp.corp.redhat.com',
-            to: 'smendenh@redhat.com',
-            from: 'smendenh@redhat.com',
-            subject: 'quest error'
         })
     ],
     exitOnError: false
