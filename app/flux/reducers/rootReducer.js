@@ -7,12 +7,23 @@ import {
     FILE_PARSED,
     FILE_PARSE_PROGRESS,
     PARSE_SEVERITIES,
-    ERROR
+    ERROR,
+    USER_ACTION
 } from '../constants/ActionTypes';
 
 //const initialState = {
 //    files: {} // The files read from input come in as type FileList
 //};
+
+function userAction(state = null, action) {
+    switch(action.type) {
+        case USER_ACTION:
+            return action.userAction;
+            break;
+        default:
+            return state;
+    }
+}
 
 function error(state = null, action) {
     switch(action.type) {
@@ -88,7 +99,8 @@ function file(state = {}, action) {
 const rootReducer = combineReducers({
     file,
     parseSeverities,
-    error
+    error,
+    userAction
     //fileParsed
     //fileHashed,
     //fileIdentified,

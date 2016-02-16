@@ -4,18 +4,14 @@ import { Alert, Row, Col, Glyphicon } from "react-bootstrap"
 import Slider from 'rc-slider'
 
 import Spacer                       from "../Spacer.jsx"
-import TopCounts                    from "../stats/TopCounts.jsx"
 import TopSeverityFieldCounts       from "../stats/TopSeverityFieldCounts.jsx"
 import Filtering                    from "../filters/Filtering.jsx"
-import HorizontalBarChart           from "../charts/HorizontalBarChart.jsx"
-import DiscreteBarChart             from "../charts/DiscreteBarChart.jsx"
-import LineChartWithFocus           from "../charts/LineChartWithFocus.jsx"
 import LogDataGrid                  from "../grid/LogDataGrid.jsx"
 import Recommendations              from "./Recommendations.jsx"
 
 import * as DataUtils               from "../../utils/dataUtils"
 
-class Log4j extends Component {
+class Log4jQuickView extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = _.assign({
@@ -101,6 +97,7 @@ class Log4j extends Component {
         }
     }
 
+
     renderTopSeverityFieldCounts(severity, field) {
         // showTopPercentage={1} to render the percentage for the first top item
         if (!_.get(this, `state.severityFieldMappings.${severity}.${field}.group`)) {
@@ -130,12 +127,8 @@ class Log4j extends Component {
             return <Alert bsStyle="warning">No lines parsed.  This may be due to a log that contains few lines, none of which match the expected expressions.</Alert>
         }
 
-        //let topSeverityCounts = this.state.groups.severityGroup.top(this.state.sliderValue);
-        let timeSeriesSeverityCounts = DataUtils.makeTimeSeriesData(this.props.parseSeverities || this.props.file.identification.parseSeverities, this.state.groups.timestampGroups);
-
         // Gather the top warn and error messages and transform those down to the actual message values
         let recommendations = _.chain(_.filter(this.state.severityFieldMappings['ERROR']['message']['group'].order(p => p.count).top(this.state.sliderValue), item => item.value.count > 0))
-            .union(_.filter(this.state.severityFieldMappings['WARN']['message']['group'].order(p => p.count).top(this.state.sliderValue), item => item.value.count > 0))
             // Pluck the key out
             .map('key')
             // The actual value is the 2nd element in the array
@@ -145,39 +138,15 @@ class Log4j extends Component {
             .flatten()
             .value();
 
-        //console.debug(`Recommendations: ${JSON.stringify(recommendations, null, ' ')}`);
-
         const cap = 250;
         let gridData = this.state.dims.timestampDim.top(cap);
         // Add the idx in for each line for the grid to select on
         gridData.forEach((l, idx) => l.idx = idx);
 
-
-        let fields = ['message', 'thread', 'category'];
-        let sevs = _.filter(this.state.parseSeverities, s => !_.includes(this.state.infoLevelSeverities, s));
-        let topSeverityFieldCounts = _.map(fields, (field) => _.map(sevs, sev => this.renderTopSeverityFieldCounts(sev, field)));
+        let topSeverityFieldCount = this.renderTopSeverityFieldCounts('ERROR', 'message');
 
         return (
-            <div ref="log4j-view">
-                <Row>
-                    <Col md={12}>
-                        <h3>Log Counts by Severity</h3>
-                        <LineChartWithFocus
-                            data={timeSeriesSeverityCounts}
-                            field='severity'
-                            minX={this.state.minDate}
-                            maxX={this.state.maxDate}
-                            filters={this.state.filters}
-                            resetRangeFilter={this.resetRangeFilter}
-                            addRangeFilter={this.addRangeFilter}
-                            removeRangeFilter={this.removeRangeFilter}
-                            lookupColor={this.lookupColor}
-                            d3TimeFormat={this.state.d3TimeFormat}
-                            chartSize="large"
-                        ></LineChartWithFocus>
-                    </Col>
-                </Row>
-                <Spacer />
+            <div ref="log4j-quick-view">
                 <Filtering removeFilter={this.removeFilter} filters={this.state.filters}></Filtering>
                 <p>Showing top <strong>{this.state.sliderValue}</strong> results (Slide to visualize more/less)</p>
                 <Spacer />
@@ -190,28 +159,13 @@ class Log4j extends Component {
                                 <small> ({this.state.cfSize} log entries parsed spanning ~{this.state.durationHumanized})</small>
                             </h3>
                             <div className="content">
-                                <TopCounts
-                                    group={this.state.groups.severityGroup}
-                                    filters={this.state.filters}
-                                    addFilter={this.addFilter}
-                                    removeFilter={this.removeFilter}
-                                    field='severity'
-                                    title='Top Severity Counts'
-                                    topSize={this.state.sliderValue}
-                                    cfSize={this.state.cfSize}
-                                    truncate={55}
-                                    inline={false}
-                                    tooltip='Total severity counts based on current filters'>
-                                </TopCounts>
-                                <hr/>
                                 <Recommendations texts={recommendations}></Recommendations>
-                                <Spacer size={60} />
                             </div>
                         </div>
                     </Col>
                     <Col md={6}>
                         <div className="app-block">
-                            {topSeverityFieldCounts}
+                            {topSeverityFieldCount}
                         </div>
                     </Col>
                 </Row>
@@ -240,9 +194,9 @@ class Log4j extends Component {
     }
 }
 
-Log4j.propTypes = {
+Log4jQuickView.propTypes = {
     file: PropTypes.object.isRequired,
     parseSeverities: PropTypes.array.isRequired
 };
 
-export default Log4j;
+export default Log4jQuickView;

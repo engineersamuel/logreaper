@@ -2,7 +2,16 @@ import { Component, PropTypes } from "react";
 import shallowEqual from "react-pure-render/shallowEqual"
 import { RouteHandler, Link } from "react-router";
 import cx from "classnames";
-import { Grid, Row, Col, Button, Input, Alert } from "react-bootstrap";
+
+import {
+    Grid,
+    Row,
+    Col,
+    Button,
+    Input,
+    Alert,
+    ButtonGroup
+} from "react-bootstrap";
 
 // Custom Components
 import Spacer               from "./Spacer.jsx";
@@ -65,8 +74,8 @@ class Home extends Component {
         e.preventDefault();
         this.props.dispatch(handleFile(e.target.files[0], _.filter(_.keys(this.state.parseSeverities), sev => this.state.parseSeverities[sev])));
     }
-    _parse() {
-        this.props.dispatch(parseFile(this.props.file, _.filter(_.keys(this.state.parseSeverities), sev => this.state.parseSeverities[sev])));
+    _parse(action) {
+        this.props.dispatch(parseFile(this.props.file, _.filter(_.keys(this.state.parseSeverities), sev => this.state.parseSeverities[sev]), action));
     }
 
     _handleCheckboxClick(sev, e) {
@@ -130,7 +139,10 @@ class Home extends Component {
                 <div className="form-group">
                     {this.renderSeverityFilters(file, _.keys(this.state.parseSeverities), error)}
                 </div>
-                <ParseButton {...this.props} parse={this._parse}></ParseButton>
+                <ButtonGroup>
+                    <ParseButton {...this.props} action="Visualize" parse={this._parse}></ParseButton>
+                    <ParseButton {...this.props} action="Quick Analysis" parse={this._parse}></ParseButton>
+                </ButtonGroup>
                 <Spacer />
                 <hr />
 
@@ -154,6 +166,8 @@ class Home extends Component {
 Home.propTypes = {
     file: PropTypes.object,
     parseSeverities: PropTypes.array,
+    error: PropTypes.object,
+    userAction: PropTypes.string,
     dispatch: PropTypes.func.isRequired
 };
 
@@ -162,7 +176,8 @@ function mapStateToProps(state) {
     return {
         file: state.file.file,
         parseSeverities: state.parseSeverities,
-        error: state.error
+        error: state.error,
+        userAction: state.userAction
     };
 }
 

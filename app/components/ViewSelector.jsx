@@ -4,6 +4,7 @@ import shallowEqual from "react-pure-render/shallowEqual"
 import ApacheAccess     from './views/ApacheAccess.jsx';
 import Lsof             from './views/Lsof.jsx';
 import Log4j            from './views/Log4j.jsx';
+import Log4jQuickView   from './views/Log4jQuickView.jsx';
 import Vdsm             from './views/Vdsm.jsx';
 import Syslog           from './views/Syslog.jsx';
 import Spacer           from "./Spacer.jsx";
@@ -36,7 +37,7 @@ class ViewSelector extends Component {
     }
 
     render() {
-        const { file } = this.props;
+        const { file, userAction } = this.props;
         if (!file) return null;
         //if (!this.allFilesParsed(files)) return null;
         if (!this.fileParsed(file)) return null;
@@ -49,7 +50,14 @@ class ViewSelector extends Component {
                 return <Lsof {...this.props}></Lsof>;
                 break;
             case FileIdenEnum.LOG4J:
-                return <Log4j {...this.props}></Log4j>;
+                switch (userAction) {
+                    case "Quick Analysis":
+                        return <Log4jQuickView {...this.props}></Log4jQuickView>;
+                        break;
+                    default:
+                        return <Log4j {...this.props}></Log4j>;
+                        break;
+                }
                 break;
             case FileIdenEnum.VDSM:
                 return <Vdsm {...this.props}></Vdsm>;
@@ -65,7 +73,8 @@ class ViewSelector extends Component {
 }
 
 ViewSelector.propTypes = {
-    file: PropTypes.object
+    file: PropTypes.object,
+    userAction: PropTypes.string
 };
 
 export default ViewSelector;

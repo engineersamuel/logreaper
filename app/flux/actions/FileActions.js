@@ -9,6 +9,13 @@ import {
     handleSeverities
 } from "../../utils/fileUtils";
 
+export function userAction(userAction) {
+    return {
+        type: types.USER_ACTION,
+        userAction
+    }
+}
+
 export function error(err) {
     return {
         type: types.ERROR,
@@ -139,12 +146,15 @@ export function handleFile(file) {
 //    }
 //}
 
-export function parseFile(file, severities) {
+export function parseFile(file, severities, action) {
     return function (dispatch) {
         // Reset the error
         dispatch(error(null));
         // Set the severities to parse
         dispatch(parseSeverities(severities));
+        // Set the action to the action [Visualize, Quick Analysis]
+        dispatch(userAction(action));
+
         parse({file: file, dispatch: dispatch, fileParseProgress: fileParseProgress, parseSeverities: severities}).then((viewModelOpts) => {
             dispatch(fileParsed(viewModelOpts));
         }).catch( err => {

@@ -1,6 +1,7 @@
 log4j:
   title: "Log4j log"
   description: "Handles log4j formats"
+  quickView: Yes
   regex:
       std:
           # (?<thread>[\\w-\\.\\ ]+)

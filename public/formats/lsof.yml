@@ -1,6 +1,7 @@
 lsof:
   title: "lsof"
   description: "The default output of lsof"
+  quickView: No
   #url: "http://en.wikipedia.org/wiki/Common_Log_Format"
   regex:
       std:

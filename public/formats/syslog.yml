@@ -1,6 +1,7 @@
 syslog:
   title: "syslog"
   description: "Syslog: /var/log/messages"
+  quickView: Yes
   regex:
       std:
         pattern: "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{6}-\\d{2}:\\d{2})\\s+(?<hostname>[0-9A-Za-z-\\.%-_]+)\\s+(?<facility>[\\w\\._\\/%-]+)(?:\\[(?<procid>\\d+)\\])?:\\s+(?<message>(.*?\\b(?<severity>[A|a]lert|ALERT|[T|t]race|TRACE|[D|d]ebug|DEBUG|[N|n]otice|NOTICE|[I|i]nfo|INFO|[W|w]arn(?:ing)?|WARN(?:ING)?|[E|e]rr(?:or)?|ERR(?:OR)?|[C|c]rit(?:ical)?|CRIT(?:ICAL)?|[F|f]atal|FATAL|[S|s]evere|SEVERE|EMERG(?:ENCY)?|[Ee]merg(?:ency)?).*?)|(?:.*?))$"

@@ -1,6 +1,7 @@
 fuse:
   title: "Fuse root container log"
   description: "The log for the root container (fuse.log) in JBoss-Fuse"
+  quickView: Yes
   regex:
       std:
         #pattern: "^(?<timestamp>(.*?))\\s+\\|\\s+(?<severity>(.*?))\\s+\\|\\s+(?<thread>(.*?))\\s+\\|(?<category>(.*?))\\s+\\|\\s+(?<component>(.*?))\\s+\\|\\s+(?<message>([^\\|]*))[^\\n]*"

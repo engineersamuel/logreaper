@@ -3,6 +3,7 @@ accessLog:
   description: "The default web access log format for servers like Apache."
   url: "http://en.wikipedia.org/wiki/Common_Log_Format"
   severityField: "status"
+  quickView: No
   regex:
       ts-first-noquotes:
           pattern: "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{3})?) (?<c_ip>[^ ]+) (?<cs_username>[^ ]+) (?<cs_method>[A-Z]+) (?<uriStem>[^ \\?]+)(?:\\?(?<uriQuery>[^ ]*))? (?:-1|\\d+) (?<sc_status>\\d+) \\d+"

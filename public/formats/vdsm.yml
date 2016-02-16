@@ -1,6 +1,7 @@
 vdsm:
   title: "Virtualization Desktop and Server Manager"
   description: "The log for the vdsm service in RHEV hosts"
+  quickView: Yes
   regex:
       std:
           pattern: "^(?<threadId>[A-Z][^:]*)::(?<severity>[A-Z][^:]*)::(?<timestamp>[\\S][^\\s]*\\s\\d{2}:\\d{2}:\\d{2},\\d{3})::(?<component>[A-Za-z][^:]*)::(?<line>\\d[^:]*)::(?<module>[A-Za-z][^:]*)::\\((?<functionName>.[^\\s]*)\\)\\s(?<command>.[^\\n]*)"

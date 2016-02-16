@@ -2,6 +2,7 @@ gc:
   title: "Garbage Collection Logs"
   description: "JVM Garbage Collection logs"
   precedence: 99
+  quickView: Yes
   regex:
       sun16:
           pattern: ".*?(\\(young\\)|G1Ergonomics|\\[Times:|CMS-initial-mark|PSYoungGen|:\\ \\[|\\[GC|\\[Full\\ GC|\\[Inc\\ GC|<GC:\\ managing allocation failure:\\ need\\ )"
