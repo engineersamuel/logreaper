@@ -1,7 +1,5 @@
 # !! console is not availble in FF, it is in Chrome though
 
-
-
 importScripts('/labs/logreaper/static/js/lib/xregexp/xregexp-all-min.js')
 # https://developer.mozilla.org/en-US/Add-ons/Code_snippets/StringView
 importScripts('/labs/logreaper/static/js/lib/html5/stringview.js')

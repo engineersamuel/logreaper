@@ -155,9 +155,6 @@ class Log4j extends Component {
 
         let fields = ['message', 'thread', 'category'];
         let sevs = _.filter(this.state.parseSeverities, s => !_.includes(this.state.infoLevelSeverities, s));
-        // TODO -- the sevs above isn't actually producing any sevs, let's fix that.
-        // TODO -- The time series view isn't actually generating any of the FINE/TRACE/DEBUG/INFO, let's fix, or maybe there are only ERROR/DEBUG, dunno
-        console.debug(`Generating top sev counts for: ${JSON.stringify(sevs)}`);
         let topSeverityFieldCounts = _.map(fields, (field) => _.map(sevs, sev => this.renderTopSeverityFieldCounts(sev, field)));
 
         return (

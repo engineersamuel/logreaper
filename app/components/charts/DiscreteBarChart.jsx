@@ -72,7 +72,6 @@ class DiscreteBarChart extends Component {
         return _.findIndex(this.props.filters, item) !== -1;
     }
     onClick(item) {
-        console.debug(`Clicked on ${JSON.stringify(item, null, ' ')}`);
         if (this.filtersContainItem(item)) {
             return this.props.removeFilter(item);
         } else {

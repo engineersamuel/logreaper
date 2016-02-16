@@ -203,11 +203,9 @@ class ViewModelFuse extends Module
           self[sev.toLowerCase() + 'Idx'] = self.inverseLookup('severity', sev)
 
         if self.cf?
-          console.debug "Added #{f.extra.parsedLines.length} records in #{((new Date() - start) / 1000)}s to the existing crossfilter."
           self.cf.add(f.extra.parsedLines)
         else
           self.cf = crossfilter(f.extra.parsedLines)
-          console.debug "Bootstraped crossfilter with: #{f.extra.parsedLines.length} records"
 
         #Update the estimated start and end times
         self.updateEstimatedStartTimestamp f.extra.parsedLines[0]['timestamp']

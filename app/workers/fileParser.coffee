@@ -71,7 +71,6 @@ self.addEventListener 'message', (e) ->
       # TODO -- So apparently this file is being used to parse instead of the fileParserNoAbCopy, I believe that is the problem
       # This should be used to identify not parse
       x = XRegExp.cache(fileId.format['regex'][fileId.identifiedRegexName]['pattern'])
-      console.debug "fileParsing: ParsingArrayIterator"
       p = new logreaper.ParsingArrayIterator
         arr: splitLines
         moment: moment

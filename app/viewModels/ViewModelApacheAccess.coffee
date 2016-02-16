@@ -102,8 +102,6 @@ class ViewModelApacheAccess extends Module
       # Calculates the actual statuses to display.  This is a bit complicated as we have to peak instead each potential error code from the top level, like 20x == 201, 202, 203, ect..
       @statusesToDisplay = _.filter(@statusesInLog, (status) -> _.includes(self.httpCodes, status))
 
-      console.debug("Potential httpCodes: #{JSON.stringify(@httpCodes)}")
-
       if not self.cf or self.cf?.length <= 0
         return reject(new Error("Could not properly initialize Logreaper.  No log lines found and/or no log lines found given the selected http codes.  Try parsing with more http codes selected."))
 

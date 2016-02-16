@@ -151,11 +151,9 @@ class ViewModelSyslog extends Module
             if _.includes(self.severityNameMapping[sev], d.severity) then d.severity = sev
 
         if self.cf?
-          console.debug "Added #{parsedLines.length} records in #{((new Date() - start) / 1000)}s to the existing crossfilter."
           self.cf.add(parsedLines)
         else
           self.cf = crossfilter(parsedLines)
-          console.debug "Bootstrapped Crossfilter with: #{parsedLines.length} records"
 
         #Update the estimated start and end times
         self.updateEstimatedStartTimestamp parsedLines[0]['timestamp']

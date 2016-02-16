@@ -17,8 +17,8 @@
     buf = new ArrayBuffer(str.length);
     bufView = new Uint8Array(buf);
     for (var i=0, strLen=str.length; i<strLen; i++) {
-        bufView[i] = str.charCodeAt(i);
-    }
+    bufView[i] = str.charCodeAt(i);
+  };
     return buf;
   };
 
@@ -67,7 +67,6 @@
         dur = 0;
         start = Date.now();
         x = XRegExp.cache(fileId.format['regex'][fileId.identifiedRegexName]['pattern']);
-        console.debug("fileParsing: ParsingArrayIterator");
         p = new logreaper.ParsingArrayIterator({
           arr: splitLines,
           moment: moment,

@@ -22,7 +22,7 @@ Mixin =
   determineTimeGranularity: (opts) ->
     # 15 hours HH
     @duration = @end - @start
-    console.debug "Duration determined to be: #{moment.duration(@duration, 'milliseconds').humanize()}"
+    #console.debug "Duration determined to be: #{moment.duration(@duration, 'milliseconds').humanize()}"
     @durationHumanized = moment.duration(@duration, 'milliseconds').humanize()
 
     # If the cfSizse is less than 1000, that is 1000 data points, short circuit to seconds
@@ -60,7 +60,7 @@ Mixin =
       @d3TimeGranularityDisplay = "1 day"
       @d3TimeFormat = d3.time.format('%x')
 
-    console.debug "Time granularity set to: #{@d3TimeGranularityDisplay}"
+    #console.debug "Time granularity set to: #{@d3TimeGranularityDisplay}"
 
 
   updateEstimatedStartTimestamp: (estimatedStart) ->
