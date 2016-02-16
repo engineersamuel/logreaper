@@ -72,7 +72,7 @@ export function md5(opts) {
         };
         frOnerror = function(err) {
             console.error(err);
-            return resolve({error: err});
+            return reject(err);
         };
         loadNext = function() {
             let end, fileReader, start;
