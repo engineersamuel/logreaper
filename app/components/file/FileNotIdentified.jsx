@@ -26,7 +26,7 @@ class FileNotIdentified extends Component {
 
         return (
             <Alert bsStyle="info">
-                <strong>Could not identify {file.name}</strong> Please open an issue upstream at <a target="_blank" href="https://github.com/engineersamuel/logreaper/issues">https://github.com/engineersamuel/logreaper/issues</a>&nbsp;
+                <strong>Could not identify {file.file.name}</strong> Please open an issue upstream at <a target="_blank" href="https://github.com/engineersamuel/logreaper/issues">https://github.com/engineersamuel/logreaper/issues</a>&nbsp;
                 and attach a sanitized log file.
             </Alert>
         );
