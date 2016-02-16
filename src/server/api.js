@@ -32,7 +32,7 @@ module.exports = function(app, options) {
 
     app.get(options.browserPath + "/formats", function(req, res) {
         let output = {},
-            formatsDir = path.join(__dirname, '../../labs/logreaper/public/formats/*.yml');
+            formatsDir = path.join(__dirname, '../../public/formats/*.yml');
         glob(formatsDir, function(err, files) {
             _(files).forEach(function(f) {
                 let doc = yaml.safeLoad(fs.readFileSync(f, 'utf-8'));

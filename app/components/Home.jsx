@@ -5,14 +5,15 @@ import cx from "classnames";
 import { Grid, Row, Col, Button, Input, Alert } from "react-bootstrap";
 
 // Custom Components
-import Spacer           from "./Spacer.jsx";
-import FileList         from "./file/FileList.jsx"
-import ParseProgress    from "./ParseProgress.jsx"
-import ParseButton      from "./ParseButton.jsx"
-import ViewSelector     from "./ViewSelector.jsx"
-import Error            from "./Error.jsx"
-import Dropzone         from "./file/Dropzone.jsx"
-import Instructions     from "./Instructions.jsx"
+import Spacer               from "./Spacer.jsx";
+import FileList             from "./file/FileList.jsx"
+import FileNotIdentified    from "./file/FileNotIdentified.jsx"
+import ParseProgress        from "./ParseProgress.jsx"
+import ParseButton          from "./ParseButton.jsx"
+import ViewSelector         from "./ViewSelector.jsx"
+import Error                from "./Error.jsx"
+import Dropzone             from "./file/Dropzone.jsx"
+import Instructions         from "./Instructions.jsx"
 
 // Flux
 import { connect } from 'react-redux';
@@ -133,10 +134,17 @@ class Home extends Component {
                 <Spacer />
                 <hr />
 
-                <ParseProgress {...this.props}></ParseProgress>
-                <ViewSelector {...this.props}></ViewSelector>
+                {/* Handle errors */}
                 <Error {...this.props}></Error>
+                <FileNotIdentified {...this.props}></FileNotIdentified>
 
+                {/* Display the parse progress when parsing*/}
+                <ParseProgress {...this.props}></ParseProgress>
+
+                {/* The view selected selects the proper view based on the file identification */}
+                <ViewSelector {...this.props}></ViewSelector>
+
+                {/* When no file present, give some instructions */}
                 <Instructions {...this.props}></Instructions>
             </Grid>
         );
