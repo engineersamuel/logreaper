@@ -6,7 +6,7 @@ import { Grid, Row, Col, Button, Input, Alert } from "react-bootstrap";
 
 // Custom Components
 import Spacer           from "./Spacer.jsx";
-import FileList         from "./FileList.jsx"
+import FileList         from "./file/FileList.jsx"
 import ParseProgress    from "./ParseProgress.jsx"
 import ParseButton      from "./ParseButton.jsx"
 import ViewSelector     from "./ViewSelector.jsx"

@@ -4,8 +4,8 @@ import { RouteHandler, Link } from "react-router";
 import cx from "classnames";
 import { Grid, Row, Col, Button, Alert, Table } from "react-bootstrap";
 
-import Spacer   from "./Spacer.jsx";
-import Spinner  from "./Spinner.jsx";
+import Spacer   from "../Spacer.jsx";
+import Spinner  from "../Spinner.jsx";
 
 class FileList extends Component {
     constructor(props, context) {
