@@ -1,15 +1,15 @@
 # !! console is not availble in FF, it is in Chrome though
 
-importScripts('/labs/logreaper/static/js/lib/xregexp/xregexp-all-min.js')
+importScripts('/labs/logreaper/static/js/lib/xregexp-all-min.js')
 # https://developer.mozilla.org/en-US/Add-ons/Code_snippets/StringView
-importScripts('/labs/logreaper/static/js/lib/html5/stringview.js')
+importScripts('/labs/logreaper/static/js/lib/stringview.js')
 # moment
-importScripts('/labs/logreaper/static/js/lib/moment/moment.min.js')
+importScripts('/labs/logreaper/static/js/lib/moment.min.js')
 #  Used for Identifying files
-importScripts('/labs/logreaper/static/js/lib/logreaper/FileIdentifier.js')
+importScripts('/labs/logreaper/static/js/lib/FileIdentifier.js')
 # Common script for parsing files
-importScripts('/labs/logreaper/static/js/lib/logreaper/Iterator.js')
-importScripts('/labs/logreaper/static/js/lib/logreaper/ChunkParser.js')
+importScripts('/labs/logreaper/static/js/lib/Iterator.js')
+importScripts('/labs/logreaper/static/js/lib/ChunkParser.js')
 
 # StringView will read into a Uint8Array by default, so use that instead of a Uint16Array
 utf82ab = (str) ->
@@ -31,8 +31,8 @@ self.addEventListener 'message', (e) ->
       chunkSize = 1024 * 1024 # 1MB
 
       reader = undefined
-      # Split the file, abhorrent for memory usage, but the above is not completed yet
-      content = new StringView(reader.readAsArrayBuffer blobSlice.call(e.data.file, start, chunkSize))
+      # Take a 1m chunk to identify the file
+      content = new StringView(reader.readAsArrayBuffer blobSlice.call(e.data.file, 0, chunkSize))
       fi = new logreaper.FileIdentifier e.data.formats, XRegExp
       output = fi.identify content.toString()
       self.postMessage {cmd: 'identificationComplete', result: output, hash: e.data.hash}
@@ -63,7 +63,6 @@ self.addEventListener 'message', (e) ->
 
       # Defines which field to access that determines the severity, log4j would usually be severity, access log status
       severityField = e.data.severityField;
-      console.log("severity field: #{severityField}")
 
       # Map out all severitiy labels and filter by the ones we want to parse, extract all of those values/aliases
       # i.e. if ignoring INFO and NOTICE the resulting array would be [Info, info, INFO, NOTICE, notice, Notice]
@@ -73,8 +72,6 @@ self.addEventListener 'message', (e) ->
           # If the label is in the parsed labels, push all values to the parsed values
           if parseSeverityLabels.indexOf(v.label) is -1
             v.values.forEach (value) -> parseSeverityValues.push value
-
-      console.log("worker parsing severities: #{JSON.stringify(parseSeverityValues)}")
 
       #console.debug "chunkSizse: #{chunkSize}, file size: #{e.data.file.size}, totalChunks: #{chunks}"
       self.postMessage {cmd: 'initialMetadata', totalChunks: chunks}
@@ -109,6 +106,7 @@ self.addEventListener 'message', (e) ->
           re: x
           format: fileId.format
           identification: fileId
+
         parsedLines = p.parse()
 
         #console.debug "arr is length: #{splitLines.length}"

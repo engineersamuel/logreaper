@@ -19,9 +19,7 @@ class ParseButton extends Component {
         let { file, error } = this.props;
 
         // If the file doesn't exist or the file does and it has completed parsing, don't show the parse
-        if (!file || file.progress == 1) return null;
-        // If there is an error period, don't show the parse button
-        if (error) return null;
+        if ((!file || file.progress == 1) && !error) return null;
         // If there is a file, but it has no identification, don't show the parse
         if (!_.get(file, 'identification.matched', false)) return null;
 

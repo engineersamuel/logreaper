@@ -117,7 +117,7 @@ module.exports = function(options) {
         maxAge: "200d" // We can cache them as they include hashes
     }));
     //app.use(`${options.browserPath}/static`, express.static("public", {
-    app.use(`${options.browserPath}/static`, express.static(path.join(__dirname, "..", "..", "app", "public"), {
+    app.use(`${options.browserPath}/static`, express.static(path.join(__dirname, "..", "..", "public"), {
         //etag: false,
         //maxAge: "0"
         maxAge: "200d" // We can cache them as they include hashes

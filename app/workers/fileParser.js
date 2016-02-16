@@ -2,15 +2,11 @@
 (function() {
   var utf82ab;
 
-  importScripts('/labs/logreaper/static/js/lib/xregexp/xregexp-all-min.js');
+  importScripts('/labs/logreaper/static/js/lib/xregexp-all-min.js');
 
-  importScripts('/labs/logreaper/static/js/lib/html5/stringview.js');
+  importScripts('/labs/logreaper/static/js/lib/stringview.js');
 
-  importScripts('/labs/logreaper/static/js/lib/moment/moment.min.js');
-
-  importScripts('/labs/logreaper/static/js/lib/logreaper/FileIdentifier.js');
-
-  importScripts('/labs/logreaper/static/js/lib/logreaper/Iterator.js');
+  importScripts('/labs/logreaper/static/js/lib/FileIdentifier.js');
 
   utf82ab = function(str) {
     var buf, bufView;
@@ -23,13 +19,13 @@
   };
 
   self.addEventListener('message', function(e) {
-    var ab, blobSlice, chunkSize, content, ctr, dur, estimatedSecondsLeft, fi, fileId, linesPerSecond, output, p, parseSeverityLabels, parseSeverityValues, parsedLines, r, reader, ref, ref1, rollupRes, splitLines, start, sub_ctr, totalLines, x;
+    var blobSlice, chunkSize, content, fi, output, reader;
     switch (e.data.cmd) {
       case 'identify':
         blobSlice = e.data.file.slice || e.data.file.mozSlice || e.data.file.webkitSlice;
         chunkSize = 1024 * 10;
         reader = new FileReaderSync();
-        content = new StringView(reader.readAsArrayBuffer(blobSlice.call(e.data.file, start, chunkSize)));
+        content = new StringView(reader.readAsArrayBuffer(blobSlice.call(e.data.file, 0, chunkSize)));
         fi = new logreaper.FileIdentifier(e.data.formats, XRegExp);
         output = fi.identify(content.toString());
         self.postMessage({
@@ -39,79 +35,6 @@
         });
         self.close();
         break;
-      case 'parse':
-        fileId = e.data.extra.identification;
-        reader = new FileReaderSync();
-        parseSeverityLabels = e.data.parseSeverities;
-        parseSeverityValues = [];
-        if ((ref = fileId.format.value.severity) != null) {
-          if ((ref1 = ref.values) != null) {
-            ref1.forEach(function(v) {
-              if (parseSeverityLabels.indexOf(v.label) !== -1) {
-                return v.values.forEach(function(value) {
-                  return parseSeverityValues.push(value);
-                });
-              }
-            });
-          }
-        }
-        splitLines = reader.readAsText(e.data.file, 'utf-8').split(/[\r\n]+/);
-        totalLines = (splitLines != null ? splitLines.length : void 0) || 0;
-        self.postMessage({
-          cmd: 'initialMetadata',
-          totalLines: totalLines
-        });
-        parsedLines = [];
-        ctr = 0;
-        sub_ctr = 0;
-        dur = 0;
-        start = Date.now();
-        x = XRegExp.cache(fileId.format['regex'][fileId.identifiedRegexName]['pattern']);
-        p = new logreaper.ParsingArrayIterator({
-          arr: splitLines,
-          moment: moment,
-          Xreg: XRegExp,
-          re: x,
-          format: fileId.format,
-          identification: fileId
-        });
-        rollupRes = [];
-        if (fileId.format['regex'][fileId.identifiedRegexName]['stack'] != null) {
-          fileId.format['regex'][fileId.identifiedRegexName]['stack'].forEach(function(r) {
-            return rollupRes.push(XRegExp.cache(r));
-          });
-        }
-        p.rollupRes = rollupRes;
-        r = void 0;
-        while (p.hasNext()) {
-          if (ctr % 300 === 0) {
-            dur = Date.now() - start;
-            linesPerSecond = ctr / (dur / 1000);
-            estimatedSecondsLeft = (totalLines - ctr) / linesPerSecond;
-            self.postMessage({
-              cmd: 'parsingProgress',
-              progress: ctr / totalLines,
-              timeProgress: 1 - (ctr / totalLines),
-              linesParsed: sub_ctr,
-              linesPerSecond: linesPerSecond,
-              estimatedSecondsLeft: estimatedSecondsLeft
-            });
-            sub_ctr = 0;
-          }
-          r = p.next();
-          if (!(r == null)) {
-            parsedLines.push(r);
-          }
-          ctr++;
-          sub_ctr++;
-        }
-        ab = utf82ab(JSON.stringify(parsedLines));
-        self.postMessage({
-          cmd: 'parsingComplete',
-          hash: e.data.extra.hash,
-          parsedLinesBuff: ab
-        }, [ab]);
-        return self.close();
       case 'status':
         return void 0;
       case 'stop':

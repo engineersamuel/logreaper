@@ -84,7 +84,6 @@ export function md5(opts) {
             return fileReader.readAsArrayBuffer(blobSlice.call(opts.file, start, end));
         };
         spark = new SparkMD5.ArrayBuffer();
-        console.debug(`Hashing file ${opts.file.name}`);
         loadNext();
     });
 }
@@ -113,12 +112,10 @@ export function parse(opts) {
                     break;
                 case 'initialMetadata':
                     totalChunks += e.data.totalChunks;
-                    console.debug(`Initial metadata, total chunks: ${totalChunks}`);
                     break;
                 case 'parsingProgress':
                     linesParsed += e.data.linesParsed;
                     progress = e.data.progress;
-                    console.debug(`progress: ${e.data.progress}`);
                     opts.dispatch(opts.fileParseProgress(e.data.progress, opts.fileIdx));
 
                     //self.linesProgressIndicator.setProgress(progress);
@@ -134,7 +131,6 @@ export function parse(opts) {
                     break;
                 case 'parsingComplete':
                     dur = Date.now() - start;
-                    console.debug(`Parsing complete in: ${dur}`);
                     opts.dispatch(opts.fileParseProgress(1, opts.fileIdx));
 
                     let viewModel = {};
@@ -164,11 +160,12 @@ export function parse(opts) {
         };
         worker.onerror = (e) => {
             console.error(`onError: ${JSON.stringify(e)}`);
+            worker.postMessage({cmd: 'stop'});
             return resolve({error: e});
         };
-        if (_.get(opts, 'parseSeverities', []).length > 0) {
-            console.debug(`Parsing out ${JSON.stringify(opts.parseSeverities)} from ${opts.file.file.name}`);
-        }
+        //if (_.get(opts, 'parseSeverities', []).length > 0) {
+        //    console.debug(`Parsing out ${JSON.stringify(opts.parseSeverities)} from ${opts.file.file.name}`);
+        //}
         let payload = {
             cmd: 'parse',
             file: opts.file.file,

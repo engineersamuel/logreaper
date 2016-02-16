@@ -2,17 +2,17 @@
 (function() {
   var isFirefox, utf82ab;
 
-  importScripts('/labs/logreaper/static/js/lib/xregexp/xregexp-all-min.js');
+  importScripts('/labs/logreaper/static/js/lib/xregexp-all-min.js');
 
-  importScripts('/labs/logreaper/static/js/lib/html5/stringview.js');
+  importScripts('/labs/logreaper/static/js/lib/stringview.js');
 
-  importScripts('/labs/logreaper/static/js/lib/moment/moment.min.js');
+  importScripts('/labs/logreaper/static/js/lib/moment.min.js');
 
-  importScripts('/labs/logreaper/static/js/lib/logreaper/FileIdentifier.js');
+  importScripts('/labs/logreaper/static/js/lib/FileIdentifier.js');
 
-  importScripts('/labs/logreaper/static/js/lib/logreaper/Iterator.js');
+  importScripts('/labs/logreaper/static/js/lib/Iterator.js');
 
-  importScripts('/labs/logreaper/static/js/lib/logreaper/ChunkParser.js');
+  importScripts('/labs/logreaper/static/js/lib/ChunkParser.js');
 
   utf82ab = function(str) {
     var buf, bufView;
@@ -37,7 +37,7 @@
         blobSlice = e.data.file.slice || e.data.file.mozSlice || e.data.file.webkitSlice;
         chunkSize = 1024 * 1024;
         reader = void 0;
-        content = new StringView(reader.readAsArrayBuffer(blobSlice.call(e.data.file, start, chunkSize)));
+        content = new StringView(reader.readAsArrayBuffer(blobSlice.call(e.data.file, 0, chunkSize)));
         fi = new logreaper.FileIdentifier(e.data.formats, XRegExp);
         output = fi.identify(content.toString());
         self.postMessage({
@@ -57,7 +57,6 @@
         fileId = e.data.identification;
         parseSeverityLabels = e.data.parseSeverities;
         severityField = e.data.severityField;
-        console.log("severity field: " + severityField);
         parseSeverityValues = [];
         if (((ref = fileId.format.value[severityField]) != null ? ref.values : void 0) != null) {
           fileId.format.value[severityField].values.forEach(function(v) {
@@ -68,7 +67,6 @@
             }
           });
         }
-        console.log("worker parsing severities: " + (JSON.stringify(parseSeverityValues)));
         self.postMessage({
           cmd: 'initialMetadata',
           totalChunks: chunks
@@ -80,7 +78,7 @@
         totalChunks = chunks;
         x = XRegExp.cache(fileId.format['regex'][fileId.identifiedRegexName]['pattern'], 'gim');
         handleChunk = function(result) {
-          var err, error, msg, parsedLines;
+          var err, error, msg, parsedLines, ref1, ref2, ref3;
           content = new StringView(result);
           p = new logreaper.ChunkParser({
             chunk: content.toString(),
@@ -132,6 +130,21 @@
                 cmd: 'parsingComplete',
                 hash: e.data.hash
               });
+              if (typeof window !== "undefined" && window !== null) {
+                if ((ref1 = window.logreaper) != null) {
+                  ref1.ChunkParser = null;
+                }
+              }
+              if (typeof window !== "undefined" && window !== null) {
+                if ((ref2 = window.logreaper) != null) {
+                  ref2.FileIdentifier = null;
+                }
+              }
+              if (typeof window !== "undefined" && window !== null) {
+                if ((ref3 = window.logreaper) != null) {
+                  ref3.Iterator = null;
+                }
+              }
               self.close();
             }
           }
