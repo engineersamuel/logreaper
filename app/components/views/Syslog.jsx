@@ -102,6 +102,9 @@ class Syslog extends Component {
     }
 
     renderTopSeverityFieldCounts(severity, field) {
+        if (!_.get(this, `state.severityFieldMappings.${severity}.${field}.group`)) {
+            console.warn(`Could not generate TopSeverityFieldCounts since the group for severity: ${severity}, field: ${field} could not be looked up.`);
+        }
         // showTopPercentage={1} to render the percentage for the first top item
         return (
             <TopSeverityFieldCounts
@@ -158,7 +161,7 @@ class Syslog extends Component {
         let topSeverityFieldCounts = _.map(fields, (field) => _.map(sevs, sev => this.renderTopSeverityFieldCounts(sev, field)));
 
         return (
-            <div ref="apache-access-view">
+            <div ref="syslog-view">
                 <Row>
                     <Col md={12}>
                         <h3>Log Counts by Severity</h3>
@@ -181,7 +184,7 @@ class Syslog extends Component {
                 <Filtering removeFilter={this.removeFilter} filters={this.state.filters}></Filtering>
                 <p>Showing top <strong>{this.state.sliderValue}</strong> results (Slide to visualize more/less)</p>
                 <Spacer />
-                <Slider min={0} defaultValue={5} max={20} onChange={this.updateSliderValue}></Slider>
+                <Slider min={1} defaultValue={this.state.sliderValue} max={20} onChange={this.updateSliderValue}></Slider>
                 <Row>
                     <Col md={6}>
                         <div className="app-block">
@@ -222,7 +225,7 @@ class Syslog extends Component {
                             data={gridData}
                             idProperty="idx"
                             columns={[
-                                { name: 'timestamp', title: 'Timestamp'},
+                                { name: 'timestamp', title: 'Timestamp', render: (v) => (new Date(v).toLocaleString())},
                                 { name: 'severity', title: 'Severity'},
                                 { name: 'hostname', title: 'Hostname'},
                                 { name: 'facility', title: 'Facility'},

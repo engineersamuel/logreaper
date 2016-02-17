@@ -4,14 +4,18 @@ import { Alert, Row, Col, Glyphicon } from "react-bootstrap"
 import Slider from 'rc-slider'
 
 import Spacer                       from "../Spacer.jsx"
+import TopCounts                    from "../stats/TopCounts.jsx"
 import TopSeverityFieldCounts       from "../stats/TopSeverityFieldCounts.jsx"
 import Filtering                    from "../filters/Filtering.jsx"
+import HorizontalBarChart           from "../charts/HorizontalBarChart.jsx"
+import DiscreteBarChart             from "../charts/DiscreteBarChart.jsx"
+import LineChartWithFocus           from "../charts/LineChartWithFocus.jsx"
 import LogDataGrid                  from "../grid/LogDataGrid.jsx"
 import Recommendations              from "./Recommendations.jsx"
 
 import * as DataUtils               from "../../utils/dataUtils"
 
-class Log4jQuickView extends Component {
+class Vdsm extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = _.assign({
@@ -27,12 +31,6 @@ class Log4jQuickView extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState(_.assign(this.state, nextProps.viewModelOpts))
-    }
-
-    componentWillUnmount() {
-        if (_.isFunction(this.state.cleanUp)) {
-            this.state.cleanUp();
-        }
     }
 
     // http://react-component.github.io/slider/examples/slider.html
@@ -97,12 +95,7 @@ class Log4jQuickView extends Component {
         }
     }
 
-
     renderTopSeverityFieldCounts(severity, field) {
-        // showTopPercentage={1} to render the percentage for the first top item
-        if (!_.get(this, `state.severityFieldMappings.${severity}.${field}.group`)) {
-            console.warn(`Could not generate TopSeverityFieldCounts since the group for severity: ${severity}, field: ${field} could not be looked up.`);
-        }
         return (
             <TopSeverityFieldCounts
                 key={`${severity}-${field}`}
@@ -114,8 +107,7 @@ class Log4jQuickView extends Component {
                 severity={severity}
                 topSize={this.state.sliderValue}
                 cfSize={this.state.cfSize}
-                showIfNoData={false}
-                truncate={100}
+                truncate={55}
                 tooltip={`Top ${severity} log entries by count. These represent the most commonly seen ${severity} ${field} entries in the log.`}>
             </TopSeverityFieldCounts>
         )
@@ -128,7 +120,8 @@ class Log4jQuickView extends Component {
         }
 
         // Gather the top warn and error messages and transform those down to the actual message values
-        let recommendations = _.chain(_.filter(this.state.severityFieldMappings['ERROR']['message']['group'].order(p => p.count).top(this.state.sliderValue), item => item.value.count > 0))
+        let recommendations = _.chain(_.filter(this.state.severityFieldMappings['ERROR']['command']['group'].order(p => p.count).top(this.state.sliderValue), item => item.value.count > 0))
+            .union(_.filter(this.state.severityFieldMappings['WARN']['command']['group'].order(p => p.count).top(this.state.sliderValue), item => item.value.count > 0))
             // Pluck the key out
             .map('key')
             // The actual value is the 2nd element in the array
@@ -139,15 +132,17 @@ class Log4jQuickView extends Component {
             .value();
 
         const cap = 250;
-        this.state.dims.severityMessageDim.filterFunction(objArr => objArr[0] == 'ERROR');
-        let gridData = this.state.dims.severityMessageDim.top(cap);
+        this.state.dims.severityCommandDim.filterFunction(objArr => _.includes(['ERROR', 'WARN'], objArr[0]));
+        let gridData = this.state.dims.severityCommandDim.top(cap);
         // Add the idx in for each line for the grid to select on
         gridData.forEach((l, idx) => l.idx = idx);
 
-        let topSeverityFieldCount = this.renderTopSeverityFieldCounts('ERROR', 'message');
+        let fields = ['command'];
+        let sevs = _.filter(this.state.parseSeverities, s => !_.includes(this.state.infoLevelSeverities, s));
+        let topSeverityFieldCounts = _.map(fields, (field) => _.map(sevs, sev => this.renderTopSeverityFieldCounts(sev, field)));
 
         return (
-            <div ref="log4j-quick-view">
+            <div ref="vdsm-quick-view">
                 <Filtering removeFilter={this.removeFilter} filters={this.state.filters}></Filtering>
                 <p>Showing top <strong>{this.state.sliderValue}</strong> results (Slide to visualize more/less)</p>
                 <Spacer />
@@ -159,14 +154,13 @@ class Log4jQuickView extends Component {
                                 <span>Log Stats</span>
                                 <small> ({this.state.cfSize} log entries parsed spanning ~{this.state.durationHumanized})</small>
                             </h3>
-                            <div className="content">
-                                <Recommendations texts={recommendations}></Recommendations>
-                            </div>
+                            <Recommendations texts={recommendations}></Recommendations>
+                            <Spacer size={60} />
                         </div>
                     </Col>
                     <Col md={6}>
                         <div className="app-block">
-                            {topSeverityFieldCount}
+                            {topSeverityFieldCounts}
                         </div>
                     </Col>
                 </Row>
@@ -178,13 +172,14 @@ class Log4jQuickView extends Component {
                             idProperty="idx"
                             columns={[
                                 { name: 'timestamp', title: 'Timestamp', render: (v) => (new Date(v).toLocaleString())},
+                                { name: 'threadId', title: 'Thread'},
                                 { name: 'severity', title: 'Severity'},
-                                { name: 'category', title: 'Category'},
-                                { name: 'thread', title: 'Thread'},
-                                { name: 'message', title: 'Message'}
+                                { name: 'component', title: 'Component'},
+                                { name: 'module', title: 'Module'},
+                                { name: 'command', title: 'Command'}
                             ]}
-                            cap={cap}
                             isPaged={true}
+                            cap={cap}
                             height={500}>
                         </LogDataGrid>
                     </Col>
@@ -195,9 +190,8 @@ class Log4jQuickView extends Component {
     }
 }
 
-Log4jQuickView.propTypes = {
-    file: PropTypes.object.isRequired,
-    parseSeverities: PropTypes.array.isRequired
+Vdsm.propTypes = {
+    file: PropTypes.object.isRequired
 };
 
-export default Log4jQuickView;
+export default Vdsm;

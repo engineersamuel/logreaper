@@ -176,7 +176,7 @@ class ApacheAccess extends Component {
                 <Filtering removeFilter={this.removeFilter} filters={this.state.filters}></Filtering>
                 <p>Showing top <strong>{this.state.sliderValue}</strong> results (Slide to visualize more/less)</p>
                 <Spacer />
-                <Slider min={0} defaultValue={5} max={20} onChange={this.updateSliderValue}></Slider>
+                <Slider min={1} defaultValue={this.state.sliderValue} max={20} onChange={this.updateSliderValue}></Slider>
                 <Row>
                     <Col md={6}>
                         <div className="app-block">
@@ -246,6 +246,7 @@ class ApacheAccess extends Component {
                             data={gridData}
                             idProperty="idx"
                             columns={[
+                                { name: 'timestamp', title: 'Timestamp', render: (v) => (new Date(v).toLocaleString())},
                                 { name: "ip", title: 'IP'},
                                 { name: 'user', title: 'User'},
                                 { name: 'method', title: 'Method'},

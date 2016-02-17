@@ -6,7 +6,9 @@ import Lsof             from './views/Lsof.jsx';
 import Log4j            from './views/Log4j.jsx';
 import Log4jQuickView   from './views/Log4jQuickView.jsx';
 import Vdsm             from './views/Vdsm.jsx';
+import VdsmQuickView    from './views/VdsmQuickView.jsx';
 import Syslog           from './views/Syslog.jsx';
+import SyslogQuickView  from './views/SyslogQuickView.jsx';
 import Spacer           from "./Spacer.jsx";
 
 import FileIdenEnum             from './enums/FileIdenEnum';
@@ -60,10 +62,24 @@ class ViewSelector extends Component {
                 }
                 break;
             case FileIdenEnum.VDSM:
-                return <Vdsm {...this.props}></Vdsm>;
+                switch (userAction) {
+                    case "Quick Analysis":
+                        return <VdsmQuickView {...this.props}></VdsmQuickView>;
+                        break;
+                    default:
+                        return <Vdsm {...this.props}></Vdsm>;
+                        break;
+                }
                 break;
             case FileIdenEnum.SYSLOG:
-                return <Syslog {...this.props}></Syslog>;
+                switch (userAction) {
+                    case "Quick Analysis":
+                        return <SyslogQuickView {...this.props}></SyslogQuickView>;
+                        break;
+                    default:
+                        return <Syslog {...this.props}></Syslog>;
+                        break;
+                }
                 break;
             default:
                 return <span>Could not determine view to render</span>;

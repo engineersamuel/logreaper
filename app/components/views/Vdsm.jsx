@@ -145,7 +145,7 @@ class Vdsm extends Component {
         let topSeverityFieldCounts = _.map(fields, (field) => _.map(sevs, sev => this.renderTopSeverityFieldCounts(sev, field)));
 
         return (
-            <div ref="apache-access-view">
+            <div ref="vdsm-view">
                 <Row>
                     <Col md={12}>
                         <h3>Log Counts by Severity</h3>
@@ -168,7 +168,7 @@ class Vdsm extends Component {
                 <Filtering removeFilter={this.removeFilter} filters={this.state.filters}></Filtering>
                 <p>Showing top <strong>{this.state.sliderValue}</strong> results (Slide to visualize more/less)</p>
                 <Spacer />
-                <Slider min={0} defaultValue={5} max={20} onChange={this.updateSliderValue}></Slider>
+                <Slider min={1} defaultValue={this.state.sliderValue} max={20} onChange={this.updateSliderValue}></Slider>
                 <Row>
                     <Col md={6}>
                         <div className="app-block">
@@ -209,7 +209,7 @@ class Vdsm extends Component {
                             data={gridData}
                             idProperty="idx"
                             columns={[
-                                { name: 'timestamp', title: 'Timestamp'},
+                                { name: 'timestamp', title: 'Timestamp', render: (v) => (new Date(v).toLocaleString())},
                                 { name: 'threadId', title: 'Thread'},
                                 { name: 'severity', title: 'Severity'},
                                 { name: 'component', title: 'Component'},
