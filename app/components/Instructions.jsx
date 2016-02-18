@@ -30,6 +30,7 @@ class Instructions extends Component {
                         {/*<li>Feel free to leave a comment on the <a target='_blank' href='https://access.redhat.com/site/labsinfo/logreaper'>info page</a> requesting a particular log type be added</li>*/}
                         <li>Once Identified click the Parse button</li>
                         <li>The log will be parsed iteratively and you will be displayed a page containing analysis specific to the log type in question</li>
+                        <li>See below for working examples you can play with!</li>
                     </ul>
                 </Alert>
 
