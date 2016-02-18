@@ -1,0 +1,7 @@
+variables:
+  API_BASE: "http://labs-git.usersys.redhat.com/manager/api/builds/"
+  LAB_ID: "logreaper"
+job:
+  script:
+    - curl -s http://labs-git.usersys.redhat.com/labs/buildscript/raw/master/build.sh    | bash -vx
+    - curl -s http://labs-git.usersys.redhat.com/labs/buildscript/raw/master/deploy.sh | bash -vx
