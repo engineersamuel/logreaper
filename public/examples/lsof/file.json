@@ -1,0 +1,63 @@
+{
+  "file": {},
+  "hash": "7dff0a4523b16c62d36235d7842da5e7",
+  "identification": {
+    "matched": true,
+    "identifiedName": "lsof",
+    "identifiedRegexName": "std",
+    "identifiedAfterIterations": 2,
+    "format": {
+      "title": "lsof",
+      "description": "The default output of lsof",
+      "quickView": "No",
+      "regex": {
+        "std": {
+          "header": "^COMMAND.*?PID.*?USER.*?FD.*?TYPE.*?DEVICE.*?SIZE.*?NODE.*?NAME$",
+          "pattern": "^(?<process>[\\w]+)\\s+(?<pid>\\d+)\\s+(?<user>[a-zA-Z0-9._-]+)\\s+(?<fd>.*?)\\s+(?<type>.*?)\\s+(?<device>[\\w,]+)\\s*(?<size>\\w+)\\s*(?<node>\\w*?)\\s+(?<name>.*)"
+        }
+      },
+      "value": {
+        "process": {
+          "kind": "string",
+          "default": ""
+        },
+        "pid": {
+          "kind": "integer",
+          "required": "Yes"
+        },
+        "user": {
+          "kind": "string",
+          "default": ""
+        },
+        "fd": {
+          "kind": "string",
+          "default": ""
+        },
+        "type": {
+          "kind": "string",
+          "default": ""
+        },
+        "device": {
+          "kind": "string",
+          "default": ""
+        },
+        "size": {
+          "kind": "integer",
+          "default": 0
+        },
+        "node": {
+          "kind": "string",
+          "default": ""
+        },
+        "name": {
+          "kind": "string",
+          "default": ""
+        }
+      }
+    },
+    "firstLineMatched": "init          1      root  cwd       DIR              253,0       4096          2 /\n"
+  },
+  "parsedLines": [],
+  "progress": null,
+  "viewModelOpts": null
+}

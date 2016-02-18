@@ -135,7 +135,7 @@ class Log4j extends Component {
 
         // Gather the top warn and error messages and transform those down to the actual message values
         let recommendations = _.chain(_.filter(this.state.severityFieldMappings['ERROR']['message']['group'].order(p => p.count).top(this.state.sliderValue), item => item.value.count > 0))
-            .union(_.filter(this.state.severityFieldMappings['WARN']['message']['group'].order(p => p.count).top(this.state.sliderValue), item => item.value.count > 0))
+            .union(_.filter(this.state.severityFieldMappings['WARN'] && this.state.severityFieldMappings['WARN']['message']['group'].order(p => p.count).top(this.state.sliderValue), item => item.value.count > 0))
             // Pluck the key out
             .map('key')
             // The actual value is the 2nd element in the array

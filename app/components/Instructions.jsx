@@ -3,9 +3,18 @@ import shallowEqual from "react-pure-render/shallowEqual"
 import Spacer from './Spacer.jsx'
 import { Alert } from 'react-bootstrap'
 
+import {
+    exampleParseFile
+} from '../flux/actions/FileActions';
+
 class Instructions extends Component {
     constructor(props, context) {
         super(props, context);
+    }
+
+    clickExample(name, e) {
+        e.preventDefault();
+        this.props.dispatch(exampleParseFile(name))
     }
 
     render() {
@@ -13,8 +22,6 @@ class Instructions extends Component {
 
         return (
             <div>
-                <Spacer />
-
                 <Alert bsStyle="info">
                     <h3>Quick Start</h3>
                     <ul>
@@ -27,6 +34,14 @@ class Instructions extends Component {
                 </Alert>
 
                 <Spacer />
+
+                <Alert bsStyle="info">
+                    <h3>Examples</h3>
+                    <ul>
+                        <li><a className="pointer" onClick={this.clickExample.bind(this, 'jboss')}>JBoss Log</a>  This example deals with visualizing an Out of Memory situation with a JBoss server that leads to clustering issues.</li>
+                        <li><a className="pointer" onClick={this.clickExample.bind(this, 'lsof')}>LSOF</a>  This example represents 'list open files' and is useful for analyzing a snapshot the current file descriptions.</li>
+                    </ul>
+                </Alert>
 
                 {/*
 
