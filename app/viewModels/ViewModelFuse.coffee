@@ -178,11 +178,9 @@ class ViewModelFuse extends Module
 
       # Do a quick check to make sure that there are actually parsed lines to process
       if f.extra.parsedLines?.length is 0
-        console.warn "file: #{f.extra.name} with hash: #{f.extra.hash} has no parsedLines"
-        #cb {warn: "file: #{f.extra.name} with hash: #{f.extra.hash} has no parsedLines"}, null
+        console.warn "file: #{f.file.name} with hash: #{f.hash} has no parsedLines"
       else if f.extra.identification.identifiedName isnt 'fuse'
-        console.warn "file: #{f.extra.name} with hash: #{f.extra.hash} is not of type Fuse"
-        #cb {warn: "file: #{f.extra.name} with hash: #{f.extra.hash} is not a syslog file, not parsing in this class"}, null
+        console.warn "file: #{f.file.name} with hash: #{f.hash} is not of type Fuse"
       else
         # Setup crossfilter
         #console.debug "Normalizing #{f.extra.parsedLines.length} parsedLines"

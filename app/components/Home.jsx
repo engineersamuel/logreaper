@@ -75,6 +75,17 @@ class Home extends Component {
         this.props.dispatch(handleFile(e.target.files[0], _.filter(_.keys(this.state.parseSeverities), sev => this.state.parseSeverities[sev])));
     }
     _parse(action) {
+
+        if (process.env.NODE_ENV == 'production' && process.env.OPENSHIFT_DATA_DIR != null) {
+            // This fires for Omniture web analytics
+            try {
+                chrometwo_require(["analytics/main"], function (analytics) {
+                    return analytics.trigger("LabsCompletion");
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        }
         this.props.dispatch(parseFile(this.props.file, _.filter(_.keys(this.state.parseSeverities), sev => this.state.parseSeverities[sev]), action));
     }
 

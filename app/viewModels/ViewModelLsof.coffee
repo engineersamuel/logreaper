@@ -66,9 +66,9 @@ class ViewModelLsof extends Module
 
       # Do a quick check to make sure that there are actually parsed lines to process
       if parsedLines?.length is 0
-        console.warn "file: #{file.name} with hash: #{file.hash} has no parsedLines"
+        console.warn "file: #{file.file.name} with hash: #{file.hash} has no parsedLines"
       else if file.identification.identifiedName isnt 'lsof'
-        console.warn "file: #{file.name} with hash: #{file.hash} is not of type LSOF"
+        console.warn "file: #{file.file.name} with hash: #{file.hash} is not of type LSOF"
 
       if self.cf?
         self.cf.add(parsedLines)

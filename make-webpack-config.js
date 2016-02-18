@@ -154,7 +154,9 @@ module.exports = function(options) {
         plugins.push(
             new webpack.DefinePlugin(_.defaults(defineOptions, {
                 "process.env": {
-                    NODE_ENV: JSON.stringify("production")
+                    NODE_ENV: JSON.stringify("production"),
+                    "OPENSHIFT_DATA_DIR": JSON.stringify(process.env.OPENSHIFT_DATA_DIR),
+                    "HOME": JSON.stringify(process.env.HOME)
                 }
             })),
             new webpack.NoErrorsPlugin()
