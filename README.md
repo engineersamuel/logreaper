@@ -17,7 +17,7 @@ Welcome to Logreaper
 ## Building locally
 
     npm run build
-    npm run start-prod
+    npm run start-no-rh
 
 ## Building for production at Red Hat (OSE)
 

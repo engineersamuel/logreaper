@@ -1,7 +1,7 @@
 var settings = require('./settings');
 
-var ipAddress = settings.resolveEnvVar('OPENSHIFT_IOJS_IP') || '0.0.0.0';
-var port = settings.resolveEnvVar('OPENSHIFT_IOJS_PORT') || 8080;
+var ipAddress = settings.resolveEnvVar('OPENSHIFT_NODEJS_IP') || '0.0.0.0';
+var port = settings.resolveEnvVar('OPENSHIFT_NODEJS_PORT') || 8080;
 
 // By default babel cache will be in the $HOME dir which will not work in Openshift, but the data dir will.
 var homeDir = settings.resolveEnvVar('HOME');
