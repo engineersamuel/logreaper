@@ -49,6 +49,7 @@ class Filtering extends Component {
         return (
             <PanelGroup defaultActiveKey={this.props.filters.length == 0 ? "2" : "1"} accordion>
                 <Panel header={`${this.props.filters.length} Filter(s)`} eventKey="1">
+                    <Spacer />
                     {this.renderItems(this.props.filters)}
                 </Panel>
             </PanelGroup>

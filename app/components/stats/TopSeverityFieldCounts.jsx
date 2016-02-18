@@ -104,9 +104,7 @@ class TopSeverityFieldCounts extends Component {
 
         return (
             <div>
-                <h3>{`Top ${severity} in ${field}`}</h3>
                 {this.renderItems(topSevFieldCounts)}
-                <hr/>
             </div>
         )
     }

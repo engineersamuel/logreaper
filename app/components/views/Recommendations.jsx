@@ -63,7 +63,6 @@ class Recommendations extends Component {
     render() {
         return (
             <div>
-                <h3>Solution Recommendations</h3>
                 <small>Click a <Glyphicon className="green" glyph="filter"></Glyphicon> to focus these recommendations.</small>
                 <DataGrid
                     idProperty="id"
@@ -86,7 +85,7 @@ Recommendations.defaultProps = {
             title: 'Solution',
             width: 70,
             render: (obj) => {
-                return <a target="_blank" href={obj.view_uri}>{obj.nid}</a>;
+                return <a target="_blank" href={`${obj.view_uri}`}>{obj.nid}</a>;
             }
         },
         {

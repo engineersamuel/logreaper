@@ -51,28 +51,6 @@ class TopCounts extends Component {
         }
     }
 
-    renderTooltip() {
-        return null;
-    }
-    // TODO -- Not sure if I want to put this back in yet or not
-    //renderTooltip() {
-    //    if (this.props.tooltip == null) return null;
-    //    return <i className="fa fa-question-circle" title={this.props.tooltip}></i>
-    //}
-
-    renderHeader() {
-        if (this.props.title) {
-            return (
-                <h4>{this.props.title} {this.renderTooltip()}</h4>
-            )
-        }
-        return null;
-    }
-    renderFooter() {
-        return null;
-    }
-
-
     renderTopPercentage(count, idx) {
         if (this.props.showTopPercentage != null && (idx < this.props.showTopPercentage)) {
             let percentage = ((count / this.props.cfSize) * 100).toFixed(0);
@@ -110,14 +88,8 @@ class TopCounts extends Component {
 
     render() {
         return (
-            <div id={this.props.id}>
-                {this.renderHeader()}
-                <Row className="browse-v2">
-                    <Col md={12}>
-                        {this.renderItems()}
-                    </Col>
-                </Row>
-                {this.renderFooter()}
+            <div>
+                {this.renderItems()}
             </div>
         )
     }

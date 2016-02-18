@@ -3,6 +3,7 @@ import shallowEqual from "react-pure-render/shallowEqual"
 import { Alert, Row, Col, Glyphicon } from "react-bootstrap"
 import Slider from 'rc-slider'
 
+import AppBlock             from "../AppBlock.jsx"
 import Spacer               from "../Spacer.jsx"
 import TopCounts            from "../stats/TopCounts.jsx"
 import Filtering            from "../filters/Filtering.jsx"
@@ -104,22 +105,24 @@ class ApacheAccess extends Component {
     }
 
     renderTopCount(obj) {
+        let hasNoItems = this.state.groups[`${obj.field}Group`].size() == 1 && this.state.groups[`${obj.field}Group`].top(1)[0].value.count == 0;
        return (
-           <TopCounts
-               key={obj.field}
-               group={this.state.groups[`${obj.field}Group`]}
-               filters={this.state.filters}
-               addFilter={this.addFilter}
-               removeFilter={this.removeFilter}
-               field={obj.field}
-               title={`Top ${obj.field} counts`}
-               topSize={obj.topSize}
-               cfSize={this.state.cfSize}
-               truncate={Infinity}
-               inline={false}
-               lookupColor={this.lookupColor}
-               tooltip={`Total ${obj.field} counts based on the selected filters`}>
-           </TopCounts>
+           <AppBlock title={`Top ${obj.field}`} key={obj.field} render={!hasNoItems}>
+               <TopCounts
+                   group={this.state.groups[`${obj.field}Group`]}
+                   filters={this.state.filters}
+                   addFilter={this.addFilter}
+                   removeFilter={this.removeFilter}
+                   field={obj.field}
+                   title={`Top ${obj.field} counts`}
+                   topSize={obj.topSize}
+                   cfSize={this.state.cfSize}
+                   truncate={Infinity}
+                   inline={false}
+                   lookupColor={this.lookupColor}
+                   tooltip={`Total ${obj.field} counts based on the selected filters`}>
+               </TopCounts>
+           </AppBlock>
        )
     }
 
@@ -144,19 +147,19 @@ class ApacheAccess extends Component {
         gridData.forEach((l, idx) => l.idx = idx);
 
         // Define the top counts with metadata to map over
-        let topCountDict = [
-            { field: 'status', topSize: Infinity },
-            { field: 'method', topSize: Infinity },
-            { field: 'uriStem', topSize: this.state.sliderValue },
-            { field: 'ip', topSize: this.state.sliderValue }
-        ];
-        let topCountElements = topCountDict.map(obj => this.renderTopCount(obj));
+        //let topCountDict = [
+        //    { field: 'status', topSize: Infinity },
+        //    { field: 'method', topSize: Infinity },
+        //    { field: 'uriStem', topSize: this.state.sliderValue },
+        //    { field: 'ip', topSize: this.state.sliderValue }
+        //];
+        //let topCountElements = topCountDict.map(obj => this.renderTopCount(obj));
 
         return (
             <div ref="apache-access-view">
                 <Row>
                     <Col md={12}>
-                        <h3>Log Counts by Severity</h3>
+                        <h3>Log Counts by Http Code</h3>
                         <LineChartWithFocus
                             data={timeSeriesStatusCounts}
                             field='status'
@@ -177,17 +180,19 @@ class ApacheAccess extends Component {
                 <p>Showing top <strong>{this.state.sliderValue}</strong> results (Slide to visualize more/less)</p>
                 <Spacer />
                 <Slider min={1} defaultValue={this.state.sliderValue} max={20} onChange={this.updateSliderValue}></Slider>
+                <Spacer />
+                <Row>
+                    <Col md={12}>
+                        <h3 className="title">
+                            <span>Apache Access Stats</span>
+                            <small> ({this.state.cfSize} log entries parsed spanning ~{this.state.durationHumanized})</small>
+                        </h3>
+                    </Col>
+                    {/*topCountElements*/}
+                </Row>
                 <Row>
                     <Col md={6}>
-                        <div className="app-block">
-                            <h3 className="title">
-                                <span>Apache Access Stats</span>
-                                <small> ({this.state.cfSize} log entries parsed spanning ~{this.state.durationHumanized})</small>
-                            </h3>
-                            <div className="content">
-                                {topCountElements}
-                            </div>
-                        </div>
+                        {this.renderTopCount({ field: 'status', topSize: Infinity })}
                     </Col>
                     <Col md={6}>
                         <DiscreteBarChart
@@ -201,20 +206,32 @@ class ApacheAccess extends Component {
                             topSize={this.state.sliderValue}
                             showYAxis={true}>
                         </DiscreteBarChart>
-                        <Spacer />
-                        {/*
-                         <HorizontalBarChart
-                         title='Top IP Counts'
-                         data={topIpCounts}
-                         field='ip'
-                         filters={this.state.filters}
-                         addFilter={this.addFilter}
-                         removeFilter={this.removeFilter}
-                         topSize={this.state.sliderValue}
-                         chartSize='large'
-                         showYAxis={true}>
-                         </HorizontalBarChart>
-                        */}
+                    </Col>
+                </Row>
+                <hr/>
+                <Row>
+                    <Col md={6}>
+                        {this.renderTopCount({ field: 'method', topSize: Infinity })}
+                    </Col>
+                    <Col md={6}>
+                        <DiscreteBarChart
+                            title='Top Method Counts'
+                            data={topMethodCounts}
+                            field='method'
+                            filters={this.state.filters}
+                            addFilter={this.addFilter}
+                            removeFilter={this.removeFilter}
+                            topSize={this.state.sliderValue}
+                            showYAxis={true}>
+                        </DiscreteBarChart>
+                    </Col>
+                </Row>
+                <hr/>
+                <Row>
+                    <Col md={6}>
+                        {this.renderTopCount({ field: 'ip', topSize: this.state.sliderValue })}
+                    </Col>
+                    <Col md={6}>
                         <DiscreteBarChart
                             title='Top IP Counts'
                             data={topIpCounts}
@@ -228,17 +245,17 @@ class ApacheAccess extends Component {
                             margin={{bottom: 75, right: 50}}
                             showYAxis={true}>
                         </DiscreteBarChart>
+                    </Col>
+                </Row>
+                <hr/>
+                <Row>
+                    <Col md={12}>
+                        {this.renderTopCount({ field: 'uriStem', topSize: this.state.sliderValue })}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={6}>
                         <Spacer />
-                        <DiscreteBarChart
-                            title='Top Method Counts'
-                            data={topMethodCounts}
-                            field='method'
-                            filters={this.state.filters}
-                            addFilter={this.addFilter}
-                            removeFilter={this.removeFilter}
-                            topSize={this.state.sliderValue}
-                            showYAxis={true}>
-                        </DiscreteBarChart>
                         <Spacer />
                     </Col>
                     <Col md={12}>

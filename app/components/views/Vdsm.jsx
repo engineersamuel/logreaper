@@ -3,6 +3,7 @@ import shallowEqual from "react-pure-render/shallowEqual"
 import { Alert, Row, Col, Glyphicon } from "react-bootstrap"
 import Slider from 'rc-slider'
 
+import AppBlock                     from "../AppBlock.jsx"
 import Spacer                       from "../Spacer.jsx"
 import TopCounts                    from "../stats/TopCounts.jsx"
 import TopSeverityFieldCounts       from "../stats/TopSeverityFieldCounts.jsx"
@@ -96,20 +97,22 @@ class Vdsm extends Component {
     }
 
     renderTopSeverityFieldCounts(severity, field) {
+        let hasNoItems = this.state.severityFieldMappings[severity][field]['group'].size() == 1 && this.state.severityFieldMappings[severity][field]['group'].top(1)[0].value.count == 0;
         return (
-            <TopSeverityFieldCounts
-                key={`${severity}-${field}`}
-                group={this.state.severityFieldMappings[severity][field]['group']}
-                filters={this.state.filters}
-                addFilter={this.addFilter}
-                removeFilter={this.removeFilter}
-                field={field}
-                severity={severity}
-                topSize={this.state.sliderValue}
-                cfSize={this.state.cfSize}
-                truncate={55}
-                tooltip={`Top ${severity} log entries by count. These represent the most commonly seen ${severity} ${field} entries in the log.`}>
-            </TopSeverityFieldCounts>
+            <AppBlock title={`Top ${severity} in ${field}`} key={`${severity}-${field}`} render={!hasNoItems}>
+                <TopSeverityFieldCounts
+                    group={this.state.severityFieldMappings[severity][field]['group']}
+                    filters={this.state.filters}
+                    addFilter={this.addFilter}
+                    removeFilter={this.removeFilter}
+                    field={field}
+                    severity={severity}
+                    topSize={this.state.sliderValue}
+                    cfSize={this.state.cfSize}
+                    truncate={55}
+                    tooltip={`Top ${severity} log entries by count. These represent the most commonly seen ${severity} ${field} entries in the log.`}>
+                </TopSeverityFieldCounts>
+            </AppBlock>
         )
     }
 
@@ -169,37 +172,32 @@ class Vdsm extends Component {
                 <p>Showing top <strong>{this.state.sliderValue}</strong> results (Slide to visualize more/less)</p>
                 <Spacer />
                 <Slider min={1} defaultValue={this.state.sliderValue} max={20} onChange={this.updateSliderValue}></Slider>
+                <Spacer />
                 <Row>
                     <Col md={6}>
-                        <div className="app-block">
-                            <h3 className="title">
-                                <span>Log Stats</span>
-                                <small> ({this.state.cfSize} log entries parsed spanning ~{this.state.durationHumanized})</small>
-                            </h3>
-                            <div className="content">
-                                <TopCounts
-                                    group={this.state.groups.severityGroup}
-                                    filters={this.state.filters}
-                                    addFilter={this.addFilter}
-                                    removeFilter={this.removeFilter}
-                                    field='severity'
-                                    title='Top Severity Counts'
-                                    topSize={this.state.sliderValue}
-                                    cfSize={this.state.cfSize}
-                                    truncate={55}
-                                    inline={false}
-                                    tooltip='Total severity counts based on current filters'>
-                                </TopCounts>
-                            </div>
-                            <hr/>
+                        <AppBlock
+                            title={`Log Stats`}
+                            small={`(${this.state.cfSize} log entries parsed spanning ~${this.state.durationHumanized})`}>
+                            <TopCounts
+                                group={this.state.groups.severityGroup}
+                                filters={this.state.filters}
+                                addFilter={this.addFilter}
+                                removeFilter={this.removeFilter}
+                                field='severity'
+                                title='Top Severity Counts'
+                                topSize={this.state.sliderValue}
+                                cfSize={this.state.cfSize}
+                                truncate={55}
+                                inline={false}
+                                tooltip='Total severity counts based on current filters'>
+                            </TopCounts>
+                        </AppBlock>
+                        <AppBlock title={`Solution Recommendations`}>
                             <Recommendations texts={recommendations}></Recommendations>
-                            <Spacer size={60} />
-                        </div>
+                        </AppBlock>
                     </Col>
                     <Col md={6}>
-                        <div className="app-block">
-                            {topSeverityFieldCounts}
-                        </div>
+                        {topSeverityFieldCounts}
                     </Col>
                 </Row>
                 <Spacer />

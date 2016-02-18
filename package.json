@@ -1,17 +1,16 @@
 {
   "name": "logreaper",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
-    "dev-extension": "webpack-dev-server --config webpack-dev-extension-chrome.config.js --progress --colors --port 2992 --inline",
-    "build-extension-ff": "webpack --config webpack-production-extension-ff.config.js --progress --profile --colors",
-    "dev-server": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --port 2992 --inline",
-    "start": "forever src/server/server-production.js",
+    "start-dev": "node src/server/server-dev.js",
+    "start-dev-redhat": "node src/server/server-dev-redhat.js",
     "hot-dev-server": "webpack-dev-server --config webpack-hot-dev-server.config.js --hot --progress --colors --port 2992 --inline",
+    "dev-server": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --port 2992 --inline",
+    "start": "forever src/server/server-prod-redhat.js",
+    "start-prod": "forever src/server/server-prod.js",
     "build": "webpack --config webpack-production.config.js --progress --profile --colors",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start-dev": "node src/server/server-development.js",
-    "build-extension-chrome": "webpack --config webpack-production-extension-chrome.config.js --progress --profile --colors"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "async": "~0.2.10",

@@ -3,6 +3,7 @@ import shallowEqual from "react-pure-render/shallowEqual"
 import { Alert, Row, Col, Glyphicon } from "react-bootstrap"
 import Slider from 'rc-slider'
 
+import AppBlock                     from "../AppBlock.jsx"
 import Spacer                       from "../Spacer.jsx"
 import TopSeverityFieldCounts       from "../stats/TopSeverityFieldCounts.jsx"
 import Filtering                    from "../filters/Filtering.jsx"
@@ -103,21 +104,23 @@ class Log4jQuickView extends Component {
         if (!_.get(this, `state.severityFieldMappings.${severity}.${field}.group`)) {
             console.warn(`Could not generate TopSeverityFieldCounts since the group for severity: ${severity}, field: ${field} could not be looked up.`);
         }
+        let hasNoItems = this.state.severityFieldMappings[severity][field]['group'].size() == 1 && this.state.severityFieldMappings[severity][field]['group'].top(1)[0].value.count == 0;
         return (
-            <TopSeverityFieldCounts
-                key={`${severity}-${field}`}
-                group={this.state.severityFieldMappings[severity][field]['group']}
-                filters={this.state.filters}
-                addFilter={this.addFilter}
-                removeFilter={this.removeFilter}
-                field={field}
-                severity={severity}
-                topSize={this.state.sliderValue}
-                cfSize={this.state.cfSize}
-                showIfNoData={false}
-                truncate={100}
-                tooltip={`Top ${severity} log entries by count. These represent the most commonly seen ${severity} ${field} entries in the log.`}>
-            </TopSeverityFieldCounts>
+            <AppBlock title={`Top ${severity} in ${field}`} key={`${severity}-${field}`} render={!hasNoItems}>
+                <TopSeverityFieldCounts
+                    group={this.state.severityFieldMappings[severity][field]['group']}
+                    filters={this.state.filters}
+                    addFilter={this.addFilter}
+                    removeFilter={this.removeFilter}
+                    field={field}
+                    severity={severity}
+                    topSize={this.state.sliderValue}
+                    cfSize={this.state.cfSize}
+                    showIfNoData={false}
+                    truncate={100}
+                    tooltip={`Top ${severity} log entries by count. These represent the most commonly seen ${severity} ${field} entries in the log.`}>
+                </TopSeverityFieldCounts>
+            </AppBlock>
         )
     }
 
@@ -152,22 +155,15 @@ class Log4jQuickView extends Component {
                 <p>Showing top <strong>{this.state.sliderValue}</strong> results (Slide to visualize more/less)</p>
                 <Spacer />
                 <Slider min={1} defaultValue={this.state.sliderValue} max={20} onChange={this.updateSliderValue}></Slider>
+                <Spacer />
                 <Row>
                     <Col md={6}>
-                        <div className="app-block">
-                            <h3 className="title">
-                                <span>Log Stats</span>
-                                <small> ({this.state.cfSize} log entries parsed spanning ~{this.state.durationHumanized})</small>
-                            </h3>
-                            <div className="content">
-                                <Recommendations texts={recommendations}></Recommendations>
-                            </div>
-                        </div>
+                        <AppBlock title={`Solution Recommendations`}>
+                            <Recommendations texts={recommendations}></Recommendations>
+                        </AppBlock>
                     </Col>
                     <Col md={6}>
-                        <div className="app-block">
-                            {topSeverityFieldCount}
-                        </div>
+                        {topSeverityFieldCount}
                     </Col>
                 </Row>
                 <Spacer />

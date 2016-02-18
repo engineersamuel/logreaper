@@ -3,6 +3,7 @@ import shallowEqual from "react-pure-render/shallowEqual"
 import { Alert, Row, Col, Glyphicon } from "react-bootstrap"
 import Slider from 'rc-slider'
 
+import AppBlock             from "../AppBlock.jsx"
 import Spacer               from "../Spacer.jsx"
 import TopCounts            from "../stats/TopCounts.jsx"
 import Filtering            from "../filters/Filtering.jsx"
@@ -118,149 +119,145 @@ class Lsof extends Component {
                 <Spacer />
                 <Slider min={1} defaultValue={this.state.sliderValue} max={20} onChange={this.updateSliderValue}></Slider>
                 <Spacer />
-                <div className="app-block">
-                    <h3 className="title">
-                        <span>LSOF Stats</span>
-                        <small> ({this.state.cfSize} File Descriptors open</small>
-                    </h3>
-                    <div className="content">
-                        {/* ************************** */}
-                        {/* User stats */}
-                        {/* ************************** */}
-                        <Row>
-                            <Col md={6}>
-                                <TopCounts
-                                    group={this.state.groups.userGroup}
-                                    filters={this.state.filters}
-                                    addFilter={this.addFilter}
-                                    removeFilter={this.removeFilter}
-                                    field='user'
-                                    title='Top User Counts'
-                                    topSize={this.state.sliderValue}
-                                    truncate={Infinity}
-                                    inline={false}
-                                    cfSize={this.state.cfSize}
-                                    tooltip='Total user counts based on the current filters'>
-                                </TopCounts>
-                            </Col>
-                            <Col md={6}>
-                                <DiscreteBarChart
-                                    title='Top User Counts'
-                                    data={topUserCounts}
-                                    field='user'
-                                    filters={this.state.filters}
-                                    addFilter={this.addFilter}
-                                    removeFilter={this.removeFilter}
-                                    topSize={this.state.sliderValue}
-                                    chartSize='med'
-                                    showYAxis={true}>
-                                </DiscreteBarChart>
-                            </Col>
-                        </Row>
-                        {/* ************************** */}
-                        {/* Process stats */}
-                        {/* ************************** */}
-                        <Row>
-                            <Col md={6}>
-                                <TopCounts
-                                    group={this.state.groups.processGroup}
-                                    filters={this.state.filters}
-                                    addFilter={this.addFilter}
-                                    removeFilter={this.removeFilter}
-                                    field='process'
-                                    title='Top Process Counts'
-                                    topSize={this.state.sliderValue}
-                                    truncate={Infinity}
-                                    cfSize={this.state.cfSize}
-                                    inline={false}
-                                    tooltip='Total method counts based on the current filters'>
-                                </TopCounts>
-                            </Col>
-                            <Col md={6}>
-                                <DiscreteBarChart
-                                    title='Top Process Counts'
-                                    data={topProcessCounts}
-                                    field='process'
-                                    filters={this.state.filters}
-                                    addFilter={this.addFilter}
-                                    removeFilter={this.removeFilter}
-                                    topSize={this.state.sliderValue}
-                                    chartSize='med'
-                                    showYAxis={true}>
-                                </DiscreteBarChart>
-                            </Col>
-                        </Row>
-                        {/* ************************** */}
-                        {/* PID stats */}
-                        {/* ************************** */}
-                        <Row>
-                            <Col md={6}>
-                                <TopCounts
-                                    group={this.state.groups.pidGroup}
-                                    filters={this.state.filters}
-                                    addFilter={this.addFilter}
-                                    removeFilter={this.removeFilter}
-                                    field='pid'
-                                    title='Top PID Counts'
-                                    topSize={this.state.sliderValue}
-                                    staggerLabels={true}
-                                    truncate={Infinity}
-                                    cfSize={this.state.cfSize}
-                                    inline={false}
-                                    tooltip='Top PID counts based on the current filters and slider'>
-                                </TopCounts>
-                            </Col>
-                            <Col md={6}>
-                                <DiscreteBarChart
-                                    title='Top PID Counts'
-                                    data={topPidCounts}
-                                    field='pid'
-                                    filters={this.state.filters}
-                                    addFilter={this.addFilter}
-                                    removeFilter={this.removeFilter}
-                                    topSize={this.state.sliderValue}
-                                    chartSize='med'
-                                    showYAxis={true}>
-                                </DiscreteBarChart>
-                            </Col>
-                        </Row>
-                        {/* ************************** */}
-                        {/* Name stats */}
-                        {/* ************************** */}
-                        <Row>
-                            <Col md={6}>
-                                <TopCounts
-                                    group={this.state.groups.nameGroup}
-                                    filters={this.state.filters}
-                                    addFilter={this.addFilter}
-                                    removeFilter={this.removeFilter}
-                                    field='name'
-                                    title='Top Name Counts'
-                                    topSize={this.state.sliderValue}
-                                    truncate={Infinity}
-                                    cfSize={this.state.cfSize}
-                                    inline={false}
-                                    tooltip='Top Name counts based on the selected filters and slider'>
-                                </TopCounts>
-                            </Col>
-                            <Col md={6}>
-                                <DiscreteBarChart
-                                    title='Top Name Counts'
-                                    data={topNameCounts}
-                                    field='name'
-                                    filters={this.state.filters}
-                                    addFilter={this.addFilter}
-                                    removeFilter={this.removeFilter}
-                                    topSize={this.state.sliderValue}
-                                    chartSize='med'
-                                    rotateLabels={45}
-                                    showYAxis={true}>
-                                </DiscreteBarChart>
-                            </Col>
-                        </Row>
-                    </div>
+                <Spacer />
+                <h3 className="title">
+                    <span>LSOF Stats</span>
+                    <small> ({this.state.cfSize} File Descriptors open</small>
+                </h3>
 
-                </div>
+                <Row>
+                    <Col md={6}>
+                        <AppBlock title="Top User Counts">
+                            <TopCounts
+                                group={this.state.groups.userGroup}
+                                filters={this.state.filters}
+                                addFilter={this.addFilter}
+                                removeFilter={this.removeFilter}
+                                field='user'
+                                title='Top User Counts'
+                                topSize={this.state.sliderValue}
+                                truncate={Infinity}
+                                inline={false}
+                                cfSize={this.state.cfSize}
+                                tooltip='Total user counts based on the current filters'>
+                            </TopCounts>
+                        </AppBlock>
+                    </Col>
+                    <Col md={6}>
+                        <DiscreteBarChart
+                            title='Top User Counts'
+                            data={topUserCounts}
+                            field='user'
+                            filters={this.state.filters}
+                            addFilter={this.addFilter}
+                            removeFilter={this.removeFilter}
+                            topSize={this.state.sliderValue}
+                            chartSize='med'
+                            showYAxis={true}>
+                        </DiscreteBarChart>
+                    </Col>
+                </Row>
+                <hr/>
+                <Row>
+                    <Col md={6}>
+                        <AppBlock title="Top Process Counts">
+                            <TopCounts
+                                group={this.state.groups.processGroup}
+                                filters={this.state.filters}
+                                addFilter={this.addFilter}
+                                removeFilter={this.removeFilter}
+                                field='process'
+                                title='Top Process Counts'
+                                topSize={this.state.sliderValue}
+                                truncate={Infinity}
+                                cfSize={this.state.cfSize}
+                                inline={false}
+                                tooltip='Total method counts based on the current filters'>
+                            </TopCounts>
+                        </AppBlock>
+                    </Col>
+                    <Col md={6}>
+                        <DiscreteBarChart
+                            title='Top Process Counts'
+                            data={topProcessCounts}
+                            field='process'
+                            filters={this.state.filters}
+                            addFilter={this.addFilter}
+                            removeFilter={this.removeFilter}
+                            topSize={this.state.sliderValue}
+                            chartSize='med'
+                            showYAxis={true}>
+                        </DiscreteBarChart>
+                    </Col>
+                </Row>
+                <hr/>
+                <Row>
+                    <Col md={6}>
+                        <AppBlock title="Top PID Counts">
+                            <TopCounts
+                                group={this.state.groups.pidGroup}
+                                filters={this.state.filters}
+                                addFilter={this.addFilter}
+                                removeFilter={this.removeFilter}
+                                field='pid'
+                                title='Top PID Counts'
+                                topSize={this.state.sliderValue}
+                                staggerLabels={true}
+                                truncate={Infinity}
+                                cfSize={this.state.cfSize}
+                                inline={false}
+                                tooltip='Top PID counts based on the current filters and slider'>
+                            </TopCounts>
+                        </AppBlock>
+                    </Col>
+                    <Col md={6}>
+                        <DiscreteBarChart
+                            title='Top PID Counts'
+                            data={topPidCounts}
+                            field='pid'
+                            filters={this.state.filters}
+                            addFilter={this.addFilter}
+                            removeFilter={this.removeFilter}
+                            topSize={this.state.sliderValue}
+                            chartSize='med'
+                            showYAxis={true}>
+                        </DiscreteBarChart>
+                    </Col>
+                </Row>
+                <hr/>
+                <Row>
+                    <Col md={6}>
+                        <AppBlock title="Top Name Counts">
+                            <TopCounts
+                                group={this.state.groups.nameGroup}
+                                filters={this.state.filters}
+                                addFilter={this.addFilter}
+                                removeFilter={this.removeFilter}
+                                field='name'
+                                title='Top Name Counts'
+                                topSize={this.state.sliderValue}
+                                truncate={Infinity}
+                                cfSize={this.state.cfSize}
+                                inline={false}
+                                tooltip='Top Name counts based on the selected filters and slider'>
+                            </TopCounts>
+                        </AppBlock>
+                    </Col>
+                    <Col md={6}>
+                        <DiscreteBarChart
+                            title='Top Name Counts'
+                            data={topNameCounts}
+                            field='name'
+                            filters={this.state.filters}
+                            addFilter={this.addFilter}
+                            removeFilter={this.removeFilter}
+                            topSize={this.state.sliderValue}
+                            chartSize='med'
+                            rotateLabels={45}
+                            showYAxis={true}>
+                        </DiscreteBarChart>
+                    </Col>
+                </Row>
 
                 <Row>
                     <Col md={12}>
@@ -284,7 +281,6 @@ class Lsof extends Component {
                         </LogDataGrid>
                     </Col>
                 </Row>
-
             </div>
         );
     }

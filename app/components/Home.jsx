@@ -136,9 +136,8 @@ class Home extends Component {
                     <div className="clearfix"></div>
                     <FileList file={file}></FileList>
                 </div>
-                <div className="form-group">
-                    {this.renderSeverityFilters(file, _.keys(this.state.parseSeverities), error)}
-                </div>
+                {this.renderSeverityFilters(file, _.keys(this.state.parseSeverities), error)}
+                <Spacer />
                 <ButtonGroup>
                     <ParseButton {...this.props} action="Visualize" parse={this._parse}></ParseButton>
                     <ParseButton {...this.props} action="Quick Analysis" parse={this._parse}></ParseButton>

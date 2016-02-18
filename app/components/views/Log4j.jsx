@@ -3,6 +3,7 @@ import shallowEqual from "react-pure-render/shallowEqual"
 import { Alert, Row, Col, Glyphicon } from "react-bootstrap"
 import Slider from 'rc-slider'
 
+import AppBlock                     from "../AppBlock.jsx"
 import Spacer                       from "../Spacer.jsx"
 import TopCounts                    from "../stats/TopCounts.jsx"
 import TopSeverityFieldCounts       from "../stats/TopSeverityFieldCounts.jsx"
@@ -106,21 +107,23 @@ class Log4j extends Component {
         if (!_.get(this, `state.severityFieldMappings.${severity}.${field}.group`)) {
             console.warn(`Could not generate TopSeverityFieldCounts since the group for severity: ${severity}, field: ${field} could not be looked up.`);
         }
+        let hasNoItems = this.state.severityFieldMappings[severity][field]['group'].size() == 1 && this.state.severityFieldMappings[severity][field]['group'].top(1)[0].value.count == 0;
         return (
-            <TopSeverityFieldCounts
-                key={`${severity}-${field}`}
-                group={this.state.severityFieldMappings[severity][field]['group']}
-                filters={this.state.filters}
-                addFilter={this.addFilter}
-                removeFilter={this.removeFilter}
-                field={field}
-                severity={severity}
-                topSize={this.state.sliderValue}
-                cfSize={this.state.cfSize}
-                showIfNoData={false}
-                truncate={100}
-                tooltip={`Top ${severity} log entries by count. These represent the most commonly seen ${severity} ${field} entries in the log.`}>
-            </TopSeverityFieldCounts>
+            <AppBlock title={`Top ${severity} in ${field}`} key={`${severity}-${field}`} render={!hasNoItems}>
+                <TopSeverityFieldCounts
+                    group={this.state.severityFieldMappings[severity][field]['group']}
+                    filters={this.state.filters}
+                    addFilter={this.addFilter}
+                    removeFilter={this.removeFilter}
+                    field={field}
+                    severity={severity}
+                    topSize={this.state.sliderValue}
+                    cfSize={this.state.cfSize}
+                    showIfNoData={false}
+                    truncate={100}
+                    tooltip={`Top ${severity} log entries by count. These represent the most commonly seen ${severity} ${field} entries in the log.`}>
+                </TopSeverityFieldCounts>
+            </AppBlock>
         )
     }
 
@@ -173,8 +176,8 @@ class Log4j extends Component {
                             removeRangeFilter={this.removeRangeFilter}
                             lookupColor={this.lookupColor}
                             d3TimeFormat={this.state.d3TimeFormat}
-                            chartSize="large"
-                        ></LineChartWithFocus>
+                            chartSize="large">
+                        </LineChartWithFocus>
                     </Col>
                 </Row>
                 <Spacer />
@@ -182,37 +185,32 @@ class Log4j extends Component {
                 <p>Showing top <strong>{this.state.sliderValue}</strong> results (Slide to visualize more/less)</p>
                 <Spacer />
                 <Slider min={1} defaultValue={this.state.sliderValue} max={20} onChange={this.updateSliderValue}></Slider>
+                <Spacer />
                 <Row>
                     <Col md={6}>
-                        <div className="app-block">
-                            <h3 className="title">
-                                <span>Log Stats</span>
-                                <small> ({this.state.cfSize} log entries parsed spanning ~{this.state.durationHumanized})</small>
-                            </h3>
-                            <div className="content">
-                                <TopCounts
-                                    group={this.state.groups.severityGroup}
-                                    filters={this.state.filters}
-                                    addFilter={this.addFilter}
-                                    removeFilter={this.removeFilter}
-                                    field='severity'
-                                    title='Top Severity Counts'
-                                    topSize={this.state.sliderValue}
-                                    cfSize={this.state.cfSize}
-                                    truncate={55}
-                                    inline={false}
-                                    tooltip='Total severity counts based on current filters'>
-                                </TopCounts>
-                                <hr/>
-                                <Recommendations texts={recommendations}></Recommendations>
-                                <Spacer size={60} />
-                            </div>
-                        </div>
+                        <AppBlock
+                            title={`Log Stats`}
+                            small={`(${this.state.cfSize} log entries parsed spanning ~${this.state.durationHumanized})`}>
+                            <TopCounts
+                                group={this.state.groups.severityGroup}
+                                filters={this.state.filters}
+                                addFilter={this.addFilter}
+                                removeFilter={this.removeFilter}
+                                field='severity'
+                                title='Top Severity Counts'
+                                topSize={this.state.sliderValue}
+                                cfSize={this.state.cfSize}
+                                truncate={55}
+                                inline={false}
+                                tooltip='Total severity counts based on current filters'>
+                            </TopCounts>
+                        </AppBlock>
+                        <AppBlock title={`Solution Recommendations`}>
+                            <Recommendations texts={recommendations}></Recommendations>
+                        </AppBlock>
                     </Col>
                     <Col md={6}>
-                        <div className="app-block">
-                            {topSeverityFieldCounts}
-                        </div>
+                        {topSeverityFieldCounts}
                     </Col>
                 </Row>
                 <Spacer />
