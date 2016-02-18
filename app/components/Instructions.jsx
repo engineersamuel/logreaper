@@ -28,7 +28,7 @@ class Instructions extends Component {
                         <li>Browse and select a file or drop a file into the drop zone (<span style={{color: 'black', 'fontWeight': 'bold'}}>Syslog, Log4j (JBoss/RHEVM, ect..), LSOF, Apache Access</span>)</li>
                         <li>Wait for the file to be identified, if it could not be identified you will see the message: <span style={{color: 'darkred', 'fontWeight': 'bold'}}>Could not Identify</span></li>
                         {/*<li>Feel free to leave a comment on the <a target='_blank' href='https://access.redhat.com/site/labsinfo/logreaper'>info page</a> requesting a particular log type be added</li>*/}
-                        <li>Once Identified click the Parse button</li>
+                        <li>Once Identified click <b style={{color: 'black'}}>Visualize</b> to do adhoc analysis on the with graphs and filtering or <b style={{color: 'black'}}>Quick Analysis</b>, if available, to target just the errors and quickly see recommendations.</li>
                         <li>The log will be parsed iteratively and you will be displayed a page containing analysis specific to the log type in question</li>
                         <li>See below for working examples you can play with!</li>
                     </ul>

@@ -113,7 +113,7 @@ class Home extends Component {
         return (
             <Grid>
                 <div className="logreaper">
-                    <h1><a href="/labs/logreaper">Log Reaper</a></h1>
+                    <h1><a style={{color: 'black'}} href="/labs/logreaper">Log Reaper</a></h1>
                     <Spacer />
                     <p>Log Reaper is a multi-purpose log analysis app with an emphasis on break/fix and identification of errors in
                         your log files.  When you parse a log you will be presented with a custom tailored view

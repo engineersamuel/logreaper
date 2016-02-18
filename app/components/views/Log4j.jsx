@@ -106,8 +106,9 @@ class Log4j extends Component {
         // showTopPercentage={1} to render the percentage for the first top item
         if (!_.get(this, `state.severityFieldMappings.${severity}.${field}.group`)) {
             console.warn(`Could not generate TopSeverityFieldCounts since the group for severity: ${severity}, field: ${field} could not be looked up.`);
+            return;
         }
-        let hasNoItems = this.state.severityFieldMappings[severity][field]['group'].size() == 1 && this.state.severityFieldMappings[severity][field]['group'].top(1)[0].value.count == 0;
+        let hasNoItems = this.state.severityFieldMappings[severity] == null || this.state.severityFieldMappings[severity][field]['group'].top(1)[0].value.count == 0;
         return (
             <AppBlock title={`Top ${severity} in ${field}`} key={`${severity}-${field}`} render={!hasNoItems}>
                 <TopSeverityFieldCounts

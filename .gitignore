@@ -11,12 +11,13 @@ labs/logreaper/public/js/bower_components/**/*
 /logs
 *.iml
 
+
 # Ignore node_modules which will be rebuilt in openshift
 node_modules/*
 npm-debug.log
 
 # Ignore the public/dist dir as it will contain combined/minified code
-labs/logreaper/public/dist/
+public/dist/*
 
 # Ignore all js and map files in the src dir since in prod the files are minified regardless
 app.js.map

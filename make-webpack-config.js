@@ -83,9 +83,9 @@ module.exports = function(options) {
     var root = path.join(__dirname, "app");
     var publicPath = options.devServer ?
         "http://foo.redhat.com/labs/logreaper/_assets/" :
-        "/labs/logreaper/_assets/";
+        "/labs/logreaper/static/dist/";
     var output = {
-        path: options.outputPath || path.join(__dirname, "build", "public"),
+        path: options.outputPath || path.join(__dirname, "public", "dist"),
         publicPath: publicPath,
         filename: "[name].js" + (options.longTermCaching ? "?[chunkhash]" : ""),
         chunkFilename: (options.devServer ? "[id].js" : "[name].js") + (options.longTermCaching ? "?[chunkhash]" : ""),
@@ -147,9 +147,7 @@ module.exports = function(options) {
 
     var defineOptions = {
         "ENV": JSON.stringify(options.env),
-        "BROWSER": JSON.stringify(options.browser),
-        "BROWSER_PATH": JSON.stringify(options.browserPath),
-        "IS_EXTENSION": options.isExtension != null ? options.isExtension : false
+        "BROWSER_PATH": JSON.stringify(options.browserPath)
     };
 
     if(options.minimize) {

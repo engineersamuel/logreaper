@@ -24,7 +24,7 @@ module.exports = function(options) {
     let server      = require('http').Server(app);
 
     // load bundle information from stats
-    let stats       = options.stats || require("../../build/public/stats.json");
+    let stats       = options.stats || require("../../public/dist/stats.json");
     let packageJson = require("../../package.json");
     let publicPath  = stats.publicPath;
     //assetsByChunkName": {
@@ -111,7 +111,7 @@ module.exports = function(options) {
     app.use(cookieParser());
 
     // Default is /_assets but need the /labs/logreaper prefix
-    app.use(`${options.browserPath}/_assets`, express.static(path.join(__dirname, "..", "..", "build", "public"), {
+    app.use(`${options.browserPath}/_assets`, express.static(path.join(__dirname, "..", "..", "public", "dist"), {
         //etag: false,
         //maxAge: "0"
         maxAge: "200d" // We can cache them as they include hashes

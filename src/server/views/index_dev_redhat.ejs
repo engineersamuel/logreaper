@@ -7,17 +7,6 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">-->
-        <!--<link href="/chrome_themes/nimbus/css/chrometwo.css" rel="stylesheet" />-->
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
-        <!--<script type="text/javascript" src="/webassets/avalon/j/lib/require.js"></script>-->
-
-        <!--<link href="/webassets/avalon/s/jquery-ui/cp/jquery-ui-1.8.7.custom.css?v=a94c792" rel="stylesheet" type="text/css" media="screen, print" >-->
-        <!--<link href="/chrome_themes/nimbus/css/bootstrap.css" rel="stylesheet" />-->
-        <!--<link href="/chrome_themes/nimbus/css/master-blessed1.css" rel="stylesheet" />-->
-        <!--<link href="/chrome_themes/nimbus/css/master.css" rel="stylesheet" />-->
-        <!--<link href="/webassets/avalon/s/chosen.css" rel="stylesheet" />-->
-
         <!-- Other labs -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link href="/chrome_themes/nimbus/css/chrometwo.css" rel="stylesheet"/>
@@ -28,9 +17,6 @@
         <script type="text/javascript" src="/webassets/avalon/j/lib/require.js"></script>
     </head>
     <body>
-        <!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>-->
-        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
-
         <div id="chrometwo">
             <div id="chromed-app-content">
                 <div class="start-main-content">
@@ -55,15 +41,9 @@
                 //require.s.contexts._.config.urlArgs = "bust=#{uid}";
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
-                script.src = '<%- SCRIPT_URL %>?<%- mainJsHash %>';
+                script.src = '<%- SCRIPT_URL %>?bust=<%- mainJsHash %>';
                 document.body.appendChild(script);
             });
-
-            //require.s.contexts._.config.urlArgs = "bust=#{uid}";
-            //var script = document.createElement('script');
-            //script.type = 'text/javascript';
-            //script.src = '/labs/logreaper/dist/main.js' + '?bust=' + #{uid};
-            //document.body.appendChild(script);
         </script>
 
     </body>
