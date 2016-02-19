@@ -1,57 +1,57 @@
 <!doctype html>
 <html class="chrometwo legacyfalse">
-<head>
-    <title>Access Labs Log Reaper</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <head>
+        <title>Access Labs Log Reaper</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
 
-    <!-- Other labs -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href="/chrome_themes/nimbus/css/chrometwo.css" rel="stylesheet"/>
-    <link href="/webassets/avalon/s/labs/labs.css" rel="stylesheet" type="text/css" media="all" >
+        <!-- Other labs -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href="/chrome_themes/nimbus/css/chrometwo.css" rel="stylesheet"/>
+        <link href="/webassets/avalon/s/labs/labs.css" rel="stylesheet" type="text/css" media="all" >
 
-    <link href="<%- STYLE_URL %>" rel="stylesheet"/>
+        <link href="<%- STYLE_URL %>" rel="stylesheet"/>
 
-    <script>
-        // Bounce early if we don't find a cookie
-        if (!document.cookie.match(/rh_user=./)) {
-            window.location = 'https://idp.redhat.com/idp/';
-        }
-    </script>
+        <script type="text/javascript" src="/webassets/avalon/j/lib/require.js"></script>
+        <script>
+            // Bounce early if we don't find a cookie
+            if (!document.cookie.match(/rh_user=./)) {
+                window.location = 'https://idp.redhat.com/idp/';
+            }
+        </script>
 
-    <script type="text/javascript" src="/webassets/avalon/j/lib/require.js"></script>
-</head>
-<body>
-<div id="chrometwo">
-    <div id="chromed-app-content">
-        <div class="start-main-content">
-            <div id="content">
-                <%- body %>
+    </head>
+    <body>
+    <div id="chrometwo">
+        <div id="chromed-app-content">
+            <div class="start-main-content">
+                <div id="content">
+                    <%- body %>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script type="text/javascript">
-    // Red Hat Chrome theme breadcrumbs
-    breadcrumbs = [['Labs', '/labs/'], ['Logreaper', '/lab/logreaper/']];
+    <script type="text/javascript">
+        // Red Hat Chrome theme breadcrumbs
+        breadcrumbs = [['Labs', '/labs/'], ['Logreaper', '/lab/logreaper/']];
 
-    window.logreaper = {}
-    window.logreaper['mainJsHash'] = "<%- mainJsHash %>";
-    window.logreaper['version'] = "<%- version %>";
-    window.logreaper['browserPath'] = "<%- BROWSER_PATH %>";
+        window.logreaper = {}
+        window.logreaper['mainJsHash'] = "<%- mainJsHash %>";
+        window.logreaper['version'] = "<%- version %>";
+        window.logreaper['browserPath'] = "<%- BROWSER_PATH %>";
 
-    <!-- When using the Red Hat Chrome theme must add in the webapp js after the theme loads, only way to roll this one. -->
-    chrometwo_require([], function () {
-        //require.s.contexts._.config.urlArgs = "bust=#{uid}";
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = '<%- SCRIPT_URL %>?bust=<%- mainJsHash %>';
-        document.body.appendChild(script);
-    });
-</script>
+        <!-- When using the Red Hat Chrome theme must add in the webapp js after the theme loads, only way to roll this one. -->
+        chrometwo_require([], function () {
+            //require.s.contexts._.config.urlArgs = "bust=#{uid}";
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = '<%- SCRIPT_URL %>?bust=<%- mainJsHash %>';
+            document.body.appendChild(script);
+        });
+    </script>
 
-</body>
+    </body>
 </html>

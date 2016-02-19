@@ -11,6 +11,7 @@ module.exports = function(options) {
     let cookieParser    = require('cookie-parser');
     let compression     = require('compression');
     let ejs             = require("ejs");
+    let request         = require("request");
     let logger          = require("../utils/logger");
     if (options.env == "development") {
         logger.info("Setting the console transports level to debug");
@@ -114,19 +115,16 @@ module.exports = function(options) {
     app.use(`${options.browserPath}/_assets`, express.static(path.join(__dirname, "..", "..", "public", "dist"), {
         //etag: false,
         //maxAge: "0"
-        maxAge: "200d" // We can cache them as they include hashes
+        maxAge: "200d"
     }));
-    //app.use(`${options.browserPath}/static`, express.static("public", {
     app.use(`${options.browserPath}/static`, express.static(path.join(__dirname, "..", "..", "public"), {
         //etag: false,
         //maxAge: "0"
-        maxAge: "200d" // We can cache them as they include hashes
+        maxAge: "200d"
     }));
 
     if (options.env === 'development') {
-
-        logger.info("Using development error handler.");
-
+        logger.debug("Using development error handler.");
         app.use(function(err, req, res, next) {
             res.status(err.status || 500);
             res.render('error', {
@@ -134,14 +132,22 @@ module.exports = function(options) {
                 error: err
             });
         });
-
     }
 
     // load REST API
     require("./api")(app, _.defaults(options, packageJson));
 
+    // Redirect anything coming in to / to /labs/logreaper
     app.get("/", function(req, res, next) {
         res.redirect("/labs/logreaper");
+    });
+
+    // Proxy webpack for local development work
+    app.get(/labs\/logreaper\/_assets\/.*?/, function(req, res) {
+        let afterAssets = req.url.replace("/labs/logreaper/_assets/", "");
+        var newUrl = `http://localhost:2992/labs/logreaper/_assets/${afterAssets}`;
+        logger.debug(`Proxying _assets to ${newUrl}`);
+        request(newUrl).pipe(res);
     });
 
     app.get("/*", (req, res) => {

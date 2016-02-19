@@ -1,29 +1,24 @@
 <!doctype html>
-<html class="chrometwo legacyfalse">
+<html>
     <head>
-        <title>Access Labs Log Reaper</title>
+        <title>Log Reaper</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-
-        <link rel="stylesheet",type="text/css",media="all",href="/chrome_themes/umbra/s/chrometwo.css" />
-
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link href="<%- STYLE_URL %>" rel="stylesheet"/>
-        <script>
-            // Bounce early if we don't find a cookie
-            if (!document.cookie.match(/rh_user=./)) {
-                window.location = 'https://idp.redhat.com/idp/';
-            }
-        </script>
     </head>
     <body>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
         <script type="text/javascript">
-            window.quest = {}
-            window.quest['mainJsHash'] = "<%- mainJsHash %>";
-            window.quest['version'] = "<%- version %>";
-            window.quest['browserPath'] = "<%- BROWSER_PATH %>";
+            window.logreaper = {}
+            window.logreaper['mainJsHash'] = "<%- mainJsHash %>";
+            window.logreaper['version'] = "<%- version %>";
+            window.logreaper['browserPath'] = "<%- BROWSER_PATH %>";
         </script>
 
         <div id="content">
@@ -39,19 +34,8 @@
         <script type="text/javascript" src="<%- COMMONS_URL %>"></script>
         <% } %>
 
-        <script type="text/javascript">
-            breadcrumbs = [['Labs', '/labs/'], ['Log Reaper', '/labs/logreaper/']];
-
-            chrometwo_require(['jquery'], function (jq) {
-                require.s.contexts._.config.urlArgs = "bust=#{uid}";
-
-                var script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.src = '<%- SCRIPT_URL%>' + '?bust=' + "<%- mainJsHash%>"
-                document.body.appendChild(script);
-
-            });
-        </script>
+        <!-- Inject the main script for bootstrapping React -->
+        <script type="text/javascript" src="<%- SCRIPT_URL %>"></script>
 
     </body>
 </html>

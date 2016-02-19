@@ -49,16 +49,14 @@ module.exports = function(options) {
         "html": "html-loader",
         "md|markdown": ["html-loader", "markdown-loader"]
     };
-    // This modular css is bizarre, it may make sense for hot reloading but it creates mangled names and you have
-    // to import from the css file and reference the imported name.style.  Futhermore styles don't just
-    // apply given they are localized which makes editing the css in the browser a PITA.
+    // I suspect I'm missing the 'magic' of css modules, but they make it nearly impossible for me to update the styling
+    // in the chrome dev console systemically, which is counter-productive, so I'm not using them.
     //var cssLoader = options.minimize ? "css-loader?module" : "css-loader?module&localIdentName=[path][name]---[local]---[hash:base64:5]";
     var cssLoader = options.minimize ? "css-loader" : "css-loader?localIdentName=[path][name]---[local]---[hash:base64:5]";
     //var cssLoader = "css-loader";
     var stylesheetLoaders = {
         "css": cssLoader,
         "less": [cssLoader, "less-loader"],
-
         "scss|sass": [cssLoader, "sass-loader"]
     };
     var additionalLoaders = [
@@ -81,9 +79,12 @@ module.exports = function(options) {
     var modulesDirectories = ["web_modules", "node_modules"];
     var extensions = ["", ".web.js", ".js", ".jsx"];
     var root = path.join(__dirname, "app");
-    var publicPath = options.devServer ?
-        "http://foo.redhat.com/labs/logreaper/_assets/" :
-        "/labs/logreaper/static/dist/";
+
+    //"http://foo.redhat.com/labs/logreaper/_assets/" :
+    //"http://localhost:2992/labs/logreaper/_assets/" :
+
+    // First try to set it to the options passed in, or default based on the devServer
+    var publicPath = options.publicPath || (options.devServer ? "http://localhost:8080/labs/logreaper/_assets/" : "/labs/logreaper/static/dist/");
     var output = {
         path: options.outputPath || path.join(__dirname, "public", "dist"),
         publicPath: publicPath,
