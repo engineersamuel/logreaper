@@ -140,26 +140,9 @@ module.exports = function(options) {
     // load REST API
     require("./api")(app, _.defaults(options, packageJson));
 
-    // There are certain Access Labs urls that are being prefixed with /labs, let's catch and fix that.
-    //app.get(/^\/labs\/logreaper\/results\/(chrome_themes|webassets|services|click|suggest)/, function(req, res, next) {
-    //    var newUrl = req.url.replace("/labs/jvmpeg/results", "");
-    //    res.redirect(newUrl);
-    //});
-    //app.get(/^\/labs\/logreaper\/(chrome_themes|webassets|services|click|suggest)/, function(req, res, next) {
-    //    var newUrl = req.url.replace("/labs/jvmpeg", "");
-    //    res.redirect(newUrl);
-    //});
-    //
-    //app.get(/^\/(webassets|chrome_themes|services.*?)/i, (req, res) => {
-    //    let location = "https://access.redhat.com/" + req.url;
-    //    logger.info("received request: " + req.url);
-    //    logger.info("Redirecting to: " + location);
-    //    res.writeHead(302, {
-    //        Location: location
-    //    });
-    //    res.end();
-    //    return true;
-    //});
+    app.get("/", function(req, res, next) {
+        res.redirect("/labs/logreaper");
+    });
 
     app.get("/*", (req, res) => {
         res.header("Cache-Control", "no-cache, no-store, must-revalidate");
