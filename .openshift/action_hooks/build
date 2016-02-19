@@ -12,3 +12,8 @@ npm prune --production
 npm i --production --loglevel error
 
 npm run build
+
+# if forever is missing
+# install it in the persistent data dir
+which forever >/dev/null 2>&1
+if [ $? != 0 ] ; then npm install -g forever ; fi
