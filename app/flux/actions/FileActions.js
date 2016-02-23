@@ -92,7 +92,7 @@ export function fileParsed(viewModelOpts) {
 //        uri.setPath('/labs/logreaper/formats');
 //
 //        // TODO -- lookup the fetch error handler
-//        return fetch(uri.toString())
+//        return fetch(uri.toString(), {credentials: 'same-origin'})
 //            .then(response => response.json())
 //            .then(formats => {
 //
@@ -126,7 +126,7 @@ export function handleFile(file) {
         uri.setPath('/labs/logreaper/formats');
 
         // TODO -- lookup the fetch error handler
-        return fetch(uri.toString())
+        return fetch(uri.toString(), {credentials: 'same-origin'})
             .then(response => response.json())
             .then(formats => {
                 md5({file: file, returnAfterNChunks: 1}).then((hash) => {
@@ -179,7 +179,7 @@ export function parseSeverities(severities) {
 }
 
 function getTheUri(uri) {
-    return fetch(uri.toString()).then(response => response.json() )
+    return fetch(uri.toString(), {credentials: 'same-origin'}).then(response => response.json() )
 }
 
 export function exampleParseFile(name) {
