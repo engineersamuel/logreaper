@@ -4,9 +4,6 @@
 HOME=$OPENSHIFT_REPO_DIR
 BABEL_DISABLE_CACHE=1
 
-rm -rf ${TMP}node_modules
-rm -rf ./node_modules
-
 cd ${OPENSHIFT_REPO_DIR}
 if [ -d ${TMP}node_modules ]; then
 mv -f ${TMP}node_modules ./
