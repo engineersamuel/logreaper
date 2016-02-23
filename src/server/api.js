@@ -1,3 +1,5 @@
+"use strict";
+
 let _           = require('lodash');
 let yaml        = require('js-yaml');
 let glob        = require('glob');

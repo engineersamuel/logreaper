@@ -1,3 +1,5 @@
+"use strict";
+
 QueryError = (type, message) ->
   @name = 'QueryError'
   @type = type

@@ -1,3 +1,5 @@
+"use strict";
+
 var yaml    = require('js-yaml');
 var _       = require("lodash");
 var fs      = require("fs");

@@ -1,3 +1,5 @@
+"use strict";
+
 var winston         = require('winston');
 //var Mail            = require("winston-mail").Mail;
 winston.emitErrs    = true;
