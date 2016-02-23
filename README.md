@@ -3,7 +3,7 @@
 Welcome to Log Reaper.  Log Reaper is an adhoc analysis webapp for various logs an emphasis on break/fix and identification of errors and solutions.
 When you parse a log you will be presented with a custom tailored view for that particular log type, with automatic solution recommendations, and with targeted analysis.
 
-One key feature of Log Reaper is that your log files are **never** transmitted to any server.  All parsing is done within your browser.
+One key feature of Log Reaper is that your log files are **never** uploaded to a server to be parsed.  All parsing is done within your browser.
 The only pieces of information transmitted to any server is the top ERROR-like log lines are sent to Red Hat to get solution recommendations.
 
 Log types supported:
