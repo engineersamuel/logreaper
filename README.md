@@ -63,6 +63,8 @@ You'll need the following in `/etc/hosts` so that your browser is using a redhat
 
 You'll also need to setup Apache or Nginx to properly proxy.  See [nginx_osx.conf](https://github.com/engineersamuel/logreaper/blob/master/config/nginx_osx.conf) for an example nginx configuration for proxying when using foo.redhat.com.
 
+For an exmaple on proxying Red Hat content with Apache see [mod_proxy_snippet.conf](https://github.com/engineersamuel/logreaper/blob/master/config/mod_proxy_snippet.conf)
+
 ## Building locally
 
     npm run build
