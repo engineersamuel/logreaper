@@ -16,6 +16,11 @@ Log types supported:
 * lsof output (list open files)
 * /var/log/syslog
 
+## Demo of usage
+
+![Screencast Demo](https://cloud.githubusercontent.com/assets/2019830/13253877/62b798f2-da0c-11e5-8776-22d33b8b3fa1.gif "Screencast demo")
+
+
 ## Quickstart for development outside of Red Hat
 
 Install the necessary npm modules
