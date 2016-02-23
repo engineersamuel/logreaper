@@ -76,7 +76,7 @@ class Home extends Component {
     }
     _parse(action) {
 
-        if (process.env.NODE_ENV == 'production' && process.env.OPENSHIFT_DATA_DIR != null) {
+        if (process.env.NODE_ENV == 'production') {
             // This fires for Omniture web analytics
             try {
                 chrometwo_require(["analytics/main"], function (analytics) {
