@@ -17,6 +17,7 @@ class Recommendations extends Component {
     _genRecommendationPromise(url, text) {
         return fetch(url, {
             method: 'post',
+            credentials: 'same-origin',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
