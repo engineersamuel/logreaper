@@ -61,7 +61,7 @@ You'll need the following in `/etc/hosts` so that your browser is using a redhat
 
     127.0.0.1 localhost, foo.redhat.com prod.foo.redhat.com
 
-You'll also need to setup Apache or Nginx to properly proxy.  See [nginx_osx.conf](../blob/master/config/nginx_osx.conf) for an example nginx configuration for proxying when using foo.redhat.com.
+You'll also need to setup Apache or Nginx to properly proxy.  See [nginx_osx.conf](https://github.com/engineersamuel/logreaper/blob/master/config/nginx_osx.conf) for an example nginx configuration for proxying when using foo.redhat.com.
 
 ## Building locally
 
