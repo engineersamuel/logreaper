@@ -11,7 +11,8 @@ fi
 npm prune --production
 npm i --production --loglevel error
 
-npm run build
+# Build locally and push.  The itos gears fail on FDs when running this and/or disk quote with the node_modules
+#npm run build
 
 # if forever is missing
 # install it in the persistent data dir
