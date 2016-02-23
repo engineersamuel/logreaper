@@ -72,5 +72,7 @@ For an exmaple on proxying Red Hat content with Apache see [mod_proxy_snippet.co
 
 ## Building for production at Red Hat (OSE)
 
+Note that the build should be done locally for now as the OSE 2.0 gears can't handle the resource requirements of the webpack build.
+
     npm run build
     npm run start
