@@ -1,6 +1,6 @@
 let browserPath = '/labs/logreaper';
 let env = "development";
-let packageJson = require("../../../package.json");
+let packageJson = require("../package.json");
 
 if (ENV == "production") {
     env = "production";
