@@ -2,7 +2,7 @@ import { Component, PropTypes } from "react";
 import shallowEqual from "react-pure-render/shallowEqual"
 import { Button } from "react-bootstrap";
 
-import { parseFiles } from '../flux/actions/ApiActions';
+import { parseFiles } from '../flux/actions/FileActions';
 
 class ParseButton extends Component {
     constructor(props, context) {

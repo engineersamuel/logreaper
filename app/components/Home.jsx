@@ -30,7 +30,7 @@ import {
     handleFile,
     parseFile,
     parseSeverities
-} from '../flux/actions/ApiActions';
+} from '../flux/actions/FileActions';
 
 require('nvd3/build/nv.d3.css');
 require('rc-slider/assets/index.css');
