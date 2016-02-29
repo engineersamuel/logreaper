@@ -5,7 +5,7 @@ import { Alert } from 'react-bootstrap'
 
 import {
     exampleParseFile
-} from '../flux/actions/FileActions';
+} from '../flux/actions/ApiActions';
 
 class Instructions extends Component {
     constructor(props, context) {
