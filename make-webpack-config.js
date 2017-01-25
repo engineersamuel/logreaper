@@ -5,7 +5,12 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var StatsPlugin = require("stats-webpack-plugin");
 var loadersByExtension = require("./config/loadersByExtension");
 
+
 module.exports = function(options) {
+    console.log("Env is: " + options.env);
+    console.log("debug: " + options.debug);
+    console.log("devtool: " + options.devtool);
+
     var entry = {
         main: "./app/index.js"
         // second: "./app/someOtherPage
@@ -90,9 +95,9 @@ module.exports = function(options) {
         publicPath: publicPath,
         filename: "[name].js" + (options.longTermCaching ? "?[chunkhash]" : ""),
         chunkFilename: (options.devServer ? "[id].js" : "[name].js") + (options.longTermCaching ? "?[chunkhash]" : ""),
-        sourceMapFilename: "debugging/[file].map",
-        libraryTarget: undefined,
-        pathinfo: options.debug
+        // sourceMapFilename: "debugging/[file].map",
+        // libraryTarget: undefined,
+        // pathinfo: options.debug
     };
     // Excluding all node_module ouput will prevent a lot of spam in the webpack output
     var excludeFromStats = [
@@ -148,14 +153,16 @@ module.exports = function(options) {
 
     var defineOptions = {
         "ENV": JSON.stringify(options.env),
-        "BROWSER_PATH": JSON.stringify(options.browserPath)
+        ENVIRONMENT: JSON.stringify(options.env),
+        "BROWSER_PATH": JSON.stringify(options.browserPath),
     };
 
     if(options.minimize) {
+        console.log("minimizing");
         plugins.push(
             new webpack.DefinePlugin(_.defaults(defineOptions, {
                 "process.env": {
-                    NODE_ENV: JSON.stringify("production"),
+                    NODE_ENV: JSON.stringify(options.env),
                     "OPENSHIFT_DATA_DIR": JSON.stringify(process.env.OPENSHIFT_DATA_DIR),
                     "HOME": JSON.stringify(process.env.HOME)
                 }
@@ -164,14 +171,19 @@ module.exports = function(options) {
         );
     } else {
         plugins.push(
-            new webpack.DefinePlugin(defineOptions)
+            new webpack.DefinePlugin(_.defaults(defineOptions, {
+                "process.env": {
+                    NODE_ENV: JSON.stringify(options.env),
+                    "OPENSHIFT_DATA_DIR": JSON.stringify(process.env.OPENSHIFT_DATA_DIR),
+                    "HOME": JSON.stringify(process.env.HOME)
+                }
+            }))
         );
     }
 
     return {
         entry: entry,
         output: output,
-        target: "web",
         module: {
             loaders: [].concat(loadersByExtension(loaders)).concat(loadersByExtension(stylesheetLoaders)).concat(additionalLoaders)
         },
@@ -193,7 +205,8 @@ module.exports = function(options) {
             stats: {
                 cached: false,
                 exclude: excludeFromStats
-            }
+            },
+            contentBase: options.contentBase || './'
         }
     };
 };

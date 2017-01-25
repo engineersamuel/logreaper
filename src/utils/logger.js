@@ -33,7 +33,7 @@ var logger = new winston.Logger({
                     (options.meta && Object.keys(options.meta).length ? '\n\t'+ JSON.stringify(options.meta) : '' );
             },
             level: 'debug',
-            handleExceptions: true,
+            handleExceptions: false,
             json: false,
             colorize: true
         })

@@ -76,6 +76,7 @@ class Home extends Component {
     }
     _parse(action) {
 
+        console.log(`Node env: ${process.env.NODE_ENV}`);
         if (process.env.NODE_ENV == 'production') {
             // This fires for Omniture web analytics
             try {

@@ -7,7 +7,7 @@ module.exports = require("./make-webpack-config")({
     // this just makes it easy to get started.
     publicPath: "http://localhost:8080/labs/logreaper/_assets/",
     separateStylesheet: true,
-    devtool: "eval-source-map",
+    devtool: "inline-source-map",
     //devtool: "source-map",
     debug: true
 });

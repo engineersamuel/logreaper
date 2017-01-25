@@ -64,15 +64,16 @@ module.exports = function(app, options) {
         }
 
         // Only return Solutions or Articles
-        uri.addQueryParam('fq', 'documentKind:(Solution or Article)');
+        uri.addQueryParam('fq', 'documentKind:Solution');
+        uri.addQueryParam('fq', '-internalTags:helper_solution');
         // Only return 1 row by default.  1 Row has the best Recall and Precision
         uri.addQueryParam('rows', req.query.rows || 1);
         // Text to query
         uri.addQueryParam('q', text);
         // Add in the solution/article id for ease of use in the UI
-        uri.addQueryParam('fl', 'id');
+        uri.addQueryParam('fl', '*,score');
 
-        //logger.debug(`Hitting recommendations with : ${uri.toString()}`);
+        logger.debug(`Hitting recommendations with : ${uri.toString()}`);
 
         let requestOpts = {
             url: uri.toString(),

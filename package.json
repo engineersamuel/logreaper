@@ -7,7 +7,7 @@
     "start-dev-redhat": "node src/server/server-dev-redhat.js",
     "hot-dev-server": "webpack-dev-server --config webpack-hot-dev-server.config.js --hot --progress --colors --port 2992 --inline",
     "hot-dev-server-redhat": "webpack-dev-server --config webpack-hot-dev-server-redhat.config.js --hot --progress --colors --port 2992 --inline",
-    "dev-server": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --port 2992 --inline",
+    "dev-server": "webpack-dev-server --config webpack-dev-server.config.js --history-api-fallback --inline --progress --port 2992",
     "dev-server-redhat": "webpack-dev-server --config webpack-dev-server-redhat.config.js --progress --colors --port 2992 --inline",
     "start": "forever src/server/server-prod-redhat.js",
     "start-no-rh": "forever src/server/server-prod.js",
@@ -85,7 +85,7 @@
     "stats-webpack-plugin": "~0.3.0",
     "style-loader": "~0.13.0",
     "url-loader": "~0.5.7",
-    "webpack": "~1.12.13",
+    "webpack": "~1.13.0",
     "webpack-dev-server": "~1.14.1",
     "worker-loader": "~0.7.0"
   }

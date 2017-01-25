@@ -23,7 +23,7 @@ Log types supported:
 
 ## Quickstart for development outside of Red Hat
 
-Install the necessary npm modules
+Install the necessary npm modules and make sure you are on Node 4.x
 
     npm install
 

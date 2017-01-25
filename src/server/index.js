@@ -115,14 +115,14 @@ module.exports = function(options) {
 
     // Default is /_assets but need the /labs/logreaper prefix
     app.use(`${options.browserPath}/_assets`, express.static(path.join(__dirname, "..", "..", "public", "dist"), {
-        //etag: false,
-        //maxAge: "0"
-        maxAge: "200d"
+        etag: false,
+        maxAge: "0"
+        // maxAge: "200d"
     }));
     app.use(`${options.browserPath}/static`, express.static(path.join(__dirname, "..", "..", "public"), {
-        //etag: false,
-        //maxAge: "0"
-        maxAge: "200d"
+        etag: false,
+        maxAge: "0"
+        // maxAge: "200d"
     }));
 
     if (options.env === 'development') {

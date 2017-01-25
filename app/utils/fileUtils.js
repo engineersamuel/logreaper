@@ -26,7 +26,7 @@ export function truthy(obj) {
     } else {
         return false;
     }
-};
+}
 
 export function handleSeverities(iden) {
     // Currently the only two fields ever parsed to look at 'severity' values is severity (log4j type logs) and status (apache).
