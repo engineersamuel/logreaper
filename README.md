@@ -1,5 +1,6 @@
 ## Introduction
 
+
 Welcome to Log Reaper.  Log Reaper is an adhoc analysis webapp for various logs an emphasis on break/fix and identification of errors and solutions.
 When you parse a log you will be presented with a custom tailored view for that particular log type, with automatic solution recommendations, and with targeted analysis.
 
